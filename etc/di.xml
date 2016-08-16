@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\PaymentMethodRepository" />
+    <preference for="Dealer4dealer\Xcore\Api\Data\PaymentCostInterface" type="Dealer4dealer\Xcore\Model\PaymentCost"/>
+</config> 
