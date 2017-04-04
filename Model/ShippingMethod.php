@@ -30,10 +30,10 @@ class ShippingMethod implements ShippingMethodInterface
 
         foreach ($this->shippingConfig->getAllCarriers() as $code => $carrier) {
 
-            $title = $carrier->getTitle();
+            $title = $carrier->getConfigData('title');
 
             $response[] = [
-                'code'  => $code,
+                'code'  => $code."_".$code,
                 'name'  => $title,
             ];
         }
