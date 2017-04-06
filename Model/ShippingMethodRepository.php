@@ -32,10 +32,10 @@ class ShippingMethodRepository implements ShippingMethodRepositoryInterface
 
             $title = $carrier->getConfigData('title');
 
-            foreach($carrier->getActiveMethods() as $activeMethod) {
+            foreach($carrier->getAllowedMethods() as $methodCode => $method) {
                 $response[] = [
-                    'code'  => $code."_".$activeMethod->getCode(),
-                    'name'  => $title. " - ".$activeMethod->getTitle(),
+                    'code'  => $code."_".$methodCode,
+                    'name'  => $title. " - ".$method,
                 ];
             }
         }
