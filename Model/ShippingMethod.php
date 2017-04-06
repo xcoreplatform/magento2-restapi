@@ -28,14 +28,16 @@ class ShippingMethod implements ShippingMethodInterface
     {
         $response = [];
 
-        foreach ($this->shippingConfig->getAllCarriers() as $code => $carrier) {
+        foreach ($this->shippingConfig->getActiveCarriers() as $code => $carrier) {
 
             $title = $carrier->getConfigData('title');
 
-            $response[] = [
-                'code'  => $code."_".$code,
-                'name'  => $title,
-            ];
+            foreach($carrier->getAllowedMethods() as $methodCode => $method) {
+                $response[] = [
+                    'code'  => $code."_".$methodCode,
+                    'name'  => $title. " - ".$method,
+                ];
+            }
         }
 
         return $response;
