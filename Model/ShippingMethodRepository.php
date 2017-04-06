@@ -28,14 +28,16 @@ class ShippingMethodRepository implements ShippingMethodRepositoryInterface
     {
         $response = [];
 
-        foreach ($this->shippingConfig->getAllCarriers() as $code => $carrier) {
+        foreach ($this->shippingConfig->getActiveCarriers() as $code => $carrier) {
 
             $title = $carrier->getConfigData('title');
 
-            $response[] = [
-                'code'  => $code."_".$code,
-                'name'  => $title,
-            ];
+            foreach($carrier->getActiveMethods() as $activeMethod) {
+                $response[] = [
+                    'code'  => $code."_".$activeMethod->getCode(),
+                    'name'  => $title. " - ".$activeMethod->getTitle(),
+                ];
+            }
         }
 
         return $response;
