@@ -1,10 +1,50 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             title="xCore"
+        <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_top"
+             title="D4D xCore"
              module="Dealer4dealer_Xcore"
              sortOrder="9999"
              resource="Magento_Backend::content"
+        />
+        <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_product_attributes"
+             title="Custom product attributes"
+             module="Dealer4dealer_Xcore"
+             sortOrder="9999"
+             resource="Magento_Backend::content"
+             parent="Dealer4dealer_Xcore::dealer4dealer_xcore_top"
+             action="cms/page/index"
+        />
+        <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_customer_attributes"
+             title="Custom customer attributes"
+             module="Dealer4dealer_Xcore"
+             sortOrder="9999"
+             resource="Magento_Backend::content"
+             parent="Dealer4dealer_Xcore::dealer4dealer_xcore_top"
+             action="cms/page/index"
+        />
+        <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_order_attributes"
+             title="Custom order attributes"
+             module="Dealer4dealer_Xcore"
+             sortOrder="9999"
+             resource="Magento_Backend::content"
+             parent="Dealer4dealer_Xcore::dealer4dealer_xcore_top"
+             action="cms/page/index"
+        />
+        <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_invoice_attributes"
+             title="Custom invoice attributes"
+             module="Dealer4dealer_Xcore"
+             sortOrder="9999"
+             resource="Magento_Backend::content"
+             parent="Dealer4dealer_Xcore::dealer4dealer_xcore_top"
+             action="cms/page/index"
+        />
+        <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_credit_attributes"
+             title="Custom credit attributes"
+             module="Dealer4dealer_Xcore"
+             sortOrder="9999"
+             resource="Magento_Backend::content"
+             parent="Dealer4dealer_Xcore::dealer4dealer_xcore_top"
+             action="cms/page/index"
         />
     </menu>
 </config>
