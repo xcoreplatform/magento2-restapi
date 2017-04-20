@@ -7,7 +7,7 @@
              resource="Magento_Backend::content"
         />
         <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_product_attributes"
-             title="Custom product attributes"
+             title="Product attributes"
              module="Dealer4dealer_Xcore"
              sortOrder="9999"
              resource="Magento_Backend::content"
@@ -15,7 +15,7 @@
              action="cms/page/index"
         />
         <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_customer_attributes"
-             title="Custom customer attributes"
+             title="Customer attributes"
              module="Dealer4dealer_Xcore"
              sortOrder="9999"
              resource="Magento_Backend::content"
@@ -23,7 +23,7 @@
              action="cms/page/index"
         />
         <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_order_attributes"
-             title="Custom order attributes"
+             title="Order attributes"
              module="Dealer4dealer_Xcore"
              sortOrder="9999"
              resource="Magento_Backend::content"
@@ -31,7 +31,7 @@
              action="cms/page/index"
         />
         <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_invoice_attributes"
-             title="Custom invoice attributes"
+             title="Invoice attributes"
              module="Dealer4dealer_Xcore"
              sortOrder="9999"
              resource="Magento_Backend::content"
@@ -39,7 +39,7 @@
              action="cms/page/index"
         />
         <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_credit_attributes"
-             title="Custom credit attributes"
+             title="Credit attributes"
              module="Dealer4dealer_Xcore"
              sortOrder="9999"
              resource="Magento_Backend::content"
