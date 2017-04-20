@@ -8,6 +8,13 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Index extends Action
 {
+    /**
+     * Array of actions which can be processed without secret key validation
+     *
+     * @var array
+     */
+    protected $_publicActions = ['index'];
+    
     protected $resultPageFactory;
 
     public function __construct(Context $context, PageFactory $resultPageFactory)
