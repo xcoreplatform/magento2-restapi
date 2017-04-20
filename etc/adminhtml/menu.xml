@@ -12,7 +12,7 @@
              sortOrder="9999"
              resource="Magento_Backend::content"
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             action="xcore/custom_attribute/product"
+             action="xcore/custom_attribute_product"
         />
         <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_customer_attributes"
              title="Customer attributes"
@@ -20,7 +20,7 @@
              sortOrder="9999"
              resource="Magento_Backend::content"
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             action="xcore/custom_attribute/customer"
+             action="xcore/custom_attribute_customer"
         />
         <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_order_attributes"
              title="Order attributes"
@@ -28,7 +28,7 @@
              sortOrder="9999"
              resource="Magento_Backend::content"
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             action="xcore/custom_attribute/order"
+             action="xcore/custom_attribute_order"
         />
         <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_invoice_attributes"
              title="Invoice attributes"
@@ -36,7 +36,7 @@
              sortOrder="9999"
              resource="Magento_Backend::content"
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             action="xcore/custom_attribute/invoice"
+             action="xcore/custom_attribute_invoice"
         />
         <add id="Dealer4dealer_Xcore::dealer4dealer_xcore_custom_credit_attributes"
              title="Credit attributes"
@@ -44,7 +44,7 @@
              sortOrder="9999"
              resource="Magento_Backend::content"
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             action="xcore/custom_attribute/credit"
+             action="xcore/custom_attribute_credit"
         />
     </menu>
 </config>
