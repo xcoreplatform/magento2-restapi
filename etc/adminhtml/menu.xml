@@ -1,0 +1,10 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Dealer4dealer_Xcore::dealer4dealer_xcore"
+             title="xCore"
+             module="Dealer4dealer_Xcore"
+             sortOrder="9999"
+             resource="Magento_Backend::content"
+        />
+    </menu>
+</config>
