@@ -14,7 +14,7 @@ class Index extends Action
      * @var array
      */
     protected $_publicActions = ['index'];
-    
+
     protected $resultPageFactory;
 
     public function __construct(Context $context, PageFactory $resultPageFactory)

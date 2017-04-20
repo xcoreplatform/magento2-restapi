@@ -2,7 +2,7 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="standard">
-        <route id="xcore_custom_product_attributes" frontName="xcore">
+        <route id="xcore" frontName="xcore">
             <module name="Dealer4dealer_Xcore" />
         </route>
     </router>
