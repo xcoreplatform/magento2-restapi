@@ -28,4 +28,9 @@ class Index extends Action
         $resultPage = $this->resultPageFactory->create();
         return $resultPage;
     }
+
+    protected function _isAllowed()
+    {
+        return $this->authorization->isAllowed('Vendor_Module::index');
+    }
 }
