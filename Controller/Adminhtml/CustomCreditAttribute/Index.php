@@ -1,6 +1,6 @@
 <?php
 
-namespace Dealer4dealer\Xcore\Controller\Adminhtml\CustomProductAttribute;
+namespace Dealer4dealer\Xcore\Controller\Adminhtml\CustomCreditAttribute;
 
 class Index extends \Dealer4dealer\Xcore\Controller\Adminhtml\CustomAttribute\Index
 {

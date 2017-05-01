@@ -3,4 +3,33 @@
     <preference for="Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\PaymentMethodRepository" />
     <preference for="Dealer4dealer\Xcore\Api\Data\PaymentCostInterface" type="Dealer4dealer\Xcore\Model\PaymentCost"/>
     <preference for="Dealer4dealer\Xcore\Api\ShippingMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\ShippingMethodRepository"/>
+    <virtualType name="Dealer4dealer\Xcore\Model\Resource\CustomAttribute\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dealer4dealer_xcore_customAttribute</argument>
+            <argument name="resourceModel" xsi:type="string">Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dealer4dealer_xcore_customAttribute_grid_data_source" xsi:type="string">Dealer4dealer\Xcore\Model\Resource\CustomAttribute\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dealer4dealer_xcore_custom_attribute</argument>
+            <argument name="eventPrefix" xsi:type="string">dealer4dealer_xcore_custom_attribute_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">custom_attribute_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dealer4dealer_xcore_customAttribute_grid_data_source" xsi:type="string">Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
