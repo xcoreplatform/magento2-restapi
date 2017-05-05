@@ -5,5 +5,8 @@
         <route id="xcore" frontName="xcore">
             <module name="Dealer4dealer_Xcore" />
         </route>
+	<route frontName="dealer4dealer_xcore" id="dealer4dealer_xcore">
+		<module before="Magento_Backend" name="Dealer4dealer_Xcore"/>
+	</route>
     </router>
 </config>

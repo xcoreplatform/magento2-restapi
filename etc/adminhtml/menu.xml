@@ -46,5 +46,9 @@
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
              action="xcore/customCreditAttribute"
         />
+	
+	<add action="dealer4dealer_xcore/customexampleattribute/index" id="Dealer4dealer::dealer4dealer_customexampleattribute" module="Dealer4dealer_Xcore" parent="Dealer4dealer_Xcore::dealer4dealer_xcore" resource="Magento_Backend::content" sortOrder="9999" title="CustomExampleAttribute"/>
+
+	
     </menu>
 </config>
