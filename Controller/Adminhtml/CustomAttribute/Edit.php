@@ -2,88 +2,57 @@
 
 namespace Dealer4dealer\Xcore\Controller\Adminhtml\CustomAttribute;
 
-class Edit extends \Magento\Backend\App\Action
+class Edit extends \Dealer4dealer\Xcore\Controller\Adminhtml\CustomAttribute
 {
 
-    /**
-     * Page factory
-     *
-     * @var \Magento\Framework\View\Result\PageFactory
-     */
-    protected $_resultPageFactory;
+    protected $resultPageFactory;
 
     /**
-     * Result JSON factory
-     *
-     * @var \Magento\Framework\Controller\Result\JsonFactory
-     */
-    protected $_resultJsonFactory;
-
-    /**
-     * Constructor
-     *
-     * @param \Magento\Backend\Model\Session $backendSession
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
-     * @param \Dealer4dealer\Xcore\Model\CustomAttributeFactory $customAttributeFactory
-     * @param \Magento\Framework\Registry $registry
-     * @param \Magento\Backend\Model\View\Result\RedirectFactory $resultRedirectFactory
      * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\Registry $coreRegistry
+     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      */
     public function __construct(
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
-        \Dealer4dealer\Xcore\Model\CustomAttributeFactory $customAttributeFactory,
-        \Magento\Framework\Registry $registry,
-        \Magento\Backend\App\Action\Context $context
-    )
-    {
-        $this->_resultPageFactory = $resultPageFactory;
-        $this->_resultJsonFactory = $resultJsonFactory;
-        parent::__construct($context);
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Registry $coreRegistry,
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+    ) {
+        $this->resultPageFactory = $resultPageFactory;
+        parent::__construct($context, $coreRegistry);
     }
+
     /**
-     * Is action allowed
+     * Edit action
      *
-     * @return bool
-     */
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Dealer4dealer_Xcore::custom_attributes');
-    }
-    /**
-     * @return \Magento\Backend\Model\View\Result\Page|\Magento\Backend\Model\View\Result\Redirect|\Magento\Framework\View\Result\Page
+     * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {
+        // 1. Get ID and create model
         $id = $this->getRequest()->getParam('id');
-        /** @var \Dealer4dealer\Xcore\Model\CustomAttribute $customAttribute */
-        $customAttribute = $this->_initCustomAttribute();
-        /** @var \Magento\Backend\Model\View\Result\Page|\Magento\Framework\View\Result\Page $resultPage */
-        $resultPage = $this->_resultPageFactory->create();
-        $resultPage->setActiveMenu('Dealer4dealer_Xcore::custom_attributes');
-        $resultPage->getConfig()->getTitle()->set(__('Custom Attributes'));
+        $model = $this->_objectManager->create('Dealer4dealer\Xcore\Model\CustomAttribute');
+
+        // 2. Initial checking
         if ($id) {
-            $customAttribute->load($id);
-            if (!$customAttribute->getId()) {
-                $this->messageManager->addError(__('This Custom Attribute no longer exists.'));
-                $resultRedirect = $this->_resultRedirectFactory->create();
-                $resultRedirect->setPath(
-                    'dealer4dealer_xcore/*/edit',
-                    [
-                        'id' => $customAttribute->getId(),
-                        '_current' => true
-                    ]
-                );
-                return $resultRedirect;
+            $model->load($id);
+            if (!$model->getId()) {
+                $this->messageManager->addError(__('This Customattribute no longer exists.'));
+                /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+                $resultRedirect = $this->resultRedirectFactory->create();
+                return $resultRedirect->setPath('*/*/');
             }
         }
-        $title = $customAttribute->getId() ? $customAttribute->getFrom() : __('New Custom Attribute');
-        $resultPage->getConfig()->getTitle()->prepend($title);
-        $data = $this->_backendSession->getData('dealer4dealer_xcore_custom_attribute_data', true);
-        if (!empty($data)) {
-            $customAttribute->setData($data);
-        }
+        $this->_coreRegistry->register('dealer4dealer_xcore_customattribute', $model);
+
+        // 5. Build edit form
+        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        $resultPage = $this->resultPageFactory->create();
+        $this->initPage($resultPage)->addBreadcrumb(
+            $id ? __('Edit Customattribute') : __('New Customattribute'),
+            $id ? __('Edit Customattribute') : __('New Customattribute')
+        );
+        $resultPage->getConfig()->getTitle()->prepend(__('Customattributes'));
+        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New Customattribute'));
         return $resultPage;
     }
 }

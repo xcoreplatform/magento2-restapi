@@ -1,48 +1,31 @@
 <?php
 
+
 namespace Dealer4dealer\Xcore\Ui\Component\Listing\Column;
 
 class CustomAttributeActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
-    /**
-     * Url path  to edit
-     *
-     * @var string
-     */
-    const URL_PATH_EDIT = 'xcore/customProductAttribute/edit';
+
+    const URL_PATH_EDIT = 'dealer4dealer_xcore/customattribute/edit';
+    const URL_PATH_DELETE = 'dealer4dealer_xcore/customattribute/delete';
+    const URL_PATH_DETAILS = 'dealer4dealer_xcore/customattribute/details';
+    protected $urlBuilder;
 
     /**
-     * Url path  to delete
-     *
-     * @var string
-     */
-    const URL_PATH_DELETE = 'xcore/customProductAttribute/delete';
-
-    /**
-     * URL builder
-     *
-     * @var \Magento\Framework\UrlInterface
-     */
-    protected $_urlBuilder;
-
-    /**
-     * constructor
-     *
-     * @param \Magento\Framework\UrlInterface $urlBuilder
      * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context
      * @param \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory
+     * @param \Magento\Framework\UrlInterface $urlBuilder
      * @param array $components
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\UrlInterface $urlBuilder,
         \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
         \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
+        \Magento\Framework\UrlInterface $urlBuilder,
         array $components = [],
         array $data = []
-    )
-    {
-        $this->_urlBuilder = $urlBuilder;
+    ) {
+        $this->urlBuilder = $urlBuilder;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -59,7 +42,7 @@ class CustomAttributeActions extends \Magento\Ui\Component\Listing\Columns\Colum
                 if (isset($item['id'])) {
                     $item[$this->getData('name')] = [
                         'edit' => [
-                            'href' => $this->_urlBuilder->getUrl(
+                            'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_EDIT,
                                 [
                                     'id' => $item['id']
@@ -68,7 +51,7 @@ class CustomAttributeActions extends \Magento\Ui\Component\Listing\Columns\Colum
                             'label' => __('Edit')
                         ],
                         'delete' => [
-                            'href' => $this->_urlBuilder->getUrl(
+                            'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_DELETE,
                                 [
                                     'id' => $item['id']
@@ -76,14 +59,15 @@ class CustomAttributeActions extends \Magento\Ui\Component\Listing\Columns\Colum
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete "${ $.$data.name }"'),
-                                'message' => __('Are you sure you wan\'t to delete the Custom Attribute "${ $.$data.name }" ?')
+                                'title' => __('Delete "${ $.$data.title }"'),
+                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.title }" record?')
                             ]
                         ]
                     ];
                 }
             }
         }
+
         return $dataSource;
     }
 }

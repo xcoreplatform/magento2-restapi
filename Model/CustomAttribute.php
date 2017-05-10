@@ -1,68 +1,132 @@
 <?php
 
+
 namespace Dealer4dealer\Xcore\Model;
 
-/**
-* @method CustomAttribute setFrom($from)
-* @method CustomAttribute setTo($to)
-* @method string getFrom()
-* @method string getTo()
-* @method CustomAttribute setCreatedAt(\string $createdAt)
-* @method string getCreatedAt()
-* @method CustomAttribute setUpdatedAt(\string $updatedAt)
-* @method string getUpdatedAt()
-*/
-class CustomAttribute extends \Magento\Framework\Model\AbstractModel
+use Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface;
+
+class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements CustomAttributeInterface
 {
-    /**
-    * Cache tag
-    *
-    * @var string
-    */
-    const CACHE_TAG = 'dealer4dealer_xcore_custom_attribute';
 
     /**
-    * Cache tag
-    *
-    * @var string
-    */
-    protected $_cacheTag = 'dealer4dealer_xcore_custom_attribute';
-
-    /**
-    * Event prefix
-    *
-    * @var string
-    */
-    protected $_eventPrefix = 'dealer4dealer_xcore_custom_attribute';
-
-    /**
-    * Initialize resource model
-    *
-    * @return void
-    */
+     * @return void
+     */
     protected function _construct()
     {
         $this->_init('Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute');
     }
 
     /**
-    * Get identities
-    *
-    * @return array
-    */
-    public function getIdentities()
+     * Get id
+     * @return string
+     */
+    public function getId()
     {
-        return [self::CACHE_TAG . '_' . $this->getId()];
+        return $this->getData(self::CUSTOMATTRIBUTE_ID);
     }
 
     /**
-    * get entity default values
-    *
-    * @return array
-    */
-    public function getDefaultValues()
+     * Set id
+     * @param string $customattributeId
+     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     */
+    public function setId($customattributeId)
     {
-        $values = [];
-        return $values;
+        return $this->setData(self::CUSTOMATTRIBUTE_ID, $customattributeId);
+    }
+
+    /**
+     * Get from
+     * @return string
+     */
+    public function getFrom()
+    {
+        return $this->getData(self::FROM);
+    }
+
+    /**
+     * Set from
+     * @param string $from
+     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     */
+    public function setFrom($from)
+    {
+        return $this->setData(self::FROM, $from);
+    }
+
+    /**
+     * Get to
+     * @return string
+     */
+    public function getTo()
+    {
+        return $this->getData(self::TO);
+    }
+
+    /**
+     * Set to
+     * @param string $to
+     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     */
+    public function setTo($to)
+    {
+        return $this->setData(self::TO, $to);
+    }
+
+    /**
+     * Get type
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->getData(self::TYPE);
+    }
+
+    /**
+     * Set type
+     * @param string $type
+     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     */
+    public function setType($type)
+    {
+        return $this->setData(self::TYPE, $type);
+    }
+
+    /**
+     * Get created_at
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->getData(self::CREATED_AT);
+    }
+
+    /**
+     * Set created_at
+     * @param string $created_at
+     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     */
+    public function setCreatedAt($created_at)
+    {
+        return $this->setData(self::CREATED_AT, $created_at);
+    }
+
+    /**
+     * Get updated_at
+     * @return string
+     */
+    public function getUpdatedAt()
+    {
+        return $this->getData(self::UPDATED_AT);
+    }
+
+    /**
+     * Set updated_at
+     * @param string $updated_at
+     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        return $this->setData(self::UPDATED_AT, $updated_at);
     }
 }

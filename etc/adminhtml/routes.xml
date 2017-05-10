@@ -2,11 +2,8 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
-        <route id="xcore" frontName="xcore">
-            <module name="Dealer4dealer_Xcore" />
+        <route frontName="dealer4dealer_xcore" id="dealer4dealer_xcore">
+            <module before="Magento_Backend" name="Dealer4dealer_Xcore"/>
         </route>
-	<route frontName="dealer4dealer_xcore" id="dealer4dealer_xcore">
-		<module before="Magento_Backend" name="Dealer4dealer_Xcore"/>
-	</route>
     </router>
 </config>

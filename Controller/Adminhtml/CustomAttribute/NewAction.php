@@ -2,38 +2,34 @@
 
 namespace Dealer4dealer\Xcore\Controller\Adminhtml\CustomAttribute;
 
-class NewAction extends \Magento\Backend\App\Action
+class NewAction extends \Dealer4dealer\Xcore\Controller\Adminhtml\CustomAttribute
 {
-    /**
-     * Redirect result factory
-     *
-     * @var \Magento\Backend\Model\View\Result\ForwardFactory
-     */
-    protected $_resultForwardFactory;
+
+    protected $resultForwardFactory;
 
     /**
-     * Constructor
-     *
-     * @param \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
      * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\Registry $coreRegistry
+     * @param \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
      */
     public function __construct(
-        \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory,
-        \Magento\Backend\App\Action\Context $context
-    )
-    {
-        $this->_resultForwardFactory = $resultForwardFactory;
-        parent::__construct($context);
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Registry $coreRegistry,
+        \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+    ) {
+        $this->resultForwardFactory = $resultForwardFactory;
+        parent::__construct($context, $coreRegistry);
     }
+
     /**
-     * forward to edit
+     * New action
      *
-     * @return \Magento\Backend\Model\View\Result\Forward
+     * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {
-        $resultForward = $this->_resultForwardFactory->create();
-        $resultForward->forward('edit');
-        return $resultForward;
+        /** @var \Magento\Framework\Controller\Result\Forward $resultForward */
+        $resultForward = $this->resultForwardFactory->create();
+        return $resultForward->forward('edit');
     }
 }

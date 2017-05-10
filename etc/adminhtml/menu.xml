@@ -12,7 +12,7 @@
              sortOrder="9999"
              resource="Magento_Backend::custom_attribute"
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             action="xcore/customProductAttribute"
+             action="dealer4dealer_xcore/customProductAttribute"
         />
         <add id="Dealer4dealer_Xcore::custom_customer_attributes"
              title="Customer attributes"
@@ -20,7 +20,7 @@
              sortOrder="9999"
              resource="Magento_Backend::custom_attribute"
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             action="xcore/customCustomerAttribute"
+             action="dealer4dealer_xcore/customCustomerAttribute"
         />
         <add id="Dealer4dealer_Xcore::custom_order_attributes"
              title="Order attributes"
@@ -28,7 +28,7 @@
              sortOrder="9999"
              resource="Magento_Backend::custom_attribute"
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             action="xcore/customOrderAttribute"
+             action="dealer4dealer_xcore/customOrderAttribute"
         />
         <add id="Dealer4dealer_Xcore::custom_invoice_attributes"
              title="Invoice attributes"
@@ -36,7 +36,7 @@
              sortOrder="9999"
              resource="Magento_Backend::custom_attribute"
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             action="xcore/customInvoiceAttribute"
+             action="dealer4dealer_xcore/customInvoiceAttribute"
         />
         <add id="Dealer4dealer_Xcore::custom_credit_attributes"
              title="Credit attributes"
@@ -44,11 +44,8 @@
              sortOrder="9999"
              resource="Magento_Backend::custom_attribute"
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             action="xcore/customCreditAttribute"
+             action="dealer4dealer_xcore/customCreditAttribute"
         />
-	
-	<add action="dealer4dealer_xcore/customexampleattribute/index" id="Dealer4dealer::dealer4dealer_customexampleattribute" module="Dealer4dealer_Xcore" parent="Dealer4dealer_Xcore::dealer4dealer_xcore" resource="Magento_Backend::content" sortOrder="9999" title="CustomExampleAttribute"/>
 
-	
     </menu>
 </config>

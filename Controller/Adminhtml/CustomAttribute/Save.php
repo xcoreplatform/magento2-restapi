@@ -2,81 +2,71 @@
 
 namespace Dealer4dealer\Xcore\Controller\Adminhtml\CustomAttribute;
 
-class Save extends \Magento\Backend\App\Action
+use Magento\Framework\Exception\LocalizedException;
+
+abstract class Save extends \Dealer4dealer\Xcore\Controller\Adminhtml\CustomAttribute
 {
 
+    protected $dataPersistor;
+
     /**
-     * Constructor
-     *
-     * @param \Magento\Backend\Model\Session $backendSession
-     * @param \Dealer4dealer\Xcore\Model\CustomAttributeFactory $customAttributeFactory
-     * @param \Magento\Framework\Registry $registry
-     * @param \Magento\Backend\Model\View\Result\RedirectFactory $resultRedirectFactory
      * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
      */
     public function __construct(
-        \Dealer4dealer\Xcore\Model\CustomAttributeFactory $customAttributeFactory,
-        \Magento\Framework\Registry $registry,
-        \Magento\Backend\App\Action\Context $context
-    )
-    {
-        $this->_backendSession = $backendSession;
-        parent::__construct($context);
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Registry $coreRegistry,
+        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+    ) {
+        $this->dataPersistor = $dataPersistor;
+        parent::__construct($context, $coreRegistry);
     }
+
     /**
-     * Run the action
+     * Save action
      *
-     * @return \Magento\Backend\Model\View\Result\Redirect
+     * @return \Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {
-        $data = $this->getRequest()->getCustomAttribute('custom_attribute');
+        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
+        $data = $this->getRequest()->getPostValue();
         if ($data) {
-            $customAttribute = $this->_initCustomAttribute();
-            $customAttribute->setData($data);
-            $this->_eventManager->dispatch(
-                'dealer4dealer_xcore_custom_attribute_prepare_save',
-                [
-                    'custom_attribute' => $customAttribute,
-                    'request' => $this->getRequest()
-                ]
-            );
+            $id = $this->getRequest()->getParam('id');
+
+            $model = $this->_objectManager->create('Dealer4dealer\Xcore\Model\CustomAttribute')->load($id);
+            if (!$model->getId() && $id) {
+                $this->messageManager->addError(__('This Customattribute no longer exists.'));
+                return $resultRedirect->setPath('*/*/');
+            }
+
+            $data['type'] = $this->getType();
+            $data['created_at'] = date("Y-m-d H:i:s");
+            $data['updated_at'] = date("Y-m-d H:i:s");
+
+            $model->setData($data);
+
             try {
-                $customAttribute->save();
-                $this->messageManager->addSuccess(__('The Custom Attribute has been saved.'));
-                $this->_backendSession->setDealer4dealerXcoreCustomAttributeData(false);
+                $model->save();
+                $this->messageManager->addSuccess(__('You saved the Customattribute.'));
+                $this->dataPersistor->clear('dealer4dealer_xcore_customattribute');
+
                 if ($this->getRequest()->getParam('back')) {
-                    $resultRedirect->setPath(
-                        'dealer4dealer_xcore/*/edit',
-                        [
-                            'id' => $customAttribute->getId(),
-                            '_current' => true
-                        ]
-                    );
-                    return $resultRedirect;
+                    return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId()]);
                 }
-                $resultRedirect->setPath('dealer4dealer_xcore/*/');
-                return $resultRedirect;
-            } catch (\Magento\Framework\Exception\LocalizedException $e) {
-                $this->messageManager->addError($e->getMessage());
-            } catch (\RuntimeException $e) {
+                return $resultRedirect->setPath('*/*/');
+            } catch (LocalizedException $e) {
                 $this->messageManager->addError($e->getMessage());
             } catch (\Exception $e) {
-                $this->messageManager->addException($e, __('Something went wrong while saving the Custom Attribute.'));
+                $this->messageManager->addException($e, __('Something went wrong while saving the Customattribute.'));
             }
-            $this->_getSession()->setDealer4dealerXcoreCustomAttributeData($data);
-            $resultRedirect->setPath(
-                'dealer4dealer_xcore/*/edit',
-                [
-                    'id' => $customAttribute->getId(),
-                    '_current' => true
-                ]
-            );
-            return $resultRedirect;
+
+            $this->dataPersistor->set('dealer4dealer_xcore_customattribute', $data);
+            return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
         }
-        $resultRedirect->setPath('dealer4dealer_xcore/*/');
-        return $resultRedirect;
+        return $resultRedirect->setPath('*/*/');
     }
 
+    public abstract function getType();
 }
