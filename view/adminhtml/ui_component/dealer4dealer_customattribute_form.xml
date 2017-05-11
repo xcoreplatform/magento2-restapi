@@ -15,7 +15,6 @@
 			<item name="back" xsi:type="string">Dealer4dealer\Xcore\Block\Adminhtml\CustomAttribute\Edit\BackButton</item>
 			<item name="delete" xsi:type="string">Dealer4dealer\Xcore\Block\Adminhtml\CustomAttribute\Edit\DeleteButton</item>
 			<item name="save" xsi:type="string">Dealer4dealer\Xcore\Block\Adminhtml\CustomAttribute\Edit\SaveButton</item>
-			<item name="save_and_continue" xsi:type="string">Dealer4dealer\Xcore\Block\Adminhtml\CustomAttribute\Edit\SaveAndContinueButton</item>
 		</item>
 	</argument>
 	<dataSource name="customattribute_form_data_source">
