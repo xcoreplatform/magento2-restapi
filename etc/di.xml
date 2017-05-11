@@ -20,4 +20,20 @@
 			</argument>
 		</arguments>
 	</type>
+
+	<type name="Magento\Catalog\Api\Data\ProductInterface">
+		<plugin disabled="false" name="Dealer4dealer_Xcore_Plugin_Magento_Catalog_Api_Data_ProductInterface" sortOrder="10" type="Dealer4dealer\Xcore\Plugin\Magento\Catalog\Api\Data\ProductInterface"/>
+	</type>
+	<type name="Magento\Customer\Api\Data\CustomerInterface">
+		<plugin disabled="false" name="Dealer4dealer_Xcore_Plugin_Magento_Customer_Api_Data_CustomerInterface" sortOrder="10" type="Dealer4dealer\Xcore\Plugin\Magento\Customer\Api\Data\CustomerInterface"/>
+	</type>
+	<type name="Magento\Sales\Api\Data\OrderInterface">
+		<plugin disabled="false" name="Dealer4dealer_Xcore_Plugin_Magento_Sales_Api_Data_OrderInterface" sortOrder="10" type="Dealer4dealer\Xcore\Plugin\Magento\Sales\Api\Data\OrderInterface"/>
+	</type>
+	<type name="Magento\Sales\Api\Data\InvoiceInterface">
+		<plugin disabled="false" name="Dealer4dealer_Xcore_Plugin_Magento_Sales_Api_Data_InvoiceInterface" sortOrder="10" type="Dealer4dealer\Xcore\Plugin\Magento\Sales\Api\Data\InvoiceInterface"/>
+	</type>
+	<type name="Magento\Sales\Api\Data\CreditmemoInterface">
+		<plugin disabled="false" name="Dealer4dealer_Xcore_Plugin_Magento_Sales_Api_Data_CreditmemoInterface" sortOrder="10" type="Dealer4dealer\Xcore\Plugin\Magento\Sales\Api\Data\CreditmemoInterface"/>
+	</type>
 </config>

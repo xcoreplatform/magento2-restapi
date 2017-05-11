@@ -103,6 +103,31 @@ class CustomAttributeRepository implements CustomAttributeRepositoryInterface
     /**
      * {@inheritdoc}
      */
+    public function getListByType($customAttributeType)
+    {
+        $collection = $this->customAttributeCollectionFactory->create();
+        $collection->addFieldToFilter('type', ['eq' => $customAttributeType]);
+
+        $items = [];
+        foreach ($collection as $customAttributeModel) {
+            $customAttributeData = $this->dataCustomAttributeFactory->create();
+            $this->dataObjectHelper->populateWithArray(
+                $customAttributeData,
+                $customAttributeModel->getData(),
+                'Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface'
+            );
+            $items[] = $this->dataObjectProcessor->buildOutputDataArray(
+                $customAttributeData,
+                'Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface'
+            );
+        }
+
+        return $items;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getList(
         \Magento\Framework\Api\SearchCriteriaInterface $criteria
     ) {
