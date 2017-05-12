@@ -2,7 +2,6 @@
   "name": "dealer4dealer/xcore-magento2",
   "description": "This module extends the rest api of Magento2 and is needed for the usage of the xCore.",
   "type": "magento2-module",
-  "version": "0.1.2",
   "license": [
     "MIT"
   ],
