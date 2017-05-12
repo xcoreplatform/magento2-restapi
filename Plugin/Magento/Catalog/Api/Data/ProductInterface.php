@@ -28,6 +28,14 @@ class ProductInterface
         foreach($customProductAttributes as $customProductAttribute) {
             $key = $customProductAttribute['to'];
             $value = $subject->getData($customProductAttribute['from']);
+
+            if($value) {
+                $attr = $subject->getResource()->getAttribute($customProductAttribute['from']);
+                if ($attr && $attr->usesSource()) {
+                    $value = $attr->getSource()->getOptionText($value);
+                }
+            }
+
             $customAttributes[] = ['key' => $key, 'value' => $value];
         }
 
