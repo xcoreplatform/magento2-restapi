@@ -17,7 +17,11 @@ class CustomerInterface
         $this->extensionFactory = $extensionFactory;
     }
 
-
+    /**
+     * @param \Magento\Customer\Api\Data\CustomerInterface $subject
+     * @param $result
+     * @return \Magento\Customer\Api\Data\CustomerExtensionInterface|null
+     */
     public function afterGetExtensionAttributes(
         \Magento\Customer\Api\Data\CustomerInterface $subject,
         $result

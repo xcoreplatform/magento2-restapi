@@ -17,7 +17,11 @@ class CreditmemoInterface
         $this->extensionFactory = $extensionFactory;
     }
 
-
+    /**
+     * @param \Magento\Sales\Api\Data\CreditmemoInterface $subject
+     * @param $result
+     * @return \Magento\Sales\Api\Data\CreditmemoExtensionInterface|null
+     */
     public function afterGetExtensionAttributes(
         \Magento\Sales\Api\Data\CreditmemoInterface $subject,
         $result

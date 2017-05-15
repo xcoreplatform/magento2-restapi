@@ -17,7 +17,11 @@ class OrderInterface
         $this->extensionFactory = $extensionFactory;
     }
 
-
+    /**
+     * @param \Magento\Sales\Api\Data\OrderInterface $subject
+     * @param $result
+     * @return \Magento\Sales\Api\Data\OrderExtensionInterface|null
+     */
     public function afterGetExtensionAttributes(
         \Magento\Sales\Api\Data\OrderInterface $subject,
         $result

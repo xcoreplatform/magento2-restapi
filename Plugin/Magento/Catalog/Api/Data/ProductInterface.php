@@ -14,6 +14,11 @@ class ProductInterface
         $this->objectManager = $objectManager;
     }
 
+    /**
+     * @param \Magento\Catalog\Api\Data\ProductInterface $subject
+     * @param $result
+     * @return \Magento\Catalog\Api\Data\ProductExtensionInterface|null
+     */
     public function afterGetExtensionAttributes(
         \Magento\Catalog\Api\Data\ProductInterface $subject,
         $result

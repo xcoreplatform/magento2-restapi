@@ -17,7 +17,11 @@ class InvoiceInterface
         $this->extensionFactory = $extensionFactory;
     }
 
-
+    /**
+     * @param \Magento\Sales\Api\Data\InvoiceInterface $subject
+     * @param $result
+     * @return \Magento\Sales\Api\Data\InvoiceExtensionInterface|null
+     */
     public function afterGetExtensionAttributes(
         \Magento\Sales\Api\Data\InvoiceInterface $subject,
         $result
