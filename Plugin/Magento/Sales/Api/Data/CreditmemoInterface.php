@@ -8,6 +8,11 @@ class CreditmemoInterface
 
     private $extensionFactory;
 
+    /**
+     * CreditmemoInterface constructor.
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param \Magento\Sales\Api\Data\CreditmemoExtensionFactory $extensionFactory
+     */
     public function __construct(
         \Magento\Framework\ObjectManagerInterface $objectManager,
         \Magento\Sales\Api\Data\CreditmemoExtensionFactory $extensionFactory
@@ -18,9 +23,10 @@ class CreditmemoInterface
     }
 
     /**
+     * @api
      * @param \Magento\Sales\Api\Data\CreditmemoInterface $subject
      * @param $result
-     * @return \Magento\Sales\Api\Data\CreditmemoExtensionInterface|null
+     * @return \Magento\Sales\Api\Data\CreditmemoExtensionInterface
      */
     public function afterGetExtensionAttributes(
         \Magento\Sales\Api\Data\CreditmemoInterface $subject,

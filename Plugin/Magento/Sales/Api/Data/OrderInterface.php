@@ -8,6 +8,11 @@ class OrderInterface
 
     private $extensionFactory;
 
+    /**
+     * OrderInterface constructor.
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param \Magento\Sales\Api\Data\OrderExtensionFactory $extensionFactory
+     */
     public function __construct(
         \Magento\Framework\ObjectManagerInterface $objectManager,
         \Magento\Sales\Api\Data\OrderExtensionFactory $extensionFactory
@@ -18,9 +23,10 @@ class OrderInterface
     }
 
     /**
+     * @api
      * @param \Magento\Sales\Api\Data\OrderInterface $subject
      * @param $result
-     * @return \Magento\Sales\Api\Data\OrderExtensionInterface|null
+     * @return \Magento\Sales\Api\Data\OrderExtensionInterface
      */
     public function afterGetExtensionAttributes(
         \Magento\Sales\Api\Data\OrderInterface $subject,

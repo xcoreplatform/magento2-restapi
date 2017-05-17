@@ -8,6 +8,11 @@ class InvoiceInterface
 
     private $extensionFactory;
 
+    /**
+     * InvoiceInterface constructor.
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param \Magento\Sales\Api\Data\InvoiceExtensionFactory $extensionFactory
+     */
     public function __construct(
         \Magento\Framework\ObjectManagerInterface $objectManager,
         \Magento\Sales\Api\Data\InvoiceExtensionFactory $extensionFactory
@@ -18,9 +23,10 @@ class InvoiceInterface
     }
 
     /**
+     * @api
      * @param \Magento\Sales\Api\Data\InvoiceInterface $subject
      * @param $result
-     * @return \Magento\Sales\Api\Data\InvoiceExtensionInterface|null
+     * @return \Magento\Sales\Api\Data\InvoiceExtensionInterface
      */
     public function afterGetExtensionAttributes(
         \Magento\Sales\Api\Data\InvoiceInterface $subject,

@@ -7,6 +7,10 @@ class ProductInterface
 
     protected $objectManager;
 
+    /**
+     * ProductInterface constructor.
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     */
     public function __construct(
         \Magento\Framework\ObjectManagerInterface $objectManager
     )
@@ -15,9 +19,10 @@ class ProductInterface
     }
 
     /**
+     * @api
      * @param \Magento\Catalog\Api\Data\ProductInterface $subject
      * @param $result
-     * @return \Magento\Catalog\Api\Data\ProductExtensionInterface|null
+     * @return \Magento\Catalog\Api\Data\ProductExtensionInterface
      */
     public function afterGetExtensionAttributes(
         \Magento\Catalog\Api\Data\ProductInterface $subject,
