@@ -6,9 +6,9 @@
     <extension_attributes for="Magento\Catalog\Api\Data\ProductInterface">
         <attribute code="xcore_custom_attributes" type="Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface[]" />
     </extension_attributes>
-    <extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
+<!--     <extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
         <attribute code="xcore_custom_attributes" type="Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface[]" />
-    </extension_attributes>
+    </extension_attributes> -->
     <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
         <attribute code="xcore_custom_attributes" type="Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface[]" />
     </extension_attributes>
