@@ -6,6 +6,7 @@
 	<preference for="Dealer4dealer\Xcore\Api\CustomAttributeRepositoryInterface" type="Dealer4dealer\Xcore\Model\CustomAttributeRepository"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface" type="Dealer4dealer\Xcore\Model\CustomAttribute"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\CustomAttributeSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<preference for="Dealer4dealer\Xcore\Api\AlterShipmentInterface" type="Dealer4dealer\Xcore\Model\AlterShipment"/>
 
     <virtualType name="Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
