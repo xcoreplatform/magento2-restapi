@@ -23,6 +23,7 @@ abstract class CustomAttribute extends \Magento\Backend\App\Action
      * Init page
      *
      * @param \Magento\Backend\Model\View\Result\Page $resultPage
+     * @return \Magento\Backend\Model\View\Result\Page
      */
     public function initPage($resultPage)
     {

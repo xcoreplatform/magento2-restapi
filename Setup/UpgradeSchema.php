@@ -70,6 +70,19 @@ class UpgradeSchema implements \Magento\Framework\Setup\UpgradeSchemaInterface
             $installer->getConnection()->createTable($table);
 
         }
+
+        if (version_compare($context->getVersion(), '0.7.0', '<')) {
+            $tableName = 'sales_shipment';
+            if ($setup->getConnection()->isTableExists($tableName) == true) {
+                $connection = $setup->getConnection();
+                $connection->addColumn(
+                    $tableName,
+                    'xcore_your_ref',
+                    ['type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT, 'length' => 50, 'nullable' => true, 'default' => null, 'comment' => 'xCore Your Reference']
+                );
+            }
+        }
+
         $installer->endSetup();
     }
 }
