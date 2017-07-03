@@ -24,4 +24,16 @@
             <resource ref="Magento_Sales::sales" />
         </resources>
     </route>
+    <route url="/V1/xcore/pricelist" method="GET">
+        <service class="Dealer4dealer\Xcore\Api\PricelistManagementInterface" method="getPricelist"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/xcore/pricelist" method="POST">
+        <service class="Dealer4dealer\Xcore\Api\PricelistManagementInterface" method="postPricelist"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>
