@@ -2,13 +2,12 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\Data\PriceListInterface;
-use Dealer4dealer\Xcore\Api\Data\PriceListInterfaceFactory;
-use Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterfaceFactory;
-use Dealer4dealer\Xcore\Api\PriceListRepositoryInterface;
-use Dealer4dealer\Xcore\Model\ResourceModel\PriceList as ResourcePriceList;
-use Dealer4dealer\Xcore\Model\ResourceModel\PriceList\CollectionFactory as PriceListCollectionFactory;
-use Magento\Eav\Model\Entity\Collection\VersionControl\AbstractCollection;
+use Dealer4dealer\Xcore\Api\Data\PriceListCustomerGroupInterface;
+use Dealer4dealer\Xcore\Api\Data\PriceListCustomerGroupInterfaceFactory;
+use Dealer4dealer\Xcore\Api\Data\PriceListCustomerGroupSearchResultsInterfaceFactory;
+use Dealer4dealer\Xcore\Api\PriceListCustomerGroupRepositoryInterface;
+use Dealer4dealer\Xcore\Model\ResourceModel\PriceListCustomerGroup as ResourcePriceListCustomerGroup;
+use Dealer4dealer\Xcore\Model\ResourceModel\PriceListCustomerGroup\CollectionFactory as PriceListCustomerGroupCollectionFactory;
 use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaInterface;
@@ -19,10 +18,10 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Reflection\DataObjectProcessor;
 use Magento\Store\Model\StoreManagerInterface;
 
-class PriceListRepository implements PriceListRepositoryInterface
+class PriceListCustomerGroupRepository implements PriceListCustomerGroupRepositoryInterface
 {
 
-    protected $dataPriceListFactory;
+    protected $dataPriceListCustomerGroupFactory;
 
     protected $resource;
 
@@ -30,11 +29,11 @@ class PriceListRepository implements PriceListRepositoryInterface
 
     private $storeManager;
 
-    protected $priceListCollectionFactory;
+    protected $priceListCustomerGroupCollectionFactory;
 
     protected $dataObjectHelper;
 
-    protected $priceListFactory;
+    protected $priceListCustomerGroupFactory;
 
     protected $dataObjectProcessor;
 
@@ -42,55 +41,55 @@ class PriceListRepository implements PriceListRepositoryInterface
 
 
     /**
-     * @param ResourcePriceList $resource
-     * @param PriceListFactory $priceListFactory
-     * @param PriceListInterfaceFactory $dataPriceListFactory
-     * @param PriceListCollectionFactory $priceListCollectionFactory
-     * @param PriceListSearchResultsInterfaceFactory $searchResultsFactory
+     * @param ResourcePriceListCustomerGroup $resource
+     * @param PriceListCustomerGroupFactory $priceListCustomerGroupFactory
+     * @param PriceListCustomerGroupInterfaceFactory $dataPriceListCustomerGroupFactory
+     * @param PriceListCustomerGroupCollectionFactory $priceListCustomerGroupCollectionFactory
+     * @param PriceListCustomerGroupSearchResultsInterfaceFactory $searchResultsFactory
      * @param DataObjectHelper $dataObjectHelper
      * @param DataObjectProcessor $dataObjectProcessor
      * @param StoreManagerInterface $storeManager
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      */
     public function __construct(
-        ResourcePriceList $resource,
-        PriceListFactory $priceListFactory,
-        PriceListInterfaceFactory $dataPriceListFactory,
-        PriceListCollectionFactory $priceListCollectionFactory,
-        PriceListSearchResultsInterfaceFactory $searchResultsFactory,
+        ResourcePriceListCustomerGroup $resource,
+        PriceListCustomerGroupFactory $priceListCustomerGroupFactory,
+        PriceListCustomerGroupInterfaceFactory $dataPriceListCustomerGroupFactory,
+        PriceListCustomerGroupCollectionFactory $priceListCustomerGroupCollectionFactory,
+        PriceListCustomerGroupSearchResultsInterfaceFactory $searchResultsFactory,
         DataObjectHelper $dataObjectHelper,
         DataObjectProcessor $dataObjectProcessor,
         StoreManagerInterface $storeManager,
         SearchCriteriaBuilder $searchCriteriaBuilder
     )
     {
-        $this->resource                   = $resource;
-        $this->priceListFactory           = $priceListFactory;
-        $this->priceListCollectionFactory = $priceListCollectionFactory;
-        $this->searchResultsFactory       = $searchResultsFactory;
-        $this->dataObjectHelper           = $dataObjectHelper;
-        $this->dataPriceListFactory       = $dataPriceListFactory;
-        $this->dataObjectProcessor        = $dataObjectProcessor;
-        $this->storeManager               = $storeManager;
-        $this->searchCriteriaBuilder      = $searchCriteriaBuilder;
+        $this->resource                                = $resource;
+        $this->priceListCustomerGroupFactory           = $priceListCustomerGroupFactory;
+        $this->priceListCustomerGroupCollectionFactory = $priceListCustomerGroupCollectionFactory;
+        $this->searchResultsFactory                    = $searchResultsFactory;
+        $this->dataObjectHelper                        = $dataObjectHelper;
+        $this->dataPriceListCustomerGroupFactory       = $dataPriceListCustomerGroupFactory;
+        $this->dataObjectProcessor                     = $dataObjectProcessor;
+        $this->storeManager                            = $storeManager;
+        $this->searchCriteriaBuilder                   = $searchCriteriaBuilder;
     }
 
     /**
      * {@inheritdoc}
      */
     public function save(
-        PriceListInterface $priceList
+        PriceListCustomerGroupInterface $priceListCustomerGroup
     )
     {
         try {
-            $priceList->getResource()->save($priceList);
+            $priceListCustomerGroup->getResource()->save($priceListCustomerGroup);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__(
-                                                'Could not save the priceList: %1',
+                                                'Could not save the priceListCustomerGroup: %1',
                                                 $exception->getMessage()
                                             ));
         }
-        return $priceList;
+        return $priceListCustomerGroup;
     }
 
     /**
@@ -98,12 +97,12 @@ class PriceListRepository implements PriceListRepositoryInterface
      */
     public function getById($id)
     {
-        $priceList = $this->priceListFactory->create();
-        $priceList->getResource()->load($priceList, $id);
-        if (!$priceList->getId()) {
-            throw new NoSuchEntityException(__('PriceList with id "%1" does not exist.', $id));
+        $priceListCustomerGroup = $this->priceListCustomerGroupFactory->create();
+        $priceListCustomerGroup->getResource()->load($priceListCustomerGroup, $id);
+        if (!$priceListCustomerGroup->getId()) {
+            throw new NoSuchEntityException(__('PriceListCustomerGroup with id "%1" does not exist.', $id));
         }
-        return $priceList;
+        return $priceListCustomerGroup;
     }
 
     /**
@@ -113,7 +112,7 @@ class PriceListRepository implements PriceListRepositoryInterface
         SearchCriteriaInterface $criteria
     )
     {
-        $collection = $this->priceListCollectionFactory->create();
+        $collection = $this->priceListCustomerGroupCollectionFactory->create();
         foreach ($criteria->getFilterGroups() as $filterGroup) {
             foreach ($filterGroup->getFilters() as $filter) {
                 if ($filter->getField() === 'store_id') {
@@ -149,14 +148,14 @@ class PriceListRepository implements PriceListRepositoryInterface
      * {@inheritdoc}
      */
     public function delete(
-        PriceListInterface $priceList
+        PriceListCustomerGroupInterface $priceListCustomerGroup
     )
     {
         try {
-            $priceList->getResource()->delete($priceList);
+            $priceListCustomerGroup->getResource()->delete($priceListCustomerGroup);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__(
-                                                  'Could not delete the PriceList: %1',
+                                                  'Could not delete the PriceListCustomerGroup: %1',
                                                   $exception->getMessage()
                                               ));
         }
@@ -174,13 +173,31 @@ class PriceListRepository implements PriceListRepositoryInterface
     /**
      * {@inheritdoc}
      */
+    public function deleteByCustomerGroupId($customerGroupId)
+    {
+
+        $searchCriteria = $this->searchCriteriaBuilder->addFilter('customer_group_id', $customerGroupId)->create();
+
+        $collection = $this->getList($searchCriteria);
+        $count      = $collection->getTotalCount();
+
+        foreach ($collection->getItems() as $item) {
+            $item->delete();
+        }
+
+        return $count;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function deleteByPriceListId($priceListId)
     {
 
         $searchCriteria = $this->searchCriteriaBuilder->addFilter('price_list_id', $priceListId)->create();
 
         $collection = $this->getList($searchCriteria);
-        $count = $collection->getTotalCount();
+        $count      = $collection->getTotalCount();
 
         foreach ($collection->getItems() as $item) {
             $item->delete();

@@ -36,135 +36,59 @@ class PriceList extends AbstractModel implements PriceListInterface
     }
 
     /**
-     * Get list_id
+     * Get price_list_id
      * @return string
      */
-    public function getListId()
+    public function getPriceListId()
     {
-        return $this->getData(self::LIST_ID);
+        return $this->getData(self::PRICE_LIST_ID);
     }
 
     /**
-     * Set list_id
-     * @param string $list_id
+     * Set price_list_id
+     * @param string $priceListId
      * @return PriceListInterface
      */
-    public function setListId($list_id)
+    public function setPriceListId($priceListId)
     {
-        return $this->setData(self::LIST_ID, $list_id);
+        return $this->setData(self::PRICE_LIST_ID, $priceListId);
     }
 
     /**
-     * Get customer_id
+     * Get start_date
      * @return string
      */
-    public function getCustomerId()
+    public function getStartDate()
     {
-        return $this->getData(self::CUSTOMER_ID);
-    }
-
-    /**
-     * Set customer_id
-     * @param string $customer_id
-     * @return PriceListInterface
-     */
-    public function setCustomerId($customer_id)
-    {
-        return $this->setData(self::CUSTOMER_ID, $customer_id);
-    }
-
-    /**
-     * Get product_id
-     * @return string
-     */
-    public function getProductId()
-    {
-        return $this->getData(self::PRODUCT_ID);
-    }
-
-    /**
-     * Set product_id
-     * @param string $product_id
-     * @return PriceListInterface
-     */
-    public function setProductId($product_id)
-    {
-        return $this->setData(self::PRODUCT_ID, $product_id);
-    }
-
-    /**
-     * Get qty
-     * @return string
-     */
-    public function getQty()
-    {
-        return $this->getData(self::QTY);
-    }
-
-    /**
-     * Set qty
-     * @param string $qty
-     * @return PriceListInterface
-     */
-    public function setQty($qty)
-    {
-        return $this->setData(self::QTY, $qty);
-    }
-
-    /**
-     * Get price
-     * @return string
-     */
-    public function getPrice()
-    {
-        return $this->getData(self::PRICE);
-    }
-
-    /**
-     * Set price
-     * @param string $price
-     * @return PriceListInterface
-     */
-    public function setPrice($price)
-    {
-        return $this->setData(self::PRICE, $price);
-    }
-
-    /**
-     * Get from_date
-     * @return string
-     */
-    public function getFromDate()
-    {
-        return $this->getData(self::FROM_DATE);
+        return $this->getData(self::START_DATE);
     }
 
     /**
      * Set from_date
-     * @param string $from_date
+     * @param string $startDate
      * @return PriceListInterface
      */
-    public function setFromDate($from_date)
+    public function setStartDate($startDate)
     {
-        return $this->setData(self::FROM_DATE, $from_date);
+        return $this->setData(self::START_DATE, $startDate);
     }
 
     /**
-     * Get to_date
+     * Get end_date
      * @return string
      */
-    public function getToDate()
+    public function getEndDate()
     {
-        return $this->getData(self::TO_DATE);
+        return $this->getData(self::END_DATE);
     }
 
     /**
-     * Set to_date
-     * @param string $to_date
+     * Set end_date
+     * @param string $endDate
      * @return PriceListInterface
      */
-    public function setToDate($to_date)
+    public function setEndDate($endDate)
     {
-        return $this->setData(self::TO_DATE, $to_date);
+        return $this->setData(self::END_DATE, $endDate);
     }
 }

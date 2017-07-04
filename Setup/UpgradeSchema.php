@@ -105,9 +105,9 @@ class UpgradeSchema implements UpgradeSchemaInterface
                                        'ID'
                                    )
                                    ->addColumn(
-                                       'list_id',
-                                       Table::TYPE_INTEGER,
-                                       null,
+                                       'price_list_id',
+                                       Table::TYPE_TEXT,
+                                       50,
                                        [
                                            'unsigned' => true,
                                            'nullable' => false
@@ -115,105 +115,92 @@ class UpgradeSchema implements UpgradeSchemaInterface
                                        'Price List ID'
                                    )
                                    ->addColumn(
-                                       'customer_id',
-                                       Table::TYPE_INTEGER,
-                                       null,
-                                       [
-                                           'unsigned' => true,
-                                           'nullable' => false
-                                       ],
-                                       'Customer ID'
-                                   )
-                                   ->addColumn(
-                                       'product_id',
-                                       Table::TYPE_INTEGER,
-                                       null,
-                                       [
-                                           'unsigned' => true,
-                                           'nullable' => false
-                                       ],
-                                       'Product ID'
-                                   )
-                                   ->addColumn(
-                                       'qty',
-                                       Table::TYPE_DECIMAL,
-                                       null,
-                                       [
-                                           'nullable'  => false,
-                                           'scale'     => 4,
-                                           'precision' => 12
-                                       ],
-                                       'Quantity'
-                                   )
-                                   ->addColumn(
-                                       'price',
-                                       Table::TYPE_DECIMAL,
-                                       null,
-                                       [
-                                           'nullable'  => false,
-                                           'scale'     => 4,
-                                           'precision' => 12
-                                       ],
-                                       'Price'
-                                   )
-                                   ->addColumn(
-                                       'from_date',
+                                       'start_date',
                                        Table::TYPE_DATETIME,
                                        null,
                                        [
                                            'nullable' => true,
                                            'default'  => null
                                        ],
-                                       'From Date'
+                                       'Start Date'
                                    )
                                    ->addColumn(
-                                       'to_date',
+                                       'end_date',
                                        Table::TYPE_DATETIME,
                                        null,
                                        [
                                            'nullable' => true,
                                            'default'  => null
                                        ],
-                                       'To Date'
+                                       'End Date'
                                    )
                                    ->addIndex(
-                                       $installer->getIdxName('xcore_price_list', ['list_id']),
-                                       ['list_id']
-                                   )
-                                   ->addIndex(
-                                       $installer->getIdxName('xcore_price_list', ['product_id']),
-                                       ['product_id']
-                                   )
-                                   ->addIndex(
-                                       $installer->getIdxName('xcore_price_list', ['customer_id', 'product_id', 'qty']),
-                                       ['customer_id', 'product_id', 'qty'],
-                                       ['type' => 'UNIQUE']
-                                   )
-                                   ->addForeignKey(
-                                       $installer->getFkName(
-                                           'xcore_price_list',
-                                           'customer_id',
-                                           'customer_entity',
-                                           'entity_id'
-                                       ),
-                                       'customer_id',
-                                       $installer->getTable('customer_entity'),
-                                       'entity_id',
-                                       Table::ACTION_CASCADE
-                                   )
-                                   ->addForeignKey(
-                                       $installer->getFkName(
-                                           'xcore_price_list',
-                                           'product_id',
-                                           'catalog_product_entity',
-                                           'entity_id'
-                                       ),
-                                       'product_id',
-                                       $installer->getTable('catalog_product_entity'),
-                                       'entity_id',
-                                       Table::ACTION_CASCADE
+                                       $installer->getIdxName('xcore_price_list', ['price_list_id']),
+                                       ['price_list_id']
                                    )
                                    ->setComment('xCore Price List Table');
+            $installer->getConnection()->createTable($table);
+
+            $tableName = 'dealer4dealer_xcore_price_list_customer_group';
+            $table     = $installer->getConnection()
+                                   ->newTable($installer->getTable($tableName))
+                                   ->addColumn(
+                                       'id',
+                                       Table::TYPE_INTEGER,
+                                       null,
+                                       [
+                                           'identity' => true,
+                                           'unsigned' => true,
+                                           'nullable' => false,
+                                           'primary'  => true
+                                       ],
+                                       'ID'
+                                   )
+                                   ->addColumn(
+                                       'customer_group_id',
+                                       Table::TYPE_SMALLINT,
+                                       5,
+                                       [
+                                           'unsigned' => true,
+                                           'nullable' => true
+                                       ],
+                                       'Customer Group ID'
+                                   )
+                                   ->addColumn(
+                                       'price_list_id',
+                                       Table::TYPE_TEXT,
+                                       50,
+                                       [
+                                           'unsigned' => true,
+                                           'nullable' => false
+                                       ],
+                                       'Price List ID'
+                                   )
+                                   ->addForeignKey(
+                                       $installer->getFkName(
+                                           'dealer4dealer_xcore_price_list_customer_group',
+                                           'customer_group_id',
+                                           'customer_group',
+                                           'customer_group_id'
+                                       ),
+                                       'customer_group_id',
+                                       $installer->getTable('customer_group'),
+                                       'customer_group_id',
+                                       Table::ACTION_CASCADE
+                                   )
+                                   ->addForeignKey(
+                                       $installer->getFkName(
+                                           'dealer4dealer_xcore_price_list_customer_group',
+                                           'price_list_id',
+                                           'dealer4dealer_xcore_price_list',
+                                           'price_list_id'
+                                       ),
+                                       'price_list_id',
+                                       $installer->getTable('dealer4dealer_xcore_price_list'),
+                                       'price_list_id',
+                                       Table::ACTION_CASCADE
+                                   )
+                                   ->setComment('xCore Price List Customer Group Table');
             $installer->getConnection()->createTable($table);
         }
 

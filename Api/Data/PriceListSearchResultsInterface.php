@@ -10,14 +10,12 @@ interface PriceListSearchResultsInterface extends SearchResultsInterface
      * Get PriceList list.
      * @return PriceListInterface[]
      */
-
     public function getItems();
 
     /**
-     * Set id list.
+     * Set PriceList list.
      * @param PriceListInterface[] $items
      * @return $this
      */
-
     public function setItems(array $items);
 }

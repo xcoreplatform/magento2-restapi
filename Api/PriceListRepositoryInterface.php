@@ -16,19 +16,17 @@ interface PriceListRepositoryInterface
      * @return PriceListInterface
      * @throws LocalizedException
      */
-
     public function save(
         PriceListInterface $priceList
     );
 
     /**
      * Retrieve PriceList
-     * @param string $pricelistId
+     * @param string $id
      * @return PriceListInterface
      * @throws LocalizedException
      */
-
-    public function getById($pricelistId);
+    public function getById($id);
 
     /**
      * Retrieve PriceList matching the specified criteria.
@@ -36,7 +34,6 @@ interface PriceListRepositoryInterface
      * @return PriceListSearchResultsInterface
      * @throws LocalizedException
      */
-
     public function getList(
         SearchCriteriaInterface $searchCriteria
     );
@@ -47,18 +44,24 @@ interface PriceListRepositoryInterface
      * @return bool true on success
      * @throws LocalizedException
      */
-
     public function delete(
         PriceListInterface $priceList
     );
 
     /**
      * Delete PriceList by ID
-     * @param string $pricelistId
+     * @param string $id
      * @return bool true on success
      * @throws NoSuchEntityException
      * @throws LocalizedException
      */
+    public function deleteById($id);
 
-    public function deleteById($pricelistId);
+    /**
+     * Delete PriceList by PriceListId
+     * @param string $priceListId
+     * @return PriceListInterface
+     * @throws LocalizedException
+     */
+    public function deleteByPriceListId($priceListId);
 }

@@ -3,101 +3,141 @@
 namespace Dealer4dealer\Xcore\Model;
 
 use Exception;
-use Magento\Framework\Api\SearchCriteria;
-use Magento\Framework\Model\Context;
-use Magento\Framework\Registry;
+use Magento\Framework\App\ResourceConnection;
 
 class PricelistManagement
 {
-    /** @var Context */
-    private $_context;
-    /** @var Registry */
-    private $_registry;
-    /** @var PriceListRepository */
-    private $_repository;
+//    /** @var Context */
+//    private $_context;
+//    /** @var Registry */
+//    private $_registry;
+//    /** @var PriceListRepository */
+//    private $_priceListRepository;
+//    /** @var PriceListCustomerGroupRepository */
+//    private $_priceListCustomerGroupRepository;
+    /** @var ResourceConnection */
+    private $_resourceConnection;
 
-    public function __construct(Context $context,
-                                Registry $registry,
-                                PriceListRepository $repository)
+    private $_added;
+    private $_customerGroups;
+    private $_websites;
+
+    public function __construct(ResourceConnection $resourceConnection)
+        /*,
+                                        Context $context,
+                                        Registry $registry,
+                                        PriceListRepository $priceListRepository,
+                                        PriceListCustomerGroupRepository $priceListCustomerGroupRepository)
+        */
     {
-        $this->_context    = $context;
-        $this->_registry   = $registry;
-        $this->_repository = $repository;
+        $this->_resourceConnection = $resourceConnection;
+        /*
+        $this->_context                          = $context;
+        $this->_registry                         = $registry;
+        $this->_priceListRepository              = $priceListRepository;
+        $this->_priceListCustomerGroupRepository = $priceListCustomerGroupRepository;
+        */
     }
 
     public function getPricelist()
     {
-        // TODO: Figure out how to work with search criteria?
-        $searchCriteria = new SearchCriteria;
-
-        $items = $this->_repository->getList($searchCriteria)->getItems();
-
-        $result = [];
-
-        foreach ($items as $item) {
-            $itemArray = [
-                'id'          => $item->getId(),
-                'list_id'     => $item->getListId(),
-                'customer_id' => $item->getCustomerId(),
-                'product_id'  => $item->getProductId(),
-                'qty'         => $item->getQty(),
-                'price'       => $item->getPrice(),
-                'from_date'   => $item->getFromDate(),
-                'to_date'     => $item->getToDate(),
-            ];
-
-            $result[] = $itemArray;
-        }
-
-        return $result;
+        return 'Not implemented yet';
     }
 
     public function postPricelist()
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        try {
-            $removedItems = $this->removePriceList($data);
-            $addedItems   = $this->addItemsToPriceList($data);
-        } catch (Exception $exception) {
-            return $exception->getMessage();
+        $removePrevious  = $data['remove_previous'];
+        $customerGroupId = $data['customer_group_ids'];
+        $websiteId       = $data['website_ids'];
+
+        if ($removePrevious) {
+            foreach ($data['items'] as $item) {
+                $this->removeOldTierPrice($item);
+            }
+        }
+
+        foreach ($data['items'] as $item) {
+            $this->addNewTierPrice($item, $customerGroupId, $websiteId);
         }
 
         $result = [
-            'deleted_existing' => $removedItems,
-            'added_items'      => $addedItems,
+            'unique_products'      => count($data['items']),
+            'total_products_added' => $this->_added,
+            'customer_groups'      => $this->_customerGroups,
+            'websites'             => $this->_websites,
         ];
 
         return json_encode($result);
     }
 
-    private function removePriceList($data)
+    private function removeOldTierPrice($item)
     {
-        $removed = 0;
-        if (isset($data['delete_existing']) && $data['delete_existing']) {
-            try {
-                $removed = $this->_repository->deleteByListId($data['list_id']);
-            } catch (Exception $exception) {
-                // Failed to remove, not removing anything (doesn't exist probably)
-            }
-        }
-        return $removed;
+        $table  = $this->tierPriceTable();
+        $delete = 'DELETE FROM';
+        $sql    = sprintf("%s %s WHERE entity_id = '%s'", $delete, $table, $item['entity_id']);
+        $this->execute($sql);
     }
 
-    private function addItemsToPriceList($data)
+    private function addNewTierPrice($item, $customerGroupIds, $websiteIds)
     {
-        foreach ($data['items'] as $item) {
-            $priceList = new PriceList($this->_context, $this->_registry);
-            $priceList->setListId($data['list_id']);
-            $priceList->setCustomerId($item['customer_id']);
-            $priceList->setProductId($item['product_id']);
-            $priceList->setQty($item['qty']);
-            $priceList->setPrice($item['price']);
-            $priceList->setFromDate(isset($item['from_date']) ? $item['from_date'] : null);
-            $priceList->setToDate(isset($item['to_date']) ? $item['to_date'] : null);
-            $this->_repository->save($priceList);
-        }
+        try {
 
-        return count($data['items']);
+            $allGroups = 1;
+
+            if ($customerGroupIds || $customerGroupIds === "0") {
+                $allGroups = 0;
+            } else {
+                $customerGroupIds = 0;
+            }
+
+            if ($websiteIds == null) {
+                $websiteIds = 0;
+            }
+
+            $this->addNewTierPriceForCustomerGroupsAndWebsites($item, $allGroups, $customerGroupIds, $websiteIds);
+
+        } catch (Exception $e) {
+
+        }
+    }
+
+    private function addNewTierPriceForCustomerGroupsAndWebsites($item, $allGroups, $customerGroupIds, $websiteIds)
+    {
+        $table  = $this->tierPriceTable();
+        $insert = 'INSERT INTO';
+
+        $customerGroupIds = explode(',', $customerGroupIds);
+        $websiteIds       = explode(',', $websiteIds);
+
+
+        foreach ($customerGroupIds as $customerGroupId) {
+            $this->_customerGroups++;
+            foreach ($websiteIds as $websiteId) {
+                $this->_websites++;
+                $sql = sprintf("%s %s (entity_id, all_groups, customer_group_id, qty, value, website_id) VALUES ('%s','%s','%s','%s','%s','%s')",
+                               $insert,
+                               $table,
+                               $item['entity_id'],
+                               $allGroups,
+                               $customerGroupId,
+                               $item['qty'],
+                               $item['price'],
+                               $websiteId);
+                $this->execute($sql);
+                $this->_added++;
+            }
+        }
+    }
+
+    private function execute($sql)
+    {
+        $this->_resourceConnection->getConnection()->query($sql);
+    }
+
+    private function tierPriceTable()
+    {
+        return $this->_resourceConnection->getConnection()->getTableName('catalog_product_entity_tier_price');
     }
 }
