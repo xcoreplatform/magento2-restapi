@@ -8,7 +8,6 @@ use Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterfaceFactory;
 use Dealer4dealer\Xcore\Api\PriceListRepositoryInterface;
 use Dealer4dealer\Xcore\Model\ResourceModel\PriceList as ResourcePriceList;
 use Dealer4dealer\Xcore\Model\ResourceModel\PriceList\CollectionFactory as PriceListCollectionFactory;
-use Magento\Eav\Model\Entity\Collection\VersionControl\AbstractCollection;
 use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaInterface;
@@ -86,7 +85,7 @@ class PriceListRepository implements PriceListRepositoryInterface
             $priceList->getResource()->save($priceList);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__(
-                                                'Could not save the priceList: %1',
+                                                'Could not save the priceList',
                                                 $exception->getMessage()
                                             ));
         }
@@ -101,7 +100,7 @@ class PriceListRepository implements PriceListRepositoryInterface
         $priceList = $this->priceListFactory->create();
         $priceList->getResource()->load($priceList, $id);
         if (!$priceList->getId()) {
-            throw new NoSuchEntityException(__('PriceList with id "%1" does not exist.', $id));
+            throw new NoSuchEntityException(__('PriceList does not exist', $id));
         }
         return $priceList;
     }
@@ -156,7 +155,7 @@ class PriceListRepository implements PriceListRepositoryInterface
             $priceList->getResource()->delete($priceList);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__(
-                                                  'Could not delete the PriceList: %1',
+                                                  'Could not delete the PriceList',
                                                   $exception->getMessage()
                                               ));
         }
@@ -180,7 +179,7 @@ class PriceListRepository implements PriceListRepositoryInterface
         $searchCriteria = $this->searchCriteriaBuilder->addFilter('price_list_id', $priceListId)->create();
 
         $collection = $this->getList($searchCriteria);
-        $count = $collection->getTotalCount();
+        $count      = $collection->getTotalCount();
 
         foreach ($collection->getItems() as $item) {
             $item->delete();

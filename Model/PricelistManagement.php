@@ -2,41 +2,47 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Exception;
-use Magento\Framework\App\ResourceConnection;
+use Dealer4dealer\Xcore\Api\Data\PriceListCustomerGroupWebsiteInterface;
+use Dealer4dealer\Xcore\Api\Data\PriceListInterface;
+use Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Registry;
 
 class PricelistManagement
 {
-//    /** @var Context */
-//    private $_context;
-//    /** @var Registry */
-//    private $_registry;
-//    /** @var PriceListRepository */
-//    private $_priceListRepository;
-//    /** @var PriceListCustomerGroupRepository */
-//    private $_priceListCustomerGroupRepository;
-    /** @var ResourceConnection */
-    private $_resourceConnection;
+    /** @var Context */
+    private $_context;
+    /** @var Registry */
+    private $_registry;
+    /** @var SearchCriteriaBuilder */
+    private $_searchCriteriaBuilder;
+    /** @var PriceListRepository */
+    private $_priceListRepository;
+    /** @var PriceListCustomerGroupWebsiteRepository */
+    private $_customerGroupWebsiteRepository;
+    /** @var PriceListProductEntityTierPriceRepository */
+    private $_productEntityTierPriceRepository;
 
-    private $_added;
-    private $_customerGroups;
-    private $_websites;
+    /** @var PriceListData */
+    private $data;
+    /** @var bool|PriceListInterface */
+    private $priceList;
+    /** @var PriceListCustomerGroupWebsiteInterface[] */
+    private $customerGroupWebsites;
 
-    public function __construct(ResourceConnection $resourceConnection)
-        /*,
-                                        Context $context,
-                                        Registry $registry,
-                                        PriceListRepository $priceListRepository,
-                                        PriceListCustomerGroupRepository $priceListCustomerGroupRepository)
-        */
+    public function __construct(Context $context,
+                                Registry $registry,
+                                SearchCriteriaBuilder $searchCriteriaBuilder,
+                                PriceListRepository $priceListRepository,
+                                PriceListCustomerGroupWebsiteRepository $customerGroupWebsiteRepository,
+                                PriceListProductEntityTierPriceRepository $productEntityTierPriceRepository)
     {
-        $this->_resourceConnection = $resourceConnection;
-        /*
         $this->_context                          = $context;
         $this->_registry                         = $registry;
+        $this->_searchCriteriaBuilder            = $searchCriteriaBuilder;
         $this->_priceListRepository              = $priceListRepository;
-        $this->_priceListCustomerGroupRepository = $priceListCustomerGroupRepository;
-        */
+        $this->_customerGroupWebsiteRepository   = $customerGroupWebsiteRepository;
+        $this->_productEntityTierPriceRepository = $productEntityTierPriceRepository;
     }
 
     public function getPricelist()
@@ -48,96 +54,163 @@ class PricelistManagement
     {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        $removePrevious  = $data['remove_previous'];
-        $customerGroupId = $data['customer_group_ids'];
-        $websiteId       = $data['website_ids'];
+        $this->setData($data);
+        $this->getOrCreatePriceList();
+        $this->getOrCreateCustomerGroupWebsites();
+        $this->addProductEntityTierPrices();
 
-        if ($removePrevious) {
-            foreach ($data['items'] as $item) {
-                $this->removeOldTierPrice($item);
-            }
-        }
-
-        foreach ($data['items'] as $item) {
-            $this->addNewTierPrice($item, $customerGroupId, $websiteId);
-        }
-
-        $result = [
-            'unique_products'      => count($data['items']),
-            'total_products_added' => $this->_added,
-            'customer_groups'      => $this->_customerGroups,
-            'websites'             => $this->_websites,
-        ];
+        $result = $this->buildResult();
 
         return json_encode($result);
     }
 
-    private function removeOldTierPrice($item)
+    /**
+     * Sets the PriceListData for further use in this class.
+     *
+     * @param array $data
+     */
+    private function setData($data)
     {
-        $table  = $this->tierPriceTable();
-        $delete = 'DELETE FROM';
-        $sql    = sprintf("%s %s WHERE entity_id = '%s'", $delete, $table, $item['entity_id']);
-        $this->execute($sql);
-    }
+        $this->data = new PriceListData;
+        $this->data->setBatchNumber($data['batch_number'])
+                   ->setPriceListId($data['price_list_id'])
+                   ->setStartDate($data['start_date'])
+                   ->setEndDate($data['end_date'])
+                   ->setCustomerGroupIds($data['customer_group_ids'])
+                   ->setWebsiteIds($data['website_ids']);
 
-    private function addNewTierPrice($item, $customerGroupIds, $websiteIds)
-    {
-        try {
-
-            $allGroups = 1;
-
-            if ($customerGroupIds || $customerGroupIds === "0") {
-                $allGroups = 0;
-            } else {
-                $customerGroupIds = 0;
-            }
-
-            if ($websiteIds == null) {
-                $websiteIds = 0;
-            }
-
-            $this->addNewTierPriceForCustomerGroupsAndWebsites($item, $allGroups, $customerGroupIds, $websiteIds);
-
-        } catch (Exception $e) {
-
+        foreach ($data['items'] as $item) {
+            $newItem = new PriceListTierPrice;
+            $newItem->setEntityId($item['entity_id'])
+                    ->setQty($item['qty'])
+                    ->setValue($item['value']);
+            $this->data->addItem($newItem);
         }
     }
 
-    private function addNewTierPriceForCustomerGroupsAndWebsites($item, $allGroups, $customerGroupIds, $websiteIds)
+    /**
+     * If the price list is the first batch (multiple batches for 1 price list),
+     * this method will remove the price list first. This will cascade and delete
+     * all customer groups, websites and items in the list. Then it will create
+     * the price list anew. The price list will be stored in the global private
+     * var $this->priceList.
+     *
+     * If it's not the first batch, it will find the existing price list and store
+     * it in the global private var $this->priceList as well.
+     */
+    private function getOrCreatePriceList()
     {
-        $table  = $this->tierPriceTable();
-        $insert = 'INSERT INTO';
+        if ($this->data->getBatchNumber() == 1) {
+            $this->removePriceList();
+            $this->priceList = $this->addPriceList();
+        } else {
+            $searchCriteria  = $this->buildPriceListSearchCriteria();
+            $collection      = $this->_priceListRepository->getList($searchCriteria);
+            $items           = $collection->getItems();
+            $this->priceList = reset($items);
+        }
+    }
 
-        $customerGroupIds = explode(',', $customerGroupIds);
-        $websiteIds       = explode(',', $websiteIds);
-
-
-        foreach ($customerGroupIds as $customerGroupId) {
-            $this->_customerGroups++;
-            foreach ($websiteIds as $websiteId) {
-                $this->_websites++;
-                $sql = sprintf("%s %s (entity_id, all_groups, customer_group_id, qty, value, website_id) VALUES ('%s','%s','%s','%s','%s','%s')",
-                               $insert,
-                               $table,
-                               $item['entity_id'],
-                               $allGroups,
-                               $customerGroupId,
-                               $item['qty'],
-                               $item['price'],
-                               $websiteId);
-                $this->execute($sql);
-                $this->_added++;
+    /**
+     * Same as the price list creation, this will get or create all records in the
+     * price list customer group website table. There's no need to remove all records
+     * on the first batch, as they are already removed due to the cascade on the
+     * foreign key of the price_list_id.
+     */
+    private function getOrCreateCustomerGroupWebsites()
+    {
+        if ($this->data->getBatchNumber() == 1) {
+            $this->customerGroupWebsites = $this->addCustomerGroupWebsites();
+        } else {
+            $this->customerGroupWebsites = [];
+            $searchCriteria              = $this->buildPriceListSearchCriteria();
+            $collection                  = $this->_customerGroupWebsiteRepository->getList($searchCriteria);
+            $items                       = $collection->getItems();
+            foreach ($items as $item) {
+                $this->customerGroupWebsites[] = $item;
             }
         }
     }
 
-    private function execute($sql)
+    /**
+     * This method will store all the tier prices in our table.
+     */
+    private function addProductEntityTierPrices()
     {
-        $this->_resourceConnection->getConnection()->query($sql);
+        foreach ($this->data->getItems() as $item) {
+            $this->addTierPrice($item);
+        }
     }
 
-    private function tierPriceTable()
+    private function buildResult()
     {
-        return $this->_resourceConnection->getConnection()->getTableName('catalog_product_entity_tier_price');
+        $result = [];
+
+        $result['price_list'] = [
+            'id'            => $this->priceList->getId(),
+            'price_list_id' => $this->priceList->getPriceListId(),
+            'start_date'    => $this->priceList->getStartDate(),
+            'end_date'      => $this->priceList->getEndDate(),
+        ];
+
+        $customerGroupWebsites = [];
+        foreach ($this->customerGroupWebsites as $customerGroupWebsite) {
+            $customerGroupWebsites[] = [
+                'id'                => $customerGroupWebsite->getId(),
+                'all_groups'        => $customerGroupWebsite->getAllGroups(),
+                'customer_group_id' => $customerGroupWebsite->getCustomerGroupId(),
+                'website_id'        => $customerGroupWebsite->getWebsiteId(),
+            ];
+        }
+        $result['customer_group_website'] = $customerGroupWebsites;
+
+        $result['added_tier_prices'] = count($this->data->getItems());
+
+        return $result;
+    }
+
+    private function removePriceList()
+    {
+        return $this->_priceListRepository->deleteByPriceListId($this->data->getPriceListId());
+    }
+
+    private function addPriceList()
+    {
+        $priceList = new PriceList($this->_context, $this->_registry);
+        $priceList->setPriceListId($this->data->getPriceListId())
+                  ->setStartDate($this->data->getStartDate())
+                  ->setEndDate($this->data->getEndDate());
+        return $this->_priceListRepository->save($priceList);
+    }
+
+    private function addCustomerGroupWebsites()
+    {
+        $result = [];
+        foreach ($this->data->getCustomerGroupIds() as $customerGroupId) {
+            foreach ($this->data->getWebsiteIds() as $websiteId) {
+                $customerGroupWebsite = new PriceListCustomerGroupWebsite($this->_context, $this->_registry);
+                $customerGroupWebsite->setPriceListId($this->data->getPriceListId())
+                                     ->setAllGroups($this->data->getAllGroups() ? '1' : '0')
+                                     ->setCustomerGroupId($customerGroupId)
+                                     ->setWebsiteId($websiteId);
+                $result[] = $this->_customerGroupWebsiteRepository->save($customerGroupWebsite);
+            }
+        }
+        return $result;
+    }
+
+    private function addTierPrice(PriceListTierPrice $item)
+    {
+        $tierPrice = new PriceListProductEntityTierPrice($this->_context, $this->_registry);
+        $tierPrice->setPriceListId($this->data->getPriceListId())
+                  ->setProductId($item->getEntityId())
+                  ->setQty($item->getQty())
+                  ->setValue($item->getValue());
+        $this->_productEntityTierPriceRepository->save($tierPrice);
+    }
+
+    private function buildPriceListSearchCriteria()
+    {
+        return $this->_searchCriteriaBuilder->addFilter(PriceList::PRICE_LIST_ID, $this->data->getPriceListId())->create();
     }
 }
