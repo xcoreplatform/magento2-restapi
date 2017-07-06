@@ -4,11 +4,12 @@ namespace Dealer4dealer\Xcore\Model;
 
 use Dealer4dealer\Xcore\Api\Data\PriceListCustomerGroupWebsiteInterface;
 use Dealer4dealer\Xcore\Api\Data\PriceListInterface;
+use Dealer4dealer\Xcore\Api\PricelistManagementInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Model\Context;
 use Magento\Framework\Registry;
 
-class PricelistManagement
+class PricelistManagement implements PricelistManagementInterface
 {
     /** @var Context */
     private $_context;
