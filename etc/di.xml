@@ -8,6 +8,20 @@
 	<preference for="Dealer4dealer\Xcore\Api\Data\CustomAttributeSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<preference for="Dealer4dealer\Xcore\Api\AlterShipmentInterface" type="Dealer4dealer\Xcore\Model\AlterShipment"/>
 
+	<preference for="Dealer4dealer\Xcore\Api\PricelistManagementInterface" type="Dealer4dealer\Xcore\Model\PricelistManagement"/>
+
+	<preference for="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListRepository"/>
+	<preference for="Dealer4dealer\Xcore\Api\PriceListCustomerGroupWebsiteRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListCustomerGroupWebsiteRepository"/>
+	<preference for="Dealer4dealer\Xcore\Api\PriceListProductEntityTierPriceRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListProductEntityTierPriceRepository"/>
+
+	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListInterface" type="Dealer4dealer\Xcore\Model\PriceList"/>
+	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListCustomerGroupWebsiteInterface" type="Dealer4dealer\Xcore\Model\PriceListCustomerGroupWebsite"/>
+	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListProductEntityTierPriceInterface" type="Dealer4dealer\Xcore\Model\PriceListProductEntityTierPrice"/>
+
+	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListCustomerGroupWebsiteSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListProductEntityTierPriceSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
     <virtualType name="Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">dealer4dealer_xcore_custom_attribute</argument>
