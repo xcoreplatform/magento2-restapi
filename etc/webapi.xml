@@ -24,4 +24,29 @@
             <resource ref="Magento_Sales::sales" />
         </resources>
     </route>
+
+    <route url="/V1/xcore/pricelists" method="GET">
+        <service class="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" method="getJsonList"/>
+        <resources>
+            <resource ref="Magento_Sales::sales" />
+        </resources>
+    </route>
+    <route url="/V1/xcore/pricelists/id/:id/:withItems" method="GET">
+        <service class="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" method="getJsonById"/>
+        <resources>
+            <resource ref="Magento_Sales::sales" />
+        </resources>
+    </route>
+    <route url="/V1/xcore/pricelists/guid/:guid/:withItems" method="GET">
+        <service class="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" method="getJsonByGuid"/>
+        <resources>
+            <resource ref="Magento_Sales::sales" />
+        </resources>
+    </route>
+    <route url="/V1/xcore/pricelists" method="POST">
+        <service class="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" method="saveJson"/>
+        <resources>
+            <resource ref="Magento_Sales::sales" />
+        </resources>
+    </route>
 </routes>

@@ -61,6 +61,8 @@ class Collection extends \Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribut
     public function setAggregations($aggregations)
     {
         $this->_aggregations = $aggregations;
+
+        return $this;
     }
 
     /**
