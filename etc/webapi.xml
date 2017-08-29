@@ -24,7 +24,12 @@
             <resource ref="Magento_Sales::sales" />
         </resources>
     </route>
-
+    <route url="/V1/xcore/rest/version" method="GET">
+        <service class="Dealer4dealer\Xcore\Api\RestManagementInterface" method="getVersion"/>
+        <resources>
+            <resource ref="Magento_Sales::sales" />
+        </resources>
+    </route>
     <route url="/V1/xcore/pricelists" method="GET">
         <service class="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" method="getJsonList"/>
         <resources>

@@ -1,4 +1,5 @@
 <?php
+
 namespace Dealer4dealer\Xcore\Api\Data;
 
 use Magento\Framework\Api\ExtensibleDataInterface;
@@ -72,17 +73,15 @@ interface PaymentCostInterface extends ExtensibleDataInterface
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface|null
+     * @return \Dealer4dealer\Xcore\Api\Data\PaymentCostInterface|null
      */
     public function getExtensionAttributes();
 
     /**
      * Set an extension attributes object.
      *
-     * @param \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface $extensionAttributes
+     * @param \Dealer4dealer\Xcore\Api\Data\PaymentCostInterface $extensionAttributes
      * @return $this
      */
-    public function setExtensionAttributes(
-        \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface $extensionAttributes
-    );
+    public function setExtensionAttributes(\Dealer4dealer\Xcore\Api\Data\PaymentCostInterface $extensionAttributes);
 }

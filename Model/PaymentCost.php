@@ -1,4 +1,5 @@
 <?php
+
 namespace Dealer4dealer\Xcore\Model;
 
 use Dealer4dealer\Xcore\Api\Data\PaymentCostInterface;
@@ -12,11 +13,9 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     protected $taxPercent;
 
     protected $extensionAttributes;
-    
+
     /**
-     * Get the title of the payment cost.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getTitle()
     {
@@ -24,10 +23,7 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     }
 
     /**
-     * Set the title of the payment cost.
-     *
-     * @param string $title
-     * @return $this
+     * {@inheritdoc}
      */
     public function setTitle($title)
     {
@@ -35,9 +31,7 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     }
 
     /**
-     * Get the base amount of the payment cost.
-     *
-     * @return float|null
+     * {@inheritdoc}
      */
     public function getBaseAmount()
     {
@@ -45,10 +39,7 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     }
 
     /**
-     * Set the base amount of the payment cost.
-     *
-     * @param float $baseAmount
-     * @return $this
+     * {@inheritdoc}
      */
     public function setBaseAmount($baseAmount)
     {
@@ -56,8 +47,7 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     }
 
     /**
-     * Get the amount of the payment cost.
-     * @return float|null
+     * {@inheritdoc}
      */
     public function getAmount()
     {
@@ -65,10 +55,7 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     }
 
     /**
-     * Set the amount of the payment cost.
-     *
-     * @param float $amount
-     * @return $this
+     * {@inheritdoc}
      */
     public function setAmount($amount)
     {
@@ -76,9 +63,7 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     }
 
     /**
-     * Get the tax rate of the payment cost.
-     *
-     * @return float|null
+     * {@inheritdoc}
      */
     public function getTaxPercent()
     {
@@ -86,10 +71,7 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     }
 
     /**
-     * Set the tax rate of the payment cost.
-     *
-     * @param $taxPercent
-     * @return mixed
+     * {@inheritdoc}
      */
     public function setTaxPercent($taxPercent)
     {
@@ -97,9 +79,7 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     }
 
     /**
-     * Retrieve existing extension attributes object or create a new one.
-     *
-     * @return \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface|null
+     * {@inheritdoc}
      */
     public function getExtensionAttributes()
     {
@@ -107,14 +87,9 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     }
 
     /**
-     * Set an extension attributes object.
-     *
-     * @param \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface $extensionAttributes
-     * @return $this
+     * {@inheritdoc}
      */
-    public function setExtensionAttributes(
-        \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface $extensionAttributes
-    )
+    public function setExtensionAttributes(\Dealer4dealer\Xcore\Api\Data\PaymentCostInterface $extensionAttributes)
     {
         return $this->setData(self::EXTENSION_ATTRIBUTES_KEY, $extensionAttributes);
     }

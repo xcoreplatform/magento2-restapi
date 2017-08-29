@@ -8,13 +8,15 @@ interface PriceListItemSearchResultsInterface extends SearchResultsInterface
 {
     /**
      * Get price_list_item list.
-     * @return PriceListItemInterface[]
+     *
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[]
      */
     public function getItems();
 
     /**
-     * Set id list.
-     * @param PriceListItemInterface[] $items
+     * Set price_list_item list.
+     *
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[] $items
      * @return $this
      */
     public function setItems(array $items);

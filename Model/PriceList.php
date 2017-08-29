@@ -19,8 +19,7 @@ class PriceList extends AbstractModel implements PriceListInterface
     }
 
     /**
-     * Get id
-     * @return string
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -28,9 +27,7 @@ class PriceList extends AbstractModel implements PriceListInterface
     }
 
     /**
-     * Set id
-     * @param string $id
-     * @return PriceListInterface
+     * {@inheritdoc}
      */
     public function setId($id)
     {
@@ -38,8 +35,7 @@ class PriceList extends AbstractModel implements PriceListInterface
     }
 
     /**
-     * Get guid
-     * @return string
+     * {@inheritdoc}
      */
     public function getGuid()
     {
@@ -47,9 +43,7 @@ class PriceList extends AbstractModel implements PriceListInterface
     }
 
     /**
-     * Set guid
-     * @param string $guid
-     * @return PriceListInterface
+     * {@inheritdoc}
      */
     public function setGuid($guid)
     {
@@ -57,8 +51,7 @@ class PriceList extends AbstractModel implements PriceListInterface
     }
 
     /**
-     * Get code
-     * @return string
+     * {@inheritdoc}
      */
     public function getCode()
     {
@@ -66,9 +59,7 @@ class PriceList extends AbstractModel implements PriceListInterface
     }
 
     /**
-     * Set code
-     * @param string $code
-     * @return PriceListInterface
+     * {@inheritdoc}
      */
     public function setCode($code)
     {
@@ -76,7 +67,7 @@ class PriceList extends AbstractModel implements PriceListInterface
     }
 
     /**
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[]
+     * {@inheritdoc}
      */
     public function getItems()
     {
@@ -84,8 +75,7 @@ class PriceList extends AbstractModel implements PriceListInterface
     }
 
     /**
-     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[] $items
-     * @return PriceListInterface
+     * {@inheritdoc}
      */
     public function setItems($items)
     {

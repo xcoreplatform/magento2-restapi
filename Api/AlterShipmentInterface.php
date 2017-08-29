@@ -1,13 +1,7 @@
 <?php
 
-
 namespace Dealer4dealer\Xcore\Api;
 
-/**
- * Class AlterShipmentInterface
- *
- * @api
- */
 interface AlterShipmentInterface
 {
     /**

@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Dealer4dealer\Xcore\Model;
 
 use Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface;
 
 class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements CustomAttributeInterface
 {
-
     /**
      * @return void
      */
@@ -17,8 +15,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Get id
-     * @return string
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -26,9 +23,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Set id
-     * @param string $customattributeId
-     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     * {@inheritdoc}
      */
     public function setId($customattributeId)
     {
@@ -36,8 +31,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Get from
-     * @return string
+     * {@inheritdoc}
      */
     public function getFrom()
     {
@@ -45,9 +39,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Set from
-     * @param string $from
-     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     * {@inheritdoc}
      */
     public function setFrom($from)
     {
@@ -55,8 +47,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Get to
-     * @return string
+     * {@inheritdoc}
      */
     public function getTo()
     {
@@ -64,9 +55,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Set to
-     * @param string $to
-     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     * {@inheritdoc}
      */
     public function setTo($to)
     {
@@ -74,8 +63,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Get type
-     * @return string
+     * {@inheritdoc}
      */
     public function getType()
     {
@@ -83,9 +71,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Set type
-     * @param string $type
-     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     * {@inheritdoc}
      */
     public function setType($type)
     {
@@ -93,8 +79,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Get created_at
-     * @return string
+     * {@inheritdoc}
      */
     public function getCreatedAt()
     {
@@ -102,9 +87,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Set created_at
-     * @param string $created_at
-     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     * {@inheritdoc}
      */
     public function setCreatedAt($created_at)
     {
@@ -112,8 +95,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Get updated_at
-     * @return string
+     * {@inheritdoc}
      */
     public function getUpdatedAt()
     {
@@ -121,9 +103,7 @@ class CustomAttribute extends \Magento\Framework\Model\AbstractModel implements 
     }
 
     /**
-     * Set updated_at
-     * @param string $updated_at
-     * @return Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface
+     * {@inheritdoc}
      */
     public function setUpdatedAt($updated_at)
     {

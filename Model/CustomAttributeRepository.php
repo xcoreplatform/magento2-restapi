@@ -1,40 +1,31 @@
 <?php
 
-
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\Data\CustomAttributeInterfaceFactory;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute as ResourceCustomAttribute;
-use Magento\Framework\Reflection\DataObjectProcessor;
-use Magento\Framework\Api\SortOrder;
-use Dealer4dealer\Xcore\Api\Data\CustomAttributeSearchResultsInterfaceFactory;
-use Magento\Store\Model\StoreManagerInterface;
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Magento\Framework\Api\DataObjectHelper;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Dealer4dealer\Xcore\Api\CustomAttributeRepositoryInterface;
+use Dealer4dealer\Xcore\Api\Data\CustomAttributeInterfaceFactory;
+use Dealer4dealer\Xcore\Api\Data\CustomAttributeSearchResultsInterfaceFactory;
+use Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute as ResourceCustomAttribute;
 use Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute\CollectionFactory as CustomAttributeCollectionFactory;
+use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\Api\SortOrder;
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Reflection\DataObjectProcessor;
+use Magento\Store\Model\StoreManagerInterface;
 
 class CustomAttributeRepository implements CustomAttributeRepositoryInterface
 {
-
-    protected $CustomAttributeCollectionFactory;
-
+    protected $resource;
+    protected $customAttributeFactory;
+    protected $dataCustomAttributeFactory;
+    protected $customAttributeCollectionFactory;
     protected $searchResultsFactory;
-
+    protected $dataObjectHelper;
     protected $dataObjectProcessor;
 
-    protected $dataCustomAttributeFactory;
-
-    protected $CustomAttributeFactory;
-
     private $storeManager;
-
-    protected $dataObjectHelper;
-
-    protected $resource;
-
 
     /**
      * @param ResourceCustomAttribute $resource
@@ -55,34 +46,30 @@ class CustomAttributeRepository implements CustomAttributeRepositoryInterface
         DataObjectHelper $dataObjectHelper,
         DataObjectProcessor $dataObjectProcessor,
         StoreManagerInterface $storeManager
-    ) {
-        $this->resource = $resource;
-        $this->customAttributeFactory = $customAttributeFactory;
+    )
+    {
+        $this->resource                         = $resource;
+        $this->customAttributeFactory           = $customAttributeFactory;
         $this->customAttributeCollectionFactory = $customAttributeCollectionFactory;
-        $this->searchResultsFactory = $searchResultsFactory;
-        $this->dataObjectHelper = $dataObjectHelper;
-        $this->dataCustomAttributeFactory = $dataCustomAttributeFactory;
-        $this->dataObjectProcessor = $dataObjectProcessor;
-        $this->storeManager = $storeManager;
+        $this->searchResultsFactory             = $searchResultsFactory;
+        $this->dataObjectHelper                 = $dataObjectHelper;
+        $this->dataCustomAttributeFactory       = $dataCustomAttributeFactory;
+        $this->dataObjectProcessor              = $dataObjectProcessor;
+        $this->storeManager                     = $storeManager;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function save(
-        \Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface $customAttribute
-    ) {
-        /* if (empty($customAttribute->getStoreId())) {
-            $storeId = $this->storeManager->getStore()->getId();
-            $customAttribute->setStoreId($storeId);
-        } */
+    public function save(\Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface $customAttribute)
+    {
         try {
             $this->resource->save($customAttribute);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__(
-                'Could not save the customAttribute: %1',
-                $exception->getMessage()
-            ));
+                                                'Could not save the customAttribute: %1',
+                                                $exception->getMessage()
+                                            ));
         }
         return $customAttribute;
     }
@@ -128,9 +115,8 @@ class CustomAttributeRepository implements CustomAttributeRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getList(
-        \Magento\Framework\Api\SearchCriteriaInterface $criteria
-    ) {
+    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $criteria)
+    {
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
 
@@ -179,16 +165,15 @@ class CustomAttributeRepository implements CustomAttributeRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function delete(
-        \Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface $customAttribute
-    ) {
+    public function delete(\Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface $customAttribute)
+    {
         try {
             $this->resource->delete($customAttribute);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__(
-                'Could not delete the CustomAttribute: %1',
-                $exception->getMessage()
-            ));
+                                                  'Could not delete the CustomAttribute: %1',
+                                                  $exception->getMessage()
+                                              ));
         }
         return true;
     }

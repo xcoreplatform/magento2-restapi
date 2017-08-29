@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Dealer4dealer\Xcore\Block\Adminhtml\CustomAttribute\Edit;
 
 use Magento\Backend\Block\Widget\Context;
 
 abstract class GenericButton
 {
-
     protected $context;
 
     /**

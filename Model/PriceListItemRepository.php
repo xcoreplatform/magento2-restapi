@@ -135,6 +135,9 @@ class PriceListItemRepository implements PriceListItemRepositoryInterface
         return $this->delete($this->getById($priceListItemId));
     }
 
+    /**
+     * Returns a price list item if found, otherwise an "empty" record.
+     */
     public function getUniqueRow($priceListId = null, $productSku, $qty)
     {
         $searchCriteria = $this->searchCriteriaBuilder->setFilterGroups([])
@@ -149,8 +152,12 @@ class PriceListItemRepository implements PriceListItemRepositoryInterface
         return $this->priceListItemFactory->create();
     }
 
-
-
+    /**
+     * Returns the price list items that belong to a specific price list.
+     * 
+     * @param int $priceListId
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[]
+     */
     public function getByPriceListId($priceListId)
     {
         $searchCriteria = $this->searchCriteriaBuilder->setFilterGroups([])

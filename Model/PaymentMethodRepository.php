@@ -1,4 +1,5 @@
 <?php
+
 namespace Dealer4dealer\Xcore\Model;
 
 use Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface;
@@ -6,13 +7,12 @@ use Magento\Payment\Helper\Data;
 
 class PaymentMethodRepository implements PaymentMethodRepositoryInterface
 {
-    /**
-     * @var Data
-     */
+    /** @var Data */
     private $paymentHelper;
 
     /**
      * PaymentMethodRepository constructor.
+     *
      * @param Data $paymentHelper
      */
     public function __construct(Data $paymentHelper)
@@ -21,18 +21,18 @@ class PaymentMethodRepository implements PaymentMethodRepositoryInterface
     }
 
     /**
-     * Get a list of all payment methods.
-     * @return array
+     * {@inheritdoc}
      */
     public function getList()
     {
         $response = [];
 
         foreach ($this->paymentHelper->getPaymentMethodList() as $code => $name) {
-            $response[] = [
-                'code'  => $code,
-                'name'  => $name,
-            ];
+            $model = new Method;
+            $model->setCode($code);
+            $model->setName($name);
+
+            $response[] = $model;
         }
 
         return $response;

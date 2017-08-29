@@ -15,45 +15,52 @@ interface PriceListItemInterface
 
     /**
      * Get id
+     *
      * @return string|null
      */
     public function getId();
 
     /**
      * Set id
+     *
      * @param string $id
-     * @return PriceListItemInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
      */
     public function setId($id);
 
     /**
      * Get price_list_id
+     *
      * @return string|null
      */
     public function getPriceListId();
 
     /**
      * Set price_list_id
+     *
      * @param string $price_list_id
-     * @return PriceListItemInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
      */
     public function setPriceListId($price_list_id);
 
     /**
      * Get product_sku
+     *
      * @return string|null
      */
     public function getProductSku();
 
     /**
      * Set product_sku
+     *
      * @param string $product_sku
-     * @return PriceListItemInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
      */
     public function setProductSku($product_sku);
 
     /**
      * Get qty
+     *
      * @return string|null
      */
     public function getQty();
@@ -61,59 +68,67 @@ interface PriceListItemInterface
     /**
      * Set qty
      * @param string $qty
-     * @return PriceListItemInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
      */
     public function setQty($qty);
 
     /**
      * Get price
+     *
      * @return string|null
      */
     public function getPrice();
 
     /**
      * Set price
+     *
      * @param string $price
-     * @return PriceListItemInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
      */
     public function setPrice($price);
 
     /**
      * Get start_date
+     *
      * @return string|null
      */
     public function getStartDate();
 
     /**
      * Set start_date
+     *
      * @param string $start_date
-     * @return PriceListItemInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
      */
     public function setStartDate($start_date);
 
     /**
      * Get end_date
+     *
      * @return string|null
      */
     public function getEndDate();
 
     /**
      * Set end_date
+     *
      * @param string $end_date
-     * @return PriceListItemInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
      */
     public function setEndDate($end_date);
 
     /**
      * Get processed
+     *
      * @return string
      */
     public function getProcessed();
 
     /**
      * Set processed
+     *
      * @param string $int
-     * @return PriceListItemInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
      */
     public function setProcessed($int);
 }

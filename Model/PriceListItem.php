@@ -17,8 +17,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Get id
-     * @return string
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -26,9 +25,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Set id
-     * @param string $id
-     * @return PriceListItemInterface
+     * {@inheritdoc}
      */
     public function setId($id)
     {
@@ -36,8 +33,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Get price_list_id
-     * @return string
+     * {@inheritdoc}
      */
     public function getPriceListId()
     {
@@ -45,9 +41,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Set price_list_id
-     * @param string $price_list_id
-     * @return PriceListItemInterface
+     * {@inheritdoc}
      */
     public function setPriceListId($price_list_id)
     {
@@ -55,8 +49,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Get product_sku
-     * @return string
+     * {@inheritdoc}
      */
     public function getProductSku()
     {
@@ -64,9 +57,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Set product_sku
-     * @param string $product_sku
-     * @return PriceListItemInterface
+     * {@inheritdoc}
      */
     public function setProductSku($product_sku)
     {
@@ -74,8 +65,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Get qty
-     * @return string
+     * {@inheritdoc}
      */
     public function getQty()
     {
@@ -83,9 +73,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Set qty
-     * @param string $qty
-     * @return PriceListItemInterface
+     * {@inheritdoc}
      */
     public function setQty($qty)
     {
@@ -93,8 +81,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Get price
-     * @return string
+     * {@inheritdoc}
      */
     public function getPrice()
     {
@@ -102,9 +89,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Set price
-     * @param string $price
-     * @return PriceListItemInterface
+     * {@inheritdoc}
      */
     public function setPrice($price)
     {
@@ -112,8 +97,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Get start_date
-     * @return string
+     * {@inheritdoc}
      */
     public function getStartDate()
     {
@@ -121,9 +105,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Set start_date
-     * @param string $start_date
-     * @return PriceListItemInterface
+     * {@inheritdoc}
      */
     public function setStartDate($start_date)
     {
@@ -131,8 +113,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Get end_date
-     * @return string
+     * {@inheritdoc}
      */
     public function getEndDate()
     {
@@ -140,9 +121,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Set end_date
-     * @param string $end_date
-     * @return PriceListItemInterface
+     * {@inheritdoc}
      */
     public function setEndDate($end_date)
     {
@@ -150,8 +129,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Get processed
-     * @return string
+     * {@inheritdoc}
      */
     public function getProcessed()
     {
@@ -159,9 +137,7 @@ class PriceListItem extends AbstractModel implements PriceListItemInterface
     }
 
     /**
-     * Set processed
-     * @param string $int
-     * @return PriceListItemInterface
+     * {@inheritdoc}
      */
     public function setProcessed($int)
     {

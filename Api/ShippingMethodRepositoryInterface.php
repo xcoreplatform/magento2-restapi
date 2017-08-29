@@ -1,4 +1,5 @@
 <?php
+
 namespace Dealer4dealer\Xcore\Api;
 
 interface ShippingMethodRepositoryInterface
@@ -6,7 +7,7 @@ interface ShippingMethodRepositoryInterface
     /**
      * Get a list of all shipping methods.
 
-     * @return array
+     * @return \Dealer4dealer\Xcore\Api\Data\MethodInterface[]
      */
     public function getList();
 }

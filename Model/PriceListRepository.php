@@ -218,6 +218,10 @@ class PriceListRepository implements PriceListRepositoryInterface
         return $priceList;
     }
 
+    /**
+     * @param PriceListInterface $newPriceList
+     * @return PriceList
+     */
     private function getOrSavePriceList(\Dealer4dealer\Xcore\Api\Data\PriceListInterface $newPriceList)
     {
         /** @var PriceList $priceList */
@@ -232,6 +236,11 @@ class PriceListRepository implements PriceListRepositoryInterface
         return $priceList;
     }
 
+    /**
+     * @param int $priceListId
+     * @param PriceListItemInterface $item
+     * @return PriceListItem
+     */
     private function getOrSavePriceListItem(int $priceListId, \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $item)
     {
         try {

@@ -1,15 +1,17 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\PaymentMethodRepository" />
-    <preference for="Dealer4dealer\Xcore\Api\Data\PaymentCostInterface" type="Dealer4dealer\Xcore\Model\PaymentCost"/>
-    <preference for="Dealer4dealer\Xcore\Api\ShippingMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\ShippingMethodRepository"/>
+	<preference for="Dealer4dealer\Xcore\Api\AlterShipmentInterface" type="Dealer4dealer\Xcore\Model\AlterShipment"/>
 	<preference for="Dealer4dealer\Xcore\Api\CustomAttributeRepositoryInterface" type="Dealer4dealer\Xcore\Model\CustomAttributeRepository"/>
+	<preference for="Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\PaymentMethodRepository" />
+	<preference for="Dealer4dealer\Xcore\Api\PriceListItemRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListItemRepository"/>
+	<preference for="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListRepository"/>
+	<preference for="Dealer4dealer\Xcore\Api\RestManagementInterface" type="Dealer4dealer\Xcore\Model\RestManagement"/>
+	<preference for="Dealer4dealer\Xcore\Api\ShippingMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\ShippingMethodRepository"/>
+
 	<preference for="Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface" type="Dealer4dealer\Xcore\Model\CustomAttribute"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\CustomAttributeSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
-	<preference for="Dealer4dealer\Xcore\Api\AlterShipmentInterface" type="Dealer4dealer\Xcore\Model\AlterShipment"/>
-
-	<preference for="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListRepository"/>
-	<preference for="Dealer4dealer\Xcore\Api\PriceListItemRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListItemRepository"/>
+	<preference for="Dealer4dealer\Xcore\Api\Data\MethodInterface" type="Dealer4dealer\Xcore\Model\Method"/>
+	<preference for="Dealer4dealer\Xcore\Api\Data\PaymentCostInterface" type="Dealer4dealer\Xcore\Model\PaymentCost"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListInterface" type="Dealer4dealer\Xcore\Model\PriceList"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListItemInterface" type="Dealer4dealer\Xcore\Model\PriceListItem"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>

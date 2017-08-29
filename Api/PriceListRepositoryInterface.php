@@ -2,50 +2,51 @@
 
 namespace Dealer4dealer\Xcore\Api;
 
-use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\NoSuchEntityException;
-
 interface PriceListRepositoryInterface
 {
     /**
      * Save price_list
+     *
      * @param \Dealer4dealer\Xcore\Api\Data\PriceListInterface $priceList
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
-     * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function save(\Dealer4dealer\Xcore\Api\Data\PriceListInterface $priceList);
 
     /**
      * Retrieve price_list by id
+     *
      * @param string $priceListId
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
-     * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getById($priceListId);
 
     /**
      * Retrieve price_list matching the specified criteria.
-     * @param SearchCriteriaInterface $searchCriteria
+     *
+     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterface
-     * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function getList(SearchCriteriaInterface $searchCriteria);
+    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
 
     /**
      * Delete price_list
+     *
      * @param \Dealer4dealer\Xcore\Api\Data\PriceListInterface $priceList
      * @return bool true on success
-     * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function delete(\Dealer4dealer\Xcore\Api\Data\PriceListInterface $priceList);
 
     /**
      * Delete price_list by ID
+     *
      * @param string $priceListId
      * @return bool true on success
-     * @throws NoSuchEntityException
-     * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function deleteById($priceListId);
 

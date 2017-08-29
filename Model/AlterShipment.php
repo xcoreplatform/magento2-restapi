@@ -3,35 +3,26 @@
 namespace Dealer4dealer\Xcore\Model;
 
 use Dealer4dealer\Xcore\Api\AlterShipmentInterface;
-use Magento\Sales\Api\ShipmentRepositoryInterface;
 
 class AlterShipment extends \Magento\Framework\Model\AbstractModel implements AlterShipmentInterface
 {
-    /**
-     * @var ShipmentRepositoryInterface
-     */
+    /** @var \Magento\Sales\Api\ShipmentRepositoryInterface */
     private $shipmentRepository;
 
     /**
-     * @param ShipmentRepositoryInterface $shipmentRepository
+     * @param \Magento\Sales\Api\ShipmentRepositoryInterface $shipmentRepository
      */
-    public function __construct(
-        ShipmentRepositoryInterface $shipmentRepository
-    ) {
+    public function __construct(\Magento\Sales\Api\ShipmentRepositoryInterface $shipmentRepository)
+    {
         $this->shipmentRepository = $shipmentRepository;
     }
 
     /**
-     * Alters a given Shipment, currently only by adding a reference.
-     *
-     * @param int $shipmentId
-     * @param string $xcoreYourRef
-     * @return string Either 'success' or the exception message.
+     * {@inheritdoc}
      */
-    public function execute(
-        $shipmentId,
-        $xcoreYourRef
-    ) {
+    public function execute($shipmentId,
+                            $xcoreYourRef)
+    {
         $result = null;
 
         try {
