@@ -32,6 +32,13 @@ interface CustomAttributeRepositoryInterface
     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
 
     /**
+     * @param string $type
+     * @return \Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface[]
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getListByType($type);
+
+    /**
      * Delete CustomAttribute
      *
      * @param \Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface $customAttribute
