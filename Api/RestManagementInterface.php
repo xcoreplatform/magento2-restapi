@@ -7,7 +7,7 @@ interface RestManagementInterface
     /**
      * Returns the version of the xCore Rest API.
      *
-     * @return string
+     * @return \Dealer4dealer\Xcore\Api\Data\VersionInterface
      */
     public function getVersion();
 }
