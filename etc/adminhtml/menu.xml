@@ -14,14 +14,6 @@
              parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
              action="dealer4dealer_xcore/customProductAttribute"
         />
-        <add id="Dealer4dealer_Xcore::custom_customer_attributes"
-             title="Customer attributes"
-             module="Dealer4dealer_Xcore"
-             sortOrder="9999"
-             resource="Magento_Backend::custom_attribute"
-             parent="Dealer4dealer_Xcore::dealer4dealer_xcore"
-             action="dealer4dealer_xcore/customCustomerAttribute"
-        />
         <add id="Dealer4dealer_Xcore::custom_order_attributes"
              title="Order attributes"
              module="Dealer4dealer_Xcore"

@@ -16,7 +16,6 @@
         <attribute code="xcore_custom_attributes" type="Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface[]" />
     </extension_attributes>
     <extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
-        <attribute code="xcore_custom_attributes" type="Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface[]" />
         <attribute code="price_list" type="int"/>
         <attribute code="vat_class" type="string"/>
     </extension_attributes>
