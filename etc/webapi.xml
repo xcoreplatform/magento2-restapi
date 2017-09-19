@@ -12,12 +12,6 @@
             <resource ref="Magento_Sales::sales" />
         </resources>
     </route>
-    <route url="/V1/xcore/customattributes" method="GET">
-        <service class="Dealer4dealer\Xcore\Api\CustomAttributeRepositoryInterface" method="getList"/>
-        <resources>
-            <resource ref="Dealer4dealer_Xcore::custom_attribute"/>
-        </resources>
-    </route>
     <route url="/V1/xcore/altershipment" method="PUT">
         <service class="Dealer4dealer\Xcore\Api\AlterShipmentInterface" method="execute"/>
         <resources>
