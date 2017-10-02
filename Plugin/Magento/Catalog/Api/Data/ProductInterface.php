@@ -7,15 +7,20 @@ class ProductInterface
 
     protected $objectManager;
 
+    private $extensionFactory;
+
     /**
      * ProductInterface constructor.
      * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param \Magento\Catalog\Api\Data\ProductExtensionFactory $extensionFactory
      */
     public function __construct(
-        \Magento\Framework\ObjectManagerInterface $objectManager
+        \Magento\Framework\ObjectManagerInterface $objectManager,
+        \Magento\Catalog\Api\Data\ProductExtensionFactory $extensionFactory
     )
     {
         $this->objectManager = $objectManager;
+        $this->extensionFactory = $extensionFactory;
     }
 
     /**
@@ -28,6 +33,10 @@ class ProductInterface
         \Magento\Catalog\Api\Data\ProductInterface $subject,
         $result
     ) {
+
+        if ($result === null) {
+            $result = $this->extensionFactory->create();
+        }
 
         // Get the custom attributes
         $repo = $this->objectManager->get('Dealer4dealer\Xcore\Model\CustomAttributeRepository');
