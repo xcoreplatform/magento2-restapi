@@ -161,7 +161,7 @@ class PriceListRepository implements PriceListRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getJsonById(string $id, bool $withItems = true)
+    public function getJsonById($id, $withItems = true)
     {
         /** @var PriceList $priceList */
         $priceList = $this->priceListFactory->create();
@@ -179,7 +179,7 @@ class PriceListRepository implements PriceListRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getJsonByGuid(string $guid, bool $withItems = true)
+    public function getJsonByGuid($guid, $withItems = true)
     {
         /** @var PriceList $priceList */
         $priceList = $this->priceListFactory->create();

@@ -1,15 +1,11 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 	<preference for="Dealer4dealer\Xcore\Api\AlterShipmentInterface" type="Dealer4dealer\Xcore\Model\AlterShipment"/>
-	<preference for="Dealer4dealer\Xcore\Api\CustomAttributeRepositoryInterface" type="Dealer4dealer\Xcore\Model\CustomAttributeRepository"/>
 	<preference for="Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\PaymentMethodRepository" />
 	<preference for="Dealer4dealer\Xcore\Api\PriceListItemRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListItemRepository"/>
 	<preference for="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListRepository"/>
 	<preference for="Dealer4dealer\Xcore\Api\RestManagementInterface" type="Dealer4dealer\Xcore\Model\RestManagement"/>
 	<preference for="Dealer4dealer\Xcore\Api\ShippingMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\ShippingMethodRepository"/>
-
-	<preference for="Dealer4dealer\Xcore\Api\Data\CustomAttributeInterface" type="Dealer4dealer\Xcore\Model\CustomAttribute"/>
-	<preference for="Dealer4dealer\Xcore\Api\Data\CustomAttributeSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\MethodInterface" type="Dealer4dealer\Xcore\Model\Method"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PaymentCostInterface" type="Dealer4dealer\Xcore\Model\PaymentCost"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListInterface" type="Dealer4dealer\Xcore\Model\PriceList"/>
@@ -17,31 +13,4 @@
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListItemSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\VersionInterface" type="Dealer4dealer\Xcore\Model\Version"/>
-
-    <virtualType name="Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-		<arguments>
-			<argument name="mainTable" xsi:type="string">dealer4dealer_xcore_custom_attribute</argument>
-			<argument name="resourceModel" xsi:type="string">Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute\Collection</argument>
-		</arguments>
-	</virtualType>
-	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-		<arguments>
-			<argument name="collections" xsi:type="array">
-				<item name="dealer4dealer_customattribute_grid_data_source" xsi:type="string">Dealer4dealer\Xcore\Model\ResourceModel\CustomAttribute\Grid\Collection</item>
-			</argument>
-		</arguments>
-	</type>
-
-	<type name="Magento\Catalog\Api\Data\ProductInterface">
-		<plugin disabled="false" name="Dealer4dealer_Xcore_Plugin_Magento_Catalog_Api_Data_ProductInterface" sortOrder="10" type="Dealer4dealer\Xcore\Plugin\Magento\Catalog\Api\Data\ProductInterface"/>
-	</type>
-	<type name="Magento\Sales\Api\Data\OrderInterface">
-		<plugin disabled="false" name="Dealer4dealer_Xcore_Plugin_Magento_Sales_Api_Data_OrderInterface" sortOrder="10" type="Dealer4dealer\Xcore\Plugin\Magento\Sales\Api\Data\OrderInterface"/>
-	</type>
-	<type name="Magento\Sales\Api\Data\InvoiceInterface">
-		<plugin disabled="false" name="Dealer4dealer_Xcore_Plugin_Magento_Sales_Api_Data_InvoiceInterface" sortOrder="10" type="Dealer4dealer\Xcore\Plugin\Magento\Sales\Api\Data\InvoiceInterface"/>
-	</type>
-	<type name="Magento\Sales\Api\Data\CreditmemoInterface">
-		<plugin disabled="false" name="Dealer4dealer_Xcore_Plugin_Magento_Sales_Api_Data_CreditmemoInterface" sortOrder="10" type="Dealer4dealer\Xcore\Plugin\Magento\Sales\Api\Data\CreditmemoInterface"/>
-	</type>
 </config>
