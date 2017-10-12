@@ -64,16 +64,16 @@ interface PriceListRepositoryInterface
      * @param bool $withItems
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
      */
-    public function getJsonById(string $id, bool $withItems);
+    public function getJsonById($id, $withItems);
 
     /**
      * Get a JSON result of a specific price list
      *
-     * @param string $guid
-     * @param bool $withItems
+     * @param $guid
+     * @param $withItems
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
      */
-    public function getJsonByGuid(string $guid, bool $withItems);
+    public function getJsonByGuid($guid, $withItems);
 
     /**
      * Save a JSON price list
