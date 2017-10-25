@@ -73,15 +73,15 @@ interface PaymentCostInterface extends ExtensibleDataInterface
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return \Dealer4dealer\Xcore\Api\Data\PaymentCostInterface|null
+     * @return \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface|null
      */
     public function getExtensionAttributes();
 
     /**
      * Set an extension attributes object.
      *
-     * @param \Dealer4dealer\Xcore\Api\Data\PaymentCostInterface $extensionAttributes
+     * @param \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface $extensionAttributes
      * @return $this
      */
-    public function setExtensionAttributes(\Dealer4dealer\Xcore\Api\Data\PaymentCostInterface $extensionAttributes);
+    public function setExtensionAttributes(\Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface $extensionAttributes);
 }
