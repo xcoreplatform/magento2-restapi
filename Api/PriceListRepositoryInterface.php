@@ -69,8 +69,8 @@ interface PriceListRepositoryInterface
     /**
      * Get a JSON result of a specific price list
      *
-     * @param $guid
-     * @param $withItems
+     * @param string $guid
+     * @param bool $withItems
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
      */
     public function getJsonByGuid($guid, $withItems);
