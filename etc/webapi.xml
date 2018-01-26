@@ -3,7 +3,7 @@
     <route url="/V1/xcore/paymentmethods" method="GET">
         <service class="Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface" method="getList"/>
         <resources>
-            <resource ref="Magento_Sales::custom_attribute" />
+            <resource ref="Magento_Sales::sales" />
         </resources>
     </route>
     <route url="/V1/xcore/shippingmethods" method="GET">
