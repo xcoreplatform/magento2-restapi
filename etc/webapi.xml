@@ -1,5 +1,17 @@
 <?xml version="1.0"?>
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../app/code/Magento/Webapi/etc/webapi.xsd">
+    <route url="/V1/xcore/orderstates" method="GET">
+        <service class="Dealer4dealer\Xcore\Api\OrderStateRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magento_Sales::sales" />
+        </resources>
+    </route>
+    <route url="/V1/xcore/orderstatuses" method="GET">
+        <service class="Dealer4dealer\Xcore\Api\OrderStatusRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magento_Sales::sales" />
+        </resources>
+    </route>
     <route url="/V1/xcore/paymentmethods" method="GET">
         <service class="Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface" method="getList"/>
         <resources>
