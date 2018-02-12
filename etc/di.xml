@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 	<preference for="Dealer4dealer\Xcore\Api\AlterShipmentInterface" type="Dealer4dealer\Xcore\Model\AlterShipment"/>
+	<preference for="Dealer4dealer\Xcore\Api\OrderStateRepositoryInterface" type="Dealer4dealer\Xcore\Model\OrderStateRepository" />
+	<preference for="Dealer4dealer\Xcore\Api\OrderStatusRepositoryInterface" type="Dealer4dealer\Xcore\Model\OrderStatusRepository" />
 	<preference for="Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\PaymentMethodRepository" />
 	<preference for="Dealer4dealer\Xcore\Api\PriceListItemRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListItemRepository"/>
 	<preference for="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListRepository"/>
