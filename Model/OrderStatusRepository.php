@@ -3,6 +3,7 @@
 namespace Dealer4dealer\Xcore\Model;
 
 use Dealer4dealer\Xcore\Api\OrderStatusRepositoryInterface;
+use Magento\Sales\Model\ResourceModel\Order\Status\Collection;
 
 class OrderStatusRepository implements OrderStatusRepositoryInterface
 {
@@ -10,7 +11,7 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
     private $statusCollection;
 
     public function __construct(
-        Magento\Sales\Model\ResourceModel\Order\Status\Collection $statusCollection
+        Collection $statusCollection
     )
     {
         $this->statusCollection = $statusCollection;
@@ -22,14 +23,14 @@ class OrderStatusRepository implements OrderStatusRepositoryInterface
 
         $orderStatuses = $this->statusCollection->toOptionArray();
 
-        foreach ($orderStatuses as $code => $name) {
+        foreach ($orderStatuses as $status) {
             $model = new OrderStatus();
-            $model->setCode($code);
-            $model->setName($name);
+            $model->setCode($status['value']);
+            $model->setName($status['label']);
 
             $response[] = $model;
         }
 
-        return $orderStatuses;
+        return $response;
     }
 }
