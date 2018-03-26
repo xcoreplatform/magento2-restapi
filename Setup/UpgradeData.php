@@ -79,10 +79,6 @@ class UpgradeData implements UpgradeDataInterface
              */
             $data = [
                 [
-                    'class_name' => 'xCore No VAT',
-                    'class_type' => ClassModel::TAX_CLASS_TYPE_CUSTOMER,
-                ],
-                [
                     'class_name' => 'xCore Excluding VAT',
                     'class_type' => ClassModel::TAX_CLASS_TYPE_CUSTOMER
                 ],
