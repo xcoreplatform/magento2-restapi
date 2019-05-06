@@ -229,8 +229,17 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 'product_sku',
                 $productTableName,
                 'sku',
-                Table::ACTION_CASCADE
+                Table::ACTION_CASCADE,
+                Table
             );
+        }
+
+        /**
+         * Remake indexes
+         */
+        if (version_compare($context->getVersion(), '2.1.3', '<')) {
+            $priceListItemTableName = $setup->getTable('dealer4dealer_price_list_item');
+            $setup->getConnection()->dropForeignKey($priceListItemTableName, 'FK_PRODUCT_SKU');
         }
 
         $installer->endSetup();
