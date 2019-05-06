@@ -229,8 +229,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 'product_sku',
                 $productTableName,
                 'sku',
-                Table::ACTION_CASCADE,
-                Table
+                Table::ACTION_CASCADE
             );
         }
 
