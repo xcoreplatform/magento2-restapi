@@ -74,7 +74,7 @@ class PriceListRepository implements PriceListRepositoryInterface
             throw new NoSuchEntityException(__(sprintf('Price List with id %s does not exist', $priceListId)));
         }
 
-        return $priceList->getDataModel();
+        return $priceList;
     }
 
     /**
