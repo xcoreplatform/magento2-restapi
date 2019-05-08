@@ -233,6 +233,14 @@ class UpgradeSchema implements UpgradeSchemaInterface
             );
         }
 
+        /**
+         * Remove fk from sku due to error on sku changes
+         */
+        if (version_compare($context->getVersion(), '2.1.3', '<')) {
+            $priceListItemTableName = $setup->getTable('dealer4dealer_price_list_item');
+            $setup->getConnection()->dropForeignKey($priceListItemTableName, 'FK_PRODUCT_SKU');
+        }
+
         $installer->endSetup();
     }
 }

@@ -42,6 +42,12 @@
             <resource ref="Magento_Sales::sales" />
         </resources>
     </route>
+    <route url="/V1/xcore/pricelists/:priceListId" method="DELETE">
+        <service class="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Magento_Sales::sales" />
+        </resources>
+    </route>
     <route url="/V1/xcore/pricelists/id/:id/:withItems" method="GET">
         <service class="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" method="getJsonById"/>
         <resources>
