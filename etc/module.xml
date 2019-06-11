@@ -5,6 +5,7 @@
             <module name="Magento_Catalog"></module>
             <module name="Magento_Customer"></module>
             <module name="Magento_Sales"></module>
+            <module name="Magento_Tax"></module>
         </sequence>
     </module>
 </config>
