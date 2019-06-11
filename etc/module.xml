@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config>
-    <module name="Dealer4dealer_Xcore" setup_version="2.1.3">
+    <module name="Dealer4dealer_Xcore" setup_version="2.1.4">
         <sequence>
             <module name="Magento_Catalog"></module>
             <module name="Magento_Customer"></module>
