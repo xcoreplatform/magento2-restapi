@@ -17,10 +17,6 @@ class VatClass extends AbstractSource
         if ($this->_options === null) {
             $this->_options = [
                 [
-                    'value' => null,
-                    'label' => 'No Tax'
-                ],
-                [
                     'value' => 'excluding',
                     'label' => 'Excluding Tax'
                 ],
