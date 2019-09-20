@@ -27,6 +27,10 @@ class PaymentMethodRepository implements PaymentMethodRepositoryInterface
     {
         $response = [];
 
+        if (!$this->paymentHelper->getPaymentMethodList()) {
+            return $response;
+        }
+
         foreach ($this->paymentHelper->getPaymentMethodList() as $code => $name) {
             $model = new Method;
             $model->setCode($code);

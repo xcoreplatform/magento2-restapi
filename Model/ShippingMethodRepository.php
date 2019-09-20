@@ -27,9 +27,17 @@ class ShippingMethodRepository implements ShippingMethodRepositoryInterface
     {
         $response = [];
 
+        if (!$this->shippingConfig->getActiveCarriers()) {
+            return $response;
+        }
+
         foreach ($this->shippingConfig->getActiveCarriers() as $code => $carrier) {
 
             $title = $carrier->getConfigData('title');
+
+            if (!$carrier->getAllowedMethods()) {
+                continue;
+            }
 
             foreach($carrier->getAllowedMethods() as $methodCode => $method) {
                 $model = new Method;
