@@ -5,6 +5,12 @@
   "license": [
     "MIT"
   ],
+  "require": {
+    "magento/module-catalog": "^102.0 ||^103.0",
+    "magento/module-customer": "^102.0",
+    "magento/module-sales": "^102.0",
+    "magento/module-tax": "^100.0"
+  },
   "autoload": {
     "files": [
       "registration.php"
