@@ -11,7 +11,7 @@ interface ShippingMethodInterface
 
     /**
      * @param string $code
-     * @return ShippingMethodInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\ShippingMethodInterface
      */
     public function setCode($code);
 
@@ -22,7 +22,7 @@ interface ShippingMethodInterface
 
     /**
      * @param string $name
-     * @return ShippingMethodInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\ShippingMethodInterface
      */
     public function setName($name);
 }

@@ -2,10 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\Data\PriceListItemInterface;
-use Magento\Framework\Model\AbstractModel;
-
-class PriceListItem extends AbstractModel implements PriceListItemInterface
+class PriceListItem extends \Magento\Framework\Model\AbstractModel implements \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
 {
     /**
      * @return void

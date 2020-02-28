@@ -2,9 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Model\ResourceModel;
 
-use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
-
-class PriceListItem extends AbstractDb
+class PriceListItem extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     /**
      * Define resource model

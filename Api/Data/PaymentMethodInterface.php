@@ -11,7 +11,7 @@ interface PaymentMethodInterface
 
     /**
      * @param string $code
-     * @return PaymentMethodInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PaymentMethodInterface
      */
     public function setCode($code);
 
@@ -22,7 +22,7 @@ interface PaymentMethodInterface
 
     /**
      * @param string $name
-     * @return PaymentMethodInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PaymentMethodInterface
      */
     public function setName($name);
 }

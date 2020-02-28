@@ -2,14 +2,12 @@
 
 namespace Dealer4dealer\Xcore\Api;
 
-use Dealer4dealer\Xcore\Api\Data\OrderStatusInterface;
-
 interface OrderStatusRepositoryInterface
 {
     /**
      * Get a list of all order states.
      *
-     * @return OrderStatusInterface[]
+     * @return \Dealer4dealer\Xcore\Api\Data\OrderStatusInterface[]
      */
     public function getList();
 }

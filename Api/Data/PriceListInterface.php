@@ -20,7 +20,7 @@ interface PriceListInterface
      * Set id
      *
      * @param string $id
-     * @return PriceListInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
      */
     public function setId($id);
 
@@ -35,7 +35,7 @@ interface PriceListInterface
      * Set guid
      *
      * @param string $guid
-     * @return PriceListInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
      */
     public function setGuid($guid);
 
@@ -50,18 +50,18 @@ interface PriceListInterface
      * Set code
      *
      * @param string $code
-     * @return PriceListInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
      */
     public function setCode($code);
 
     /**
-     * @return PriceListItemInterface[]
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[]
      */
     public function getItems();
 
     /**
-     * @param PriceListItemInterface[] $items
-     * @return PriceListInterface
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[] $items
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
      */
     public function setItems($items);
 }

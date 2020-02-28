@@ -11,7 +11,7 @@ interface OrderStatusInterface
 
     /**
      * @param string $code
-     * @return OrderStatusInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\OrderStatusInterface
      */
     public function setCode($code);
 
@@ -22,7 +22,7 @@ interface OrderStatusInterface
 
     /**
      * @param string $name
-     * @return OrderStatusInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\OrderStatusInterface
      */
     public function setName($name);
 }

@@ -2,22 +2,20 @@
 
 namespace Dealer4dealer\Xcore\Api\Data;
 
-use Magento\Framework\Api\SearchResultsInterface;
-
-interface PriceListSearchResultsInterface extends SearchResultsInterface
+interface PriceListSearchResultsInterface extends \Magento\Framework\Api\SearchResultsInterface
 {
     /**
      * Get price_list list.
      *
-     * @return PriceListInterface[]
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface[]
      */
     public function getItems();
 
     /**
      * Set price_list list.
      *
-     * @param PriceListInterface[] $items
-     * @return $this
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListInterface[] $items
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterface
      */
     public function setItems(array $items);
 }

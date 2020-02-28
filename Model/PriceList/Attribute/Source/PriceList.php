@@ -2,12 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Model\PriceList\Attribute\Source;
 
-use Dealer4dealer\Xcore\Model\PriceListRepository;
-use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
-use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\Exception\LocalizedException;
-
-class PriceList extends AbstractSource
+class PriceList extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
 {
     protected $_priceListRepository;
     protected $_searchCriteriaBuilder;
@@ -15,11 +10,11 @@ class PriceList extends AbstractSource
     /**
      * Constructor
      *
-     * @param PriceListRepository   $priceListRepository
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param \Dealer4dealer\Xcore\Model\PriceListRepository   $priceListRepository
+     * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
      */
-    public function __construct(PriceListRepository $priceListRepository,
-                                SearchCriteriaBuilder $searchCriteriaBuilder)
+    public function __construct(\Dealer4dealer\Xcore\Model\PriceListRepository $priceListRepository,
+                                \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder)
     {
         $this->_priceListRepository   = $priceListRepository;
         $this->_searchCriteriaBuilder = $searchCriteriaBuilder;
@@ -29,7 +24,7 @@ class PriceList extends AbstractSource
      * getAllOptions
      *
      * @return array
-     * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getAllOptions()
     {

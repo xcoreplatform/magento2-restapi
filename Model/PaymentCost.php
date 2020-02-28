@@ -2,10 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\Data\PaymentCostInterface;
-use Magento\Framework\DataObject;
-
-class PaymentCost extends DataObject implements PaymentCostInterface
+class PaymentCost extends \Magento\Framework\DataObject implements \Dealer4dealer\Xcore\Api\Data\PaymentCostInterface
 {
     protected $title;
     protected $baseAmount;

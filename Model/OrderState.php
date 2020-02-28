@@ -2,8 +2,6 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\Data\OrderStateInterface;
-
-class OrderState extends Method implements OrderStateInterface
+class OrderState extends Method implements \Dealer4dealer\Xcore\Api\Data\OrderStateInterface
 {
 }

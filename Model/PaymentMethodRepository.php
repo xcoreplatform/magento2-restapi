@@ -2,20 +2,17 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface;
-use Magento\Payment\Helper\Data;
-
-class PaymentMethodRepository implements PaymentMethodRepositoryInterface
+class PaymentMethodRepository implements \Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface
 {
-    /** @var Data */
+    /** @var \Magento\Payment\Helper\Data */
     private $paymentHelper;
 
     /**
      * PaymentMethodRepository constructor.
      *
-     * @param Data $paymentHelper
+     * @param \Magento\Payment\Helper\Data $paymentHelper
      */
-    public function __construct(Data $paymentHelper)
+    public function __construct(\Magento\Payment\Helper\Data $paymentHelper)
     {
         $this->paymentHelper = $paymentHelper;
     }

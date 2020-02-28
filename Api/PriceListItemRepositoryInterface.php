@@ -2,57 +2,51 @@
 
 namespace Dealer4dealer\Xcore\Api;
 
-use Dealer4dealer\Xcore\Api\Data\PriceListItemInterface;
-use Dealer4dealer\Xcore\Api\Data\PriceListItemSearchResultsInterface;
-use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\NoSuchEntityException;
-
 interface PriceListItemRepositoryInterface
 {
     /**
      * Save price_list_item
      *
-     * @param PriceListItemInterface $priceListItem
-     * @return PriceListItemInterface
-     * @throws LocalizedException
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $priceListItem
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function save(PriceListItemInterface $priceListItem);
+    public function save(\Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $priceListItem);
 
     /**
      * Retrieve price_list_item
      *
      * @param string $priceListItemId
-     * @return PriceListItemInterface
-     * @throws LocalizedException
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getById($priceListItemId);
 
     /**
      * Retrieve price_list_item matching the specified criteria.
      *
-     * @param SearchCriteriaInterface $searchCriteria
-     * @return PriceListItemSearchResultsInterface
-     * @throws LocalizedException
+     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemSearchResultsInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function getList(SearchCriteriaInterface $searchCriteria);
+    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
 
     /**
      * Delete price_list_item
      *
-     * @param PriceListItemInterface $priceListItem
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $priceListItem
      * @return bool true on success
-     * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function delete(PriceListItemInterface $priceListItem);
+    public function delete(\Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $priceListItem);
 
     /**
      * Delete price_list_item by ID
      *
      * @param string $priceListItemId
      * @return bool true on success
-     * @throws NoSuchEntityException
-     * @throws LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function deleteById($priceListItemId);
 }

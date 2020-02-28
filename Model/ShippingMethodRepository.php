@@ -2,20 +2,17 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\ShippingMethodRepositoryInterface;
-use Magento\Shipping\Model\Config;
-
-class ShippingMethodRepository implements ShippingMethodRepositoryInterface
+class ShippingMethodRepository implements \Dealer4dealer\Xcore\Api\ShippingMethodRepositoryInterface
 {
-    /**@var Config */
+    /**@var \Magento\Shipping\Model\Config */
     private $shippingConfig;
 
     /**
      * ShippingMethodRepository constructor.
      *
-     * @param Config $shippingConfig
+     * @param \Magento\Shipping\Model\Config $shippingConfig
      */
-    public function __construct(Config $shippingConfig)
+    public function __construct(\Magento\Shipping\Model\Config $shippingConfig)
     {
         $this->shippingConfig = $shippingConfig;
     }

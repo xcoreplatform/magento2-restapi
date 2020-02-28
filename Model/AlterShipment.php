@@ -2,19 +2,15 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\AlterShipmentInterface;
-use Magento\Framework\Model\AbstractModel;
-use Magento\Sales\Api\ShipmentRepositoryInterface;
-
-class AlterShipment extends AbstractModel implements AlterShipmentInterface
+class AlterShipment extends \Magento\Framework\Model\AbstractModel implements \Dealer4dealer\Xcore\Api\AlterShipmentInterface
 {
-    /** @var ShipmentRepositoryInterface */
+    /** @var \Magento\Sales\Api\ShipmentRepositoryInterface */
     private $shipmentRepository;
 
     /**
-     * @param ShipmentRepositoryInterface $shipmentRepository
+     * @param \Magento\Sales\Api\ShipmentRepositoryInterface $shipmentRepository
      */
-    public function __construct(ShipmentRepositoryInterface $shipmentRepository)
+    public function __construct(\Magento\Sales\Api\ShipmentRepositoryInterface $shipmentRepository)
     {
         $this->shipmentRepository = $shipmentRepository;
     }

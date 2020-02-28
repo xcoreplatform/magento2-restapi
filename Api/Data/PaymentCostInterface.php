@@ -2,9 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Api\Data;
 
-use Magento\Framework\Api\ExtensibleDataInterface;
-
-interface PaymentCostInterface extends ExtensibleDataInterface
+interface PaymentCostInterface extends \Magento\Framework\Api\ExtensibleDataInterface
 {
     const TITLE       = 'title';
     const BASE_AMOUNT = 'base_amount';
@@ -22,7 +20,7 @@ interface PaymentCostInterface extends ExtensibleDataInterface
      * Set the title of the payment cost.
      *
      * @param string $title
-     * @return $this
+     * @return \Dealer4dealer\Xcore\Api\Data\PaymentCostInterface
      */
     public function setTitle($title);
 
@@ -37,7 +35,7 @@ interface PaymentCostInterface extends ExtensibleDataInterface
      * Set the base amount of the payment cost.
      *
      * @param float $baseAmount
-     * @return $this
+     * @return \Dealer4dealer\Xcore\Api\Data\PaymentCostInterface
      */
     public function setBaseAmount($baseAmount);
 
@@ -52,7 +50,7 @@ interface PaymentCostInterface extends ExtensibleDataInterface
      * Set the amount of the payment cost.
      *
      * @param float $amount
-     * @return $this
+     * @return \Dealer4dealer\Xcore\Api\Data\PaymentCostInterface
      */
     public function setAmount($amount);
 
