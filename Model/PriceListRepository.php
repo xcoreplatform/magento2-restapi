@@ -237,11 +237,11 @@ class PriceListRepository implements PriceListRepositoryInterface
     }
 
     /**
-     * @param int                    $priceListId
+     * @param int $priceListId
      * @param PriceListItemInterface $item
      * @return PriceListItem
      */
-    private function getOrSavePriceListItem(int $priceListId, PriceListItemInterface $item)
+    private function getOrSavePriceListItem($priceListId, PriceListItemInterface $item)
     {
         try {
             /** @var PriceListItem $priceListItem */
