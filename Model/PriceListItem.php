@@ -7,13 +7,12 @@ use Magento\Framework\Model\AbstractModel;
 
 class PriceListItem extends AbstractModel implements PriceListItemInterface
 {
-
     /**
      * @return void
      */
     protected function _construct()
     {
-        $this->_init('Dealer4dealer\Xcore\Model\ResourceModel\PriceListItem');
+        $this->_init(\Dealer4dealer\Xcore\Model\ResourceModel\PriceListItem::class);
     }
 
     /**

@@ -28,12 +28,12 @@ class PriceListRepository implements PriceListRepositoryInterface
     protected $priceListItemRepository;
 
     /**
-     * @param LoggerInterface $logger
-     * @param PriceListFactory|BaseFactory $priceListFactory
-     * @param PriceListCollectionFactory|BaseFactory $priceListCollectionFactory
+     * @param LoggerInterface                                    $logger
+     * @param PriceListFactory|BaseFactory                       $priceListFactory
+     * @param PriceListCollectionFactory|BaseFactory             $priceListCollectionFactory
      * @param PriceListSearchResultsInterfaceFactory|BaseFactory $searchResultsFactory
      *
-     * @param PriceListItemRepository $priceListItemRepository
+     * @param PriceListItemRepository                            $priceListItemRepository
      */
     public function __construct(LoggerInterface $logger,
                                 PriceListFactory $priceListFactory,
@@ -51,7 +51,7 @@ class PriceListRepository implements PriceListRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function save(\Dealer4dealer\Xcore\Api\Data\PriceListInterface $priceList)
+    public function save(PriceListInterface $priceList)
     {
         try {
             /** @var PriceList $priceList */
@@ -119,7 +119,7 @@ class PriceListRepository implements PriceListRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function delete(\Dealer4dealer\Xcore\Api\Data\PriceListInterface $priceList)
+    public function delete(PriceListInterface $priceList)
     {
         try {
             /** @var PriceList $priceList */
@@ -197,12 +197,11 @@ class PriceListRepository implements PriceListRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function saveJson(\Dealer4dealer\Xcore\Api\Data\PriceListInterface $price_list)
+    public function saveJson(PriceListInterface $price_list)
     {
         $priceList = $this->getOrSavePriceList($price_list);
 
         if ($price_list->getItems()) {
-
             /** @var PriceListItemInterface[] $items */
             $items = [];
 
@@ -221,8 +220,9 @@ class PriceListRepository implements PriceListRepositoryInterface
     /**
      * @param PriceListInterface $newPriceList
      * @return PriceList
+     * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
-    private function getOrSavePriceList(\Dealer4dealer\Xcore\Api\Data\PriceListInterface $newPriceList)
+    private function getOrSavePriceList(PriceListInterface $newPriceList)
     {
         /** @var PriceList $priceList */
         $priceList = $this->priceListFactory->create();
@@ -237,11 +237,11 @@ class PriceListRepository implements PriceListRepositoryInterface
     }
 
     /**
-     * @param int $priceListId
+     * @param int                    $priceListId
      * @param PriceListItemInterface $item
      * @return PriceListItem
      */
-    private function getOrSavePriceListItem(int $priceListId, \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $item)
+    private function getOrSavePriceListItem(int $priceListId, PriceListItemInterface $item)
     {
         try {
             /** @var PriceListItem $priceListItem */

@@ -24,7 +24,7 @@ interface PriceListItemInterface
      * Set id
      *
      * @param string $id
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     * @return PriceListItemInterface
      */
     public function setId($id);
 
@@ -39,7 +39,7 @@ interface PriceListItemInterface
      * Set price_list_id
      *
      * @param string $price_list_id
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     * @return PriceListItemInterface
      */
     public function setPriceListId($price_list_id);
 
@@ -54,7 +54,7 @@ interface PriceListItemInterface
      * Set product_sku
      *
      * @param string $product_sku
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     * @return PriceListItemInterface
      */
     public function setProductSku($product_sku);
 
@@ -67,8 +67,9 @@ interface PriceListItemInterface
 
     /**
      * Set qty
+     *
      * @param string $qty
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     * @return PriceListItemInterface
      */
     public function setQty($qty);
 
@@ -83,7 +84,7 @@ interface PriceListItemInterface
      * Set price
      *
      * @param string $price
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     * @return PriceListItemInterface
      */
     public function setPrice($price);
 
@@ -98,7 +99,7 @@ interface PriceListItemInterface
      * Set start_date
      *
      * @param string $start_date
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     * @return PriceListItemInterface
      */
     public function setStartDate($start_date);
 
@@ -113,7 +114,7 @@ interface PriceListItemInterface
      * Set end_date
      *
      * @param string $end_date
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     * @return PriceListItemInterface
      */
     public function setEndDate($end_date);
 
@@ -128,7 +129,7 @@ interface PriceListItemInterface
      * Set processed
      *
      * @param string $int
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     * @return PriceListItemInterface
      */
     public function setProcessed($int);
 }

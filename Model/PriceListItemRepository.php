@@ -2,6 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
+use Dealer4dealer\Xcore\Api\Data\PriceListItemInterface;
 use Dealer4dealer\Xcore\Api\Data\PriceListItemInterfaceFactory;
 use Dealer4dealer\Xcore\Api\Data\PriceListItemSearchResultsInterface;
 use Dealer4dealer\Xcore\Api\Data\PriceListItemSearchResultsInterfaceFactory;
@@ -14,6 +15,7 @@ use Magento\Framework\Api\SortOrder;
 use Magento\Framework\App\Config\BaseFactory;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 class PriceListItemRepository implements PriceListItemRepositoryInterface
@@ -21,15 +23,14 @@ class PriceListItemRepository implements PriceListItemRepositoryInterface
     protected $priceListItemFactory;
     protected $priceListItemCollectionFactory;
     protected $searchResultsFactory;
-
     protected $searchCriteriaBuilder;
 
     /**
-     * @param PriceListItemFactory|BaseFactory $priceListItemFactory
-     * @param PriceListItemCollectionFactory|BaseFactory $priceListItemCollectionFactory
+     * @param PriceListItemFactory|BaseFactory                       $priceListItemFactory
+     * @param PriceListItemCollectionFactory|BaseFactory             $priceListItemCollectionFactory
      * @param PriceListItemSearchResultsInterfaceFactory|BaseFactory $searchResultsFactory
      *
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param SearchCriteriaBuilder                                  $searchCriteriaBuilder
      */
     public function __construct(
         PriceListItemFactory $priceListItemFactory,
@@ -43,13 +44,13 @@ class PriceListItemRepository implements PriceListItemRepositoryInterface
         $this->priceListItemCollectionFactory = $priceListItemCollectionFactory;
         $this->searchResultsFactory           = $searchResultsFactory;
 
-        $this->searchCriteriaBuilder           = $searchCriteriaBuilder;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function save(\Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $priceListItem)
+    public function save(PriceListItemInterface $priceListItem)
     {
         try {
             /** @var PriceListItem $priceListItem */
@@ -116,7 +117,7 @@ class PriceListItemRepository implements PriceListItemRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function delete(\Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $priceListItem)
+    public function delete(PriceListItemInterface $priceListItem)
     {
         try {
             /** @var PriceListItem $priceListItem */
@@ -154,9 +155,10 @@ class PriceListItemRepository implements PriceListItemRepositoryInterface
 
     /**
      * Returns the price list items that belong to a specific price list.
-     * 
+     *
      * @param int $priceListId
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[]
+     * @return PriceListItemInterface[]
+     * @throws LocalizedException
      */
     public function getByPriceListId($priceListId)
     {

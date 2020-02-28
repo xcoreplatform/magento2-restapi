@@ -32,17 +32,16 @@ class ShippingMethodRepository implements ShippingMethodRepositoryInterface
         }
 
         foreach ($this->shippingConfig->getActiveCarriers() as $code => $carrier) {
-
             $title = $carrier->getConfigData('title');
 
             if (!$carrier->getAllowedMethods()) {
                 continue;
             }
 
-            foreach($carrier->getAllowedMethods() as $methodCode => $method) {
+            foreach ($carrier->getAllowedMethods() as $methodCode => $method) {
                 $model = new Method;
-                $model->setCode($code."_".$methodCode);
-                $model->setName($title. " - ".$method);
+                $model->setCode($code . "_" . $methodCode);
+                $model->setName($title . " - " . $method);
 
                 $response[] = $model;
             }

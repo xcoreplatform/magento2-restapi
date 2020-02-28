@@ -2,12 +2,14 @@
 
 namespace Dealer4dealer\Xcore\Api;
 
+use Dealer4dealer\Xcore\Api\Data\MethodInterface;
+
 interface ShippingMethodRepositoryInterface
 {
     /**
      * Get a list of all shipping methods.
-
-     * @return \Dealer4dealer\Xcore\Api\Data\MethodInterface[]
+     *
+     * @return MethodInterface[]
      */
     public function getList();
 }

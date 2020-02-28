@@ -11,7 +11,7 @@ interface MethodInterface
 
     /**
      * @param string $code
-     * @return \Dealer4dealer\Xcore\Api\Data\MethodInterface
+     * @return MethodInterface
      */
     public function setCode($code);
 
@@ -22,7 +22,7 @@ interface MethodInterface
 
     /**
      * @param string $name
-     * @return \Dealer4dealer\Xcore\Api\Data\MethodInterface
+     * @return MethodInterface
      */
     public function setName($name);
 }

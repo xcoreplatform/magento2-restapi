@@ -2,6 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Model\ResourceModel\PriceListItem;
 
+use Dealer4dealer\Xcore\Model\PriceListItem;
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 class Collection extends AbstractCollection
@@ -14,8 +15,8 @@ class Collection extends AbstractCollection
     protected function _construct()
     {
         $this->_init(
-            'Dealer4dealer\Xcore\Model\PriceListItem',
-            'Dealer4dealer\Xcore\Model\ResourceModel\PriceListItem'
+            PriceListItem::class,
+            \Dealer4dealer\Xcore\Model\ResourceModel\PriceListItem::class
         );
     }
 }

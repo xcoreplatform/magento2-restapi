@@ -9,14 +9,14 @@ interface PriceListSearchResultsInterface extends SearchResultsInterface
     /**
      * Get price_list list.
      *
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface[]
+     * @return PriceListInterface[]
      */
     public function getItems();
 
     /**
      * Set price_list list.
      *
-     * @param \Dealer4dealer\Xcore\Api\Data\PriceListInterface[] $items
+     * @param PriceListInterface[] $items
      * @return $this
      */
     public function setItems(array $items);

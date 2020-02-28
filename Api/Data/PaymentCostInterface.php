@@ -6,10 +6,10 @@ use Magento\Framework\Api\ExtensibleDataInterface;
 
 interface PaymentCostInterface extends ExtensibleDataInterface
 {
-    const TITLE         = 'title';
-    const BASE_AMOUNT   = 'base_amount';
-    const AMOUNT        = 'amount';
-    const TAX_PERCENT   = 'tax_percent';
+    const TITLE       = 'title';
+    const BASE_AMOUNT = 'base_amount';
+    const AMOUNT      = 'amount';
+    const TAX_PERCENT = 'tax_percent';
 
     /**
      * Get the title of the payment cost.
@@ -43,6 +43,7 @@ interface PaymentCostInterface extends ExtensibleDataInterface
 
     /**
      * Get the amount of the payment cost.
+     *
      * @return float|null
      */
     public function getAmount();
@@ -66,22 +67,22 @@ interface PaymentCostInterface extends ExtensibleDataInterface
      * Set the tax rate of the payment cost.
      *
      * @param $taxPercent
-     * @return mixed
+     * @return $this
      */
     public function setTaxPercent($taxPercent);
 
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface|null
+     * @return PaymentCostInterface|null
      */
     public function getExtensionAttributes();
 
     /**
      * Set an extension attributes object.
      *
-     * @param \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface $extensionAttributes
+     * @param PaymentCostInterface $extensionAttributes
      * @return $this
      */
-    public function setExtensionAttributes(\Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface $extensionAttributes);
+    public function setExtensionAttributes(PaymentCostInterface $extensionAttributes);
 }

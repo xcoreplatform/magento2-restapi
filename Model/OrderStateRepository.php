@@ -7,7 +7,6 @@ use Magento\Sales\Model\ResourceModel\Order\Status\Collection;
 
 class OrderStateRepository implements OrderStateRepositoryInterface
 {
-
     private $statusCollection;
 
     public function __construct(
@@ -17,14 +16,13 @@ class OrderStateRepository implements OrderStateRepositoryInterface
         $this->statusCollection = $statusCollection;
     }
 
-
     public function getList()
     {
         $states = $this->statusCollection->joinStates()->toArray()['items'];
 
         $response = [];
         foreach ($states as $state) {
-            if(!is_null($state['state'])) {
+            if (!is_null($state['state'])) {
                 $response[$state['state']] = [
                     'code' => $state['state'],
                     'name' => $state['state']
@@ -33,5 +31,4 @@ class OrderStateRepository implements OrderStateRepositoryInterface
         }
         return array_values($response);
     }
-
 }

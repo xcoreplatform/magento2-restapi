@@ -7,7 +7,6 @@ use Magento\Sales\Model\ResourceModel\Order\Status\Collection;
 
 class OrderStatusRepository implements OrderStatusRepositoryInterface
 {
-
     private $statusCollection;
 
     public function __construct(

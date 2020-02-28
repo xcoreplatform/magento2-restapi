@@ -4,9 +4,9 @@ namespace Dealer4dealer\Xcore\Api\Data;
 
 interface PriceListInterface
 {
-    const ID   = 'id';
-    const GUID = 'guid';
-    const CODE = 'code';
+    const ID    = 'id';
+    const GUID  = 'guid';
+    const CODE  = 'code';
     const ITEMS = 'items';
 
     /**
@@ -20,7 +20,7 @@ interface PriceListInterface
      * Set id
      *
      * @param string $id
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
+     * @return PriceListInterface
      */
     public function setId($id);
 
@@ -35,7 +35,7 @@ interface PriceListInterface
      * Set guid
      *
      * @param string $guid
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
+     * @return PriceListInterface
      */
     public function setGuid($guid);
 
@@ -50,18 +50,18 @@ interface PriceListInterface
      * Set code
      *
      * @param string $code
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
+     * @return PriceListInterface
      */
     public function setCode($code);
 
     /**
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[]
+     * @return PriceListItemInterface[]
      */
     public function getItems();
 
     /**
-     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[] $items
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
+     * @param PriceListItemInterface[] $items
+     * @return PriceListInterface
      */
     public function setItems($items);
 }

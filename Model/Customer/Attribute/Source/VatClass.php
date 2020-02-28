@@ -6,7 +6,6 @@ use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
 
 class VatClass extends AbstractSource
 {
-
     /**
      * getAllOptions
      *

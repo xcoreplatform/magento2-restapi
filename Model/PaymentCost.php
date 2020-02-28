@@ -11,7 +11,6 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     protected $baseAmount;
     protected $amount;
     protected $taxPercent;
-
     protected $extensionAttributes;
 
     /**
@@ -89,7 +88,7 @@ class PaymentCost extends DataObject implements PaymentCostInterface
     /**
      * {@inheritdoc}
      */
-    public function setExtensionAttributes(\Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface $extensionAttributes)
+    public function setExtensionAttributes(PaymentCostInterface $extensionAttributes)
     {
         return $this->setData(self::EXTENSION_ATTRIBUTES_KEY, $extensionAttributes);
     }

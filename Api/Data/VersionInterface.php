@@ -11,7 +11,7 @@ interface VersionInterface
 
     /**
      * @param string $version
-     * @return \Dealer4dealer\Xcore\Api\Data\VersionInterface
+     * @return VersionInterface
      */
     public function setMagentoVersion($version);
 
@@ -22,7 +22,7 @@ interface VersionInterface
 
     /**
      * @param string $edition
-     * @return \Dealer4dealer\Xcore\Api\Data\VersionInterface
+     * @return VersionInterface
      */
     public function setMagentoEdition($edition);
 
@@ -33,7 +33,7 @@ interface VersionInterface
 
     /**
      * @param string $version
-     * @return \Dealer4dealer\Xcore\Api\Data\VersionInterface
+     * @return VersionInterface
      */
     public function setRestVersion($version);
 }
