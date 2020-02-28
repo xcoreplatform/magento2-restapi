@@ -14,6 +14,7 @@ use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SortOrder;
 use Magento\Framework\App\Config\BaseFactory;
+use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -220,7 +221,7 @@ class PriceListRepository implements PriceListRepositoryInterface
     /**
      * @param PriceListInterface $newPriceList
      * @return PriceList
-     * @throws \Magento\Framework\Exception\AlreadyExistsException
+     * @throws AlreadyExistsException
      */
     private function getOrSavePriceList(PriceListInterface $newPriceList)
     {
@@ -237,7 +238,7 @@ class PriceListRepository implements PriceListRepositoryInterface
     }
 
     /**
-     * @param int $priceListId
+     * @param int                    $priceListId
      * @param PriceListItemInterface $item
      * @return PriceListItem
      */

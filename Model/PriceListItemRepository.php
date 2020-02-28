@@ -12,6 +12,7 @@ use Dealer4dealer\Xcore\Model\ResourceModel\PriceListItem\CollectionFactory as P
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SortOrder;
+use Magento\Framework\App\Config\Base;
 use Magento\Framework\App\Config\BaseFactory;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
@@ -140,7 +141,7 @@ class PriceListItemRepository implements PriceListItemRepositoryInterface
      * @param      $productSku
      * @param      $qty
      * @param null $priceListId
-     * @return PriceListItemInterface|\Magento\Framework\App\Config\Base
+     * @return PriceListItemInterface|Base
      * @throws LocalizedException
      */
     public function getUniqueRow($productSku, $qty, $priceListId = null)
