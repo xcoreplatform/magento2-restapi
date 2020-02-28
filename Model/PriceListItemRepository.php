@@ -36,14 +36,12 @@ class PriceListItemRepository implements PriceListItemRepositoryInterface
         PriceListItemFactory $priceListItemFactory,
         PriceListItemCollectionFactory $priceListItemCollectionFactory,
         PriceListItemSearchResultsInterfaceFactory $searchResultsFactory,
-
         SearchCriteriaBuilder $searchCriteriaBuilder
     )
     {
         $this->priceListItemFactory           = $priceListItemFactory;
         $this->priceListItemCollectionFactory = $priceListItemCollectionFactory;
         $this->searchResultsFactory           = $searchResultsFactory;
-
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
     }
 
@@ -138,8 +136,14 @@ class PriceListItemRepository implements PriceListItemRepositoryInterface
 
     /**
      * Returns a price list item if found, otherwise an "empty" record.
+     *
+     * @param      $productSku
+     * @param      $qty
+     * @param null $priceListId
+     * @return PriceListItemInterface|\Magento\Framework\App\Config\Base
+     * @throws LocalizedException
      */
-    public function getUniqueRow($priceListId = null, $productSku, $qty)
+    public function getUniqueRow($productSku, $qty, $priceListId = null)
     {
         $searchCriteria = $this->searchCriteriaBuilder->setFilterGroups([])
                                                       ->addFilter('price_list_id', $priceListId)

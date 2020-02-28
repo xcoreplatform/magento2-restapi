@@ -2,8 +2,6 @@
 
 namespace Dealer4dealer\Xcore\Model\PriceList\Attribute\Source;
 
-namespace Dealer4dealer\Xcore\Model\PriceList\Attribute\Source;
-
 use Dealer4dealer\Xcore\Model\PriceListRepository;
 use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
 use Magento\Framework\Api\SearchCriteriaBuilder;

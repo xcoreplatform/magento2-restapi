@@ -245,7 +245,7 @@ class PriceListRepository implements PriceListRepositoryInterface
     {
         try {
             /** @var PriceListItem $priceListItem */
-            $priceListItem = $this->priceListItemRepository->getUniqueRow($priceListId, $item->getProductSku(), $item->getQty());
+            $priceListItem = $this->priceListItemRepository->getUniqueRow($item->getProductSku(), $item->getQty(), $priceListId);
 
             // Set the guid and code (overwrite code if previous price list existed)
             $priceListItem->setPriceListId($priceListId);
