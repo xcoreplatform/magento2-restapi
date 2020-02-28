@@ -9,6 +9,7 @@
 	<preference for="Dealer4dealer\Xcore\Api\ShippingMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\ShippingMethodRepository"/>
 	<preference for="Dealer4dealer\Xcore\Api\RestManagementInterface" type="Dealer4dealer\Xcore\Model\RestManagement"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\ShippingMethodInterface" type="Dealer4dealer\Xcore\Model\ShippingMethod"/>
+	<preference for="Dealer4dealer\Xcore\Api\Data\PaymentCostInterface" type="Dealer4dealer\Xcore\Model\PaymentCost"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PaymentMethodInterface" type="Dealer4dealer\Xcore\Model\PaymentMethod"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\OrderStateInterface" type="Dealer4dealer\Xcore\Model\OrderState"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\OrderStatusInterface" type="Dealer4dealer\Xcore\Model\OrderStatus"/>
