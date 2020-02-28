@@ -9,7 +9,7 @@ class RestManagement implements \Dealer4dealer\Xcore\Api\RestManagementInterface
     protected $moduleList;
 
     public function __construct(\Magento\Framework\App\ProductMetadataInterface $productMetadata,
-                                \ModuleListInterface $moduleList)
+                                \Magento\Framework\Module\ModuleListInterface $moduleList)
     {
         $this->productMetadata = $productMetadata;
         $this->moduleList      = $moduleList;
