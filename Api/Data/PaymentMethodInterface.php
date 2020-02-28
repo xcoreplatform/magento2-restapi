@@ -2,7 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Api\Data;
 
-interface StateInterface
+interface PaymentMethodInterface
 {
     /**
      * @return string
@@ -11,7 +11,7 @@ interface StateInterface
 
     /**
      * @param string $code
-     * @return \Dealer4dealer\Xcore\Api\Data\StateInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PaymentMethodInterface
      */
     public function setCode($code);
 
@@ -22,7 +22,7 @@ interface StateInterface
 
     /**
      * @param string $name
-     * @return \Dealer4dealer\Xcore\Api\Data\StateInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PaymentMethodInterface
      */
     public function setName($name);
 }

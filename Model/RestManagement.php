@@ -2,19 +2,14 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\RestManagementInterface;
-use Magento\Framework\App\ProductMetadataInterface;
-use Magento\Framework\Module\ModuleListInterface;
-
-class RestManagement implements RestManagementInterface
+class RestManagement implements \Dealer4dealer\Xcore\Api\RestManagementInterface
 {
     const MODULE_NAME = 'Dealer4dealer_Xcore';
-
     protected $productMetadata;
     protected $moduleList;
 
-    public function __construct(ProductMetadataInterface $productMetadata,
-                                ModuleListInterface $moduleList)
+    public function __construct(\Magento\Framework\App\ProductMetadataInterface $productMetadata,
+                                \Magento\Framework\Module\ModuleListInterface $moduleList)
     {
         $this->productMetadata = $productMetadata;
         $this->moduleList      = $moduleList;

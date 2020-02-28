@@ -2,20 +2,17 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\ShippingMethodRepositoryInterface;
-use Magento\Shipping\Model\Config;
-
-class ShippingMethodRepository implements ShippingMethodRepositoryInterface
+class ShippingMethodRepository implements \Dealer4dealer\Xcore\Api\ShippingMethodRepositoryInterface
 {
-    /**@var Config */
+    /**@var \Magento\Shipping\Model\Config */
     private $shippingConfig;
 
     /**
      * ShippingMethodRepository constructor.
      *
-     * @param Config $shippingConfig
+     * @param \Magento\Shipping\Model\Config $shippingConfig
      */
-    public function __construct(Config $shippingConfig)
+    public function __construct(\Magento\Shipping\Model\Config $shippingConfig)
     {
         $this->shippingConfig = $shippingConfig;
     }
@@ -32,17 +29,16 @@ class ShippingMethodRepository implements ShippingMethodRepositoryInterface
         }
 
         foreach ($this->shippingConfig->getActiveCarriers() as $code => $carrier) {
-
             $title = $carrier->getConfigData('title');
 
             if (!$carrier->getAllowedMethods()) {
                 continue;
             }
 
-            foreach($carrier->getAllowedMethods() as $methodCode => $method) {
-                $model = new Method;
-                $model->setCode($code."_".$methodCode);
-                $model->setName($title. " - ".$method);
+            foreach ($carrier->getAllowedMethods() as $methodCode => $method) {
+                $model = new ShippingMethod;
+                $model->setCode($code . "_" . $methodCode);
+                $model->setName($title . " - " . $method);
 
                 $response[] = $model;
             }

@@ -2,16 +2,12 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\OrderStatusRepositoryInterface;
-use Magento\Sales\Model\ResourceModel\Order\Status\Collection;
-
-class OrderStatusRepository implements OrderStatusRepositoryInterface
+class OrderStatusRepository implements \Dealer4dealer\Xcore\Api\OrderStatusRepositoryInterface
 {
-
     private $statusCollection;
 
     public function __construct(
-        Collection $statusCollection
+        \Magento\Sales\Model\ResourceModel\Order\Status\Collection $statusCollection
     )
     {
         $this->statusCollection = $statusCollection;

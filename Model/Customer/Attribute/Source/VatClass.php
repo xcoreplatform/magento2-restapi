@@ -2,11 +2,8 @@
 
 namespace Dealer4dealer\Xcore\Model\Customer\Attribute\Source;
 
-use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
-
-class VatClass extends AbstractSource
+class VatClass extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
 {
-
     /**
      * getAllOptions
      *

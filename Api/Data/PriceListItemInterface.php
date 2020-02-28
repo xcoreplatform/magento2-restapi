@@ -67,6 +67,7 @@ interface PriceListItemInterface
 
     /**
      * Set qty
+     *
      * @param string $qty
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
      */

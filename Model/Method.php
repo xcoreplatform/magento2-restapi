@@ -2,9 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\Data\MethodInterface;
-
-class Method implements MethodInterface
+class Method
 {
     protected $code;
     protected $name;

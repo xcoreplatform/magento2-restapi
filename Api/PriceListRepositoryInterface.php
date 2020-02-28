@@ -61,7 +61,7 @@ interface PriceListRepositoryInterface
      * Get a JSON result of a specific price list
      *
      * @param string $id
-     * @param bool $withItems
+     * @param bool   $withItems
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
      */
     public function getJsonById($id, $withItems);
@@ -70,7 +70,7 @@ interface PriceListRepositoryInterface
      * Get a JSON result of a specific price list
      *
      * @param string $guid
-     * @param bool $withItems
+     * @param bool   $withItems
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
      */
     public function getJsonByGuid($guid, $withItems);
