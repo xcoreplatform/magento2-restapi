@@ -9,7 +9,6 @@ use Magento\Framework\Module\ModuleListInterface;
 class RestManagement implements RestManagementInterface
 {
     const MODULE_NAME = 'Dealer4dealer_Xcore';
-
     protected $productMetadata;
     protected $moduleList;
 

@@ -32,7 +32,7 @@ class PaymentMethodRepository implements PaymentMethodRepositoryInterface
         }
 
         foreach ($this->paymentHelper->getPaymentMethodList() as $code => $name) {
-            $model = new Method;
+            $model = new PaymentMethod;
             $model->setCode($code);
             $model->setName($name);
 

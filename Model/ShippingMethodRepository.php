@@ -39,7 +39,7 @@ class ShippingMethodRepository implements ShippingMethodRepositoryInterface
             }
 
             foreach ($carrier->getAllowedMethods() as $methodCode => $method) {
-                $model = new Method;
+                $model = new ShippingMethod;
                 $model->setCode($code . "_" . $methodCode);
                 $model->setName($title . " - " . $method);
 

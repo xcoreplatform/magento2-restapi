@@ -22,13 +22,12 @@ class OrderStateRepository implements OrderStateRepositoryInterface
 
         $response = [];
         foreach ($states as $state) {
-            if (!is_null($state['state'])) {
-                $response[$state['state']] = [
-                    'code' => $state['state'],
-                    'name' => $state['state']
-                ];
-            }
+            $model = new OrderState();
+            $model->setCode($state['state']);
+            $model->setName($state['state']);
+
+            $response[] = $model;
         }
-        return array_values($response);
+        return $response;
     }
 }

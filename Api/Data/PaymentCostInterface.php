@@ -67,22 +67,22 @@ interface PaymentCostInterface extends ExtensibleDataInterface
      * Set the tax rate of the payment cost.
      *
      * @param $taxPercent
-     * @return $this
+     * @return mixed
      */
     public function setTaxPercent($taxPercent);
 
     /**
      * Retrieve existing extension attributes object or create a new one.
      *
-     * @return PaymentCostInterface|null
+     * @return \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface|null
      */
     public function getExtensionAttributes();
 
     /**
      * Set an extension attributes object.
      *
-     * @param PaymentCostInterface $extensionAttributes
+     * @param \Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface $extensionAttributes
      * @return $this
      */
-    public function setExtensionAttributes(PaymentCostInterface $extensionAttributes);
+    public function setExtensionAttributes(\Dealer4dealer\Xcore\Api\Data\PaymentCostExtensionInterface $extensionAttributes);
 }

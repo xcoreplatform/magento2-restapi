@@ -2,7 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Api\Data;
 
-interface StatusInterface
+interface ShippingMethodInterface
 {
     /**
      * @return string
@@ -11,7 +11,7 @@ interface StatusInterface
 
     /**
      * @param string $code
-     * @return StatusInterface
+     * @return ShippingMethodInterface
      */
     public function setCode($code);
 
@@ -22,7 +22,7 @@ interface StatusInterface
 
     /**
      * @param string $name
-     * @return StatusInterface
+     * @return ShippingMethodInterface
      */
     public function setName($name);
 }
