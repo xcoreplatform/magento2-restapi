@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../app/code/Magento/Webapi/etc/webapi.xsd">
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
     <route url="/V1/xcore/orderstates" method="GET">
         <service class="Dealer4dealer\Xcore\Api\OrderStateRepositoryInterface" method="getList"/>
         <resources>

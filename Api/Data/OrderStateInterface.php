@@ -2,7 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Api\Data;
 
-interface MethodInterface
+interface OrderStateInterface
 {
     /**
      * @return string
@@ -11,7 +11,7 @@ interface MethodInterface
 
     /**
      * @param string $code
-     * @return \Dealer4dealer\Xcore\Api\Data\MethodInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\OrderStateInterface
      */
     public function setCode($code);
 
@@ -22,7 +22,7 @@ interface MethodInterface
 
     /**
      * @param string $name
-     * @return \Dealer4dealer\Xcore\Api\Data\MethodInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\OrderStateInterface
      */
     public function setName($name);
 }

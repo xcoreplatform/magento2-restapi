@@ -2,9 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\Data\VersionInterface;
-
-class Version implements VersionInterface
+class Version implements \Dealer4dealer\Xcore\Api\Data\VersionInterface
 {
     protected $magentoVersion;
     protected $magentoEdition;

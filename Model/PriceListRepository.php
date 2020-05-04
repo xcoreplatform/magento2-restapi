@@ -2,24 +2,7 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\Data\PriceListInterface;
-use Dealer4dealer\Xcore\Api\Data\PriceListInterfaceFactory;
-use Dealer4dealer\Xcore\Api\Data\PriceListItemInterface;
-use Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterface;
-use Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterfaceFactory;
-use Dealer4dealer\Xcore\Api\PriceListRepositoryInterface;
-use Dealer4dealer\Xcore\Model\ResourceModel\PriceList as ResourcePriceList;
-use Dealer4dealer\Xcore\Model\ResourceModel\PriceList\CollectionFactory as PriceListCollectionFactory;
-use Magento\Framework\Api\SearchCriteria;
-use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Api\SortOrder;
-use Magento\Framework\App\Config\BaseFactory;
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Psr\Log\LoggerInterface;
-
-class PriceListRepository implements PriceListRepositoryInterface
+class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositoryInterface
 {
     protected $logger;
     protected $priceListFactory;
@@ -28,18 +11,17 @@ class PriceListRepository implements PriceListRepositoryInterface
     protected $priceListItemRepository;
 
     /**
-     * @param LoggerInterface $logger
-     * @param PriceListFactory|BaseFactory $priceListFactory
-     * @param PriceListCollectionFactory|BaseFactory $priceListCollectionFactory
-     * @param PriceListSearchResultsInterfaceFactory|BaseFactory $searchResultsFactory
-     *
-     * @param PriceListItemRepository $priceListItemRepository
+     * @param \Psr\Log\LoggerInterface                                                                                       $logger
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListInterfaceFactory|\Magento\Framework\App\Config\BaseFactory              $priceListFactory
+     * @param \Dealer4dealer\Xcore\Model\ResourceModel\PriceList\CollectionFactory|\Magento\Framework\App\Config\BaseFactory $priceListCollectionFactory
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterfaceFactory|\Magento\Framework\App\Config\BaseFactory $searchResultsFactory
+     * @param \Dealer4dealer\Xcore\Api\PriceListItemRepositoryInterface                                                      $priceListItemRepository
      */
-    public function __construct(LoggerInterface $logger,
-                                PriceListFactory $priceListFactory,
-                                PriceListCollectionFactory $priceListCollectionFactory,
-                                PriceListSearchResultsInterfaceFactory $searchResultsFactory,
-                                PriceListItemRepository $priceListItemRepository)
+    public function __construct(\Psr\Log\LoggerInterface $logger,
+                                \Dealer4dealer\Xcore\Api\Data\PriceListInterfaceFactory $priceListFactory,
+                                \Dealer4dealer\Xcore\Model\ResourceModel\PriceList\CollectionFactory $priceListCollectionFactory,
+                                \Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterfaceFactory $searchResultsFactory,
+                                \Dealer4dealer\Xcore\Api\PriceListItemRepositoryInterface $priceListItemRepository)
     {
         $this->logger                     = $logger;
         $this->priceListFactory           = $priceListFactory;
@@ -57,7 +39,7 @@ class PriceListRepository implements PriceListRepositoryInterface
             /** @var PriceList $priceList */
             $priceList->getResource()->save($priceList);
         } catch (\Exception $exception) {
-            throw new CouldNotSaveException(__(sprintf('Could not save the Price List: %s', $exception->getMessage())));
+            throw new \Magento\Framework\Exception\CouldNotSaveException(__(sprintf('Could not save the Price List: %s', $exception->getMessage())));
         }
         return $priceList;
     }
@@ -71,7 +53,7 @@ class PriceListRepository implements PriceListRepositoryInterface
         $priceList = $this->priceListFactory->create();
         $priceList->getResource()->load($priceList, $priceListId);
         if (!$priceList->getId()) {
-            throw new NoSuchEntityException(__(sprintf('Price List with id %s does not exist', $priceListId)));
+            throw new \Magento\Framework\Exception\NoSuchEntityException(__(sprintf('Price List with id %s does not exist', $priceListId)));
         }
 
         return $priceList;
@@ -80,9 +62,9 @@ class PriceListRepository implements PriceListRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getList(SearchCriteriaInterface $criteria)
+    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $criteria)
     {
-        /** @var ResourcePriceList\Collection $collection */
+        /** @var \Dealer4dealer\Xcore\Model\ResourceModel\PriceList\Collection $collection */
         $collection = $this->priceListCollectionFactory->create();
         foreach ($criteria->getFilterGroups() as $filterGroup) {
             foreach ($filterGroup->getFilters() as $filter) {
@@ -97,18 +79,18 @@ class PriceListRepository implements PriceListRepositoryInterface
 
         $sortOrders = $criteria->getSortOrders();
         if ($sortOrders) {
-            /** @var SortOrder $sortOrder */
+            /** @var \Magento\Framework\Api\SortOrder $sortOrder */
             foreach ($sortOrders as $sortOrder) {
                 $collection->addOrder(
                     $sortOrder->getField(),
-                    ($sortOrder->getDirection() == SortOrder::SORT_ASC) ? 'ASC' : 'DESC'
+                    ($sortOrder->getDirection() == \Magento\Framework\Api\SortOrder::SORT_ASC) ? 'ASC' : 'DESC'
                 );
             }
         }
         $collection->setCurPage($criteria->getCurrentPage());
         $collection->setPageSize($criteria->getPageSize());
 
-        /** @var PriceListSearchResultsInterface $searchResults */
+        /** @var \Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
         $searchResults->setTotalCount($collection->getSize());
@@ -125,7 +107,7 @@ class PriceListRepository implements PriceListRepositoryInterface
             /** @var PriceList $priceList */
             $priceList->getResource()->delete($priceList);
         } catch (\Exception $exception) {
-            throw new CouldNotDeleteException(__(sprintf('Could not delete the Price List: %s', $exception->getMessage())));
+            throw new \Magento\Framework\Exception\CouldNotDeleteException(__(sprintf('Could not delete the Price List: %s', $exception->getMessage())));
         }
         return true;
     }
@@ -143,12 +125,12 @@ class PriceListRepository implements PriceListRepositoryInterface
      */
     public function getJsonList()
     {
-        /** @var ResourcePriceList\Collection $collection */
-        $collection = $this->getList(new SearchCriteria());
+        /** @var \Dealer4dealer\Xcore\Model\ResourceModel\PriceList\Collection $collection */
+        $collection = $this->getList(new \Magento\Framework\Api\SearchCriteria());
 
         $result = [];
 
-        /** @var PriceListInterface $priceList */
+        /** @var \Dealer4dealer\Xcore\Api\Data\PriceListInterface $priceList */
         foreach ($collection->getItems() as $priceList) {
 //            $priceList->setItems($this->priceListItemRepository->getByPriceListId($priceList->getId()));
 
@@ -202,11 +184,10 @@ class PriceListRepository implements PriceListRepositoryInterface
         $priceList = $this->getOrSavePriceList($price_list);
 
         if ($price_list->getItems()) {
-
-            /** @var PriceListItemInterface[] $items */
+            /** @var \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[] $items */
             $items = [];
 
-            /** @var PriceListItemInterface $item */
+            /** @var \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $item */
             foreach ($price_list->getItems() as $item) {
                 $addedItem = $this->getOrSavePriceListItem($priceList->getId(), $item);
                 if ($addedItem) $items[] = $addedItem;
@@ -219,8 +200,9 @@ class PriceListRepository implements PriceListRepositoryInterface
     }
 
     /**
-     * @param PriceListInterface $newPriceList
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListInterface $newPriceList
      * @return PriceList
+     * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
     private function getOrSavePriceList(\Dealer4dealer\Xcore\Api\Data\PriceListInterface $newPriceList)
     {
@@ -237,15 +219,15 @@ class PriceListRepository implements PriceListRepositoryInterface
     }
 
     /**
-     * @param int $priceListId
-     * @param PriceListItemInterface $item
+     * @param int                                                  $priceListId
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $item
      * @return PriceListItem
      */
-    private function getOrSavePriceListItem(int $priceListId, \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $item)
+    private function getOrSavePriceListItem($priceListId, \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $item)
     {
         try {
             /** @var PriceListItem $priceListItem */
-            $priceListItem = $this->priceListItemRepository->getUniqueRow($priceListId, $item->getProductSku(), $item->getQty());
+            $priceListItem = $this->priceListItemRepository->getUniqueRow($item->getProductSku(), $item->getQty(), $priceListId);
 
             // Set the guid and code (overwrite code if previous price list existed)
             $priceListItem->setPriceListId($priceListId);

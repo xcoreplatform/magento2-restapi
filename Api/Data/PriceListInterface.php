@@ -4,9 +4,9 @@ namespace Dealer4dealer\Xcore\Api\Data;
 
 interface PriceListInterface
 {
-    const ID   = 'id';
-    const GUID = 'guid';
-    const CODE = 'code';
+    const ID    = 'id';
+    const GUID  = 'guid';
+    const CODE  = 'code';
     const ITEMS = 'items';
 
     /**

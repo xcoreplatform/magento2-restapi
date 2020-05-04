@@ -2,21 +2,16 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\OrderStateRepositoryInterface;
-use Magento\Sales\Model\ResourceModel\Order\Status\Collection;
-
-class OrderStateRepository implements OrderStateRepositoryInterface
+class OrderStateRepository implements \Dealer4dealer\Xcore\Api\OrderStateRepositoryInterface
 {
-
     private $statusCollection;
 
     public function __construct(
-        Collection $statusCollection
+        \Magento\Sales\Model\ResourceModel\Order\Status\Collection $statusCollection
     )
     {
         $this->statusCollection = $statusCollection;
     }
-
 
     public function getList()
     {
@@ -24,14 +19,12 @@ class OrderStateRepository implements OrderStateRepositoryInterface
 
         $response = [];
         foreach ($states as $state) {
-            if(!is_null($state['state'])) {
-                $response[$state['state']] = [
-                    'code' => $state['state'],
-                    'name' => $state['state']
-                ];
-            }
-        }
-        return array_values($response);
-    }
+            $model = new OrderState();
+            $model->setCode($state['state']);
+            $model->setName($state['state']);
 
+            $response[] = $model;
+        }
+        return $response;
+    }
 }
