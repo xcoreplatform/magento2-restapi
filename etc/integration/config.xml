@@ -1,0 +1,5 @@
+<integrations>
+    <integration name="Dealer4dealer_Xcore">
+        <email>servicedesk@dealer4dealer.nl</email>
+    </integration>
+</integrations>

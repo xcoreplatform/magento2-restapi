@@ -1,0 +1,26 @@
+<integrations>
+    <integration name="Dealer4dealer_Xcore">
+        <resources>
+            <resource name="Magento_Sales::sales" />
+            <resource name="Magento_Catalog::catalog" />
+            <resource name="Magento_Customer::customer" />
+            <resource name="Magento_Backend::marketing" />
+            <resource name="Magento_CatalogRule::promo" />
+            <resource name="Magento_CatalogRule::promo_catalog" />
+            <resource name="Magento_Backend::stores" />
+            <resource name="Magento_Backend::stores_settings" />
+            <resource name="Magento_Backend::store" />
+            <resource name="Magento_Sales::order_statuses" />
+            <resource name="Magento_Tax::manage_tax" />
+            <resource name="Magento_CurrencySymbol::system_currency" />
+            <resource name="Magento_Backend::stores_attributes" />
+            <resource name="Magento_Backend::stores_other_settings" />
+            <resource name="Magento_Backend::system" />
+            <resource name="Magento_Backend::extensions" />
+            <resource name="Magento_Integration::extensions" />
+            <resource name="Magento_Backend::tools" />
+            <resource name="Magento_Backend::cache" />
+            <resource name="Magento_Backend::main_actions" />
+        </resources>
+    </integration>
+</integrations>
