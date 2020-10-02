@@ -8,6 +8,7 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\UpgradeDataInterface;
+use Magento\Integration\Model\ConfigBasedIntegrationManager;
 use Magento\Tax\Model\ClassModel;
 use Magento\Tax\Model\TaxClass\Repository as TaxClassRepository;
 
