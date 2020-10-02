@@ -1,5 +1,5 @@
 <integrations>
-    <integration name="Dealer4dealer_Xcore">
+    <integration name="dealer4dealer xCore">
         <email>servicedesk@dealer4dealer.nl</email>
     </integration>
 </integrations>

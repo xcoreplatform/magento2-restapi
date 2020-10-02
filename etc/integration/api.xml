@@ -1,5 +1,5 @@
 <integrations>
-    <integration name="Dealer4dealer_Xcore">
+    <integration name="dealer4dealer xCore">
         <resources>
             <resource name="Magento_Sales::sales" />
             <resource name="Magento_Catalog::catalog" />

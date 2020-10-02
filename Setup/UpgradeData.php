@@ -102,7 +102,7 @@ class UpgradeData implements UpgradeDataInterface
         }
 
         if (version_compare($context->getVersion(), '2.4.0', '<')) {
-            $this->integrationManager->processIntegrationConfig(['Dealer4dealer_Xcore']);
+            $this->integrationManager->processIntegrationConfig(['dealer4dealer xCore']);
         }
 
         $setup->endSetup();
