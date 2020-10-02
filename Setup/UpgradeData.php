@@ -111,9 +111,10 @@ class UpgradeData implements UpgradeDataInterface
     /**
      * Constructor
      *
-     * @param CustomerSetupFactory  $customerSetupFactory
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
-     * @param TaxClassRepository    $taxRepository
+     * @param CustomerSetupFactory          $customerSetupFactory
+     * @param SearchCriteriaBuilder         $searchCriteriaBuilder
+     * @param TaxClassRepository            $taxRepository
+     * @param ConfigBasedIntegrationManager $integrationManager
      */
     public function __construct(CustomerSetupFactory $customerSetupFactory,
                                 SearchCriteriaBuilder $searchCriteriaBuilder,
