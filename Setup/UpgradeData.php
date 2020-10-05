@@ -8,6 +8,7 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\UpgradeDataInterface;
+use Magento\Integration\Model\ConfigBasedIntegrationManager;
 use Magento\Tax\Model\ClassModel;
 use Magento\Tax\Model\TaxClass\Repository as TaxClassRepository;
 
@@ -16,7 +17,7 @@ class UpgradeData implements UpgradeDataInterface
     private $customerSetupFactory;
     private $searchCriteriaBuilder;
     private $taxClassRepository;
-
+    private $integrationManager;
     const NOTE = 'This setting is part of the Price List add-on in the xCore.
                   Interested? Install the add-on for your xCore app. 
                   For more information, contact us at www.dealer4dealer.nl!';
@@ -34,7 +35,6 @@ class UpgradeData implements UpgradeDataInterface
         if (version_compare($context->getVersion(), "0.9.0", "<")) {
             /** @var CustomerSetup $customerSetup */
             $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
-
 
             $customerSetup->addAttribute('customer', 'price_list', [
                 'type'     => 'int',
@@ -101,22 +101,29 @@ class UpgradeData implements UpgradeDataInterface
             }
         }
 
+        if (version_compare($context->getVersion(), '2.4.0', '<')) {
+            $this->integrationManager->processIntegrationConfig(['dealer4dealer xCore']);
+        }
+
         $setup->endSetup();
     }
 
     /**
      * Constructor
      *
-     * @param CustomerSetupFactory $customerSetupFactory
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
-     * @param TaxClassRepository $taxRepository
+     * @param CustomerSetupFactory          $customerSetupFactory
+     * @param SearchCriteriaBuilder         $searchCriteriaBuilder
+     * @param TaxClassRepository            $taxRepository
+     * @param ConfigBasedIntegrationManager $integrationManager
      */
     public function __construct(CustomerSetupFactory $customerSetupFactory,
                                 SearchCriteriaBuilder $searchCriteriaBuilder,
-                                TaxClassRepository $taxRepository)
+                                TaxClassRepository $taxRepository,
+                                ConfigBasedIntegrationManager $integrationManager)
     {
         $this->customerSetupFactory  = $customerSetupFactory;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->taxClassRepository    = $taxRepository;
+        $this->integrationManager    = $integrationManager;
     }
 }
