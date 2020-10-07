@@ -2,107 +2,79 @@
     <integration name="dealer4dealer xCore">
         <resources>
             <resource name="Magento_Sales::sales">
-                <resource id="Magento_Sales::sales_operation">
-                    <resource id="Magento_Sales::sales_order">
-                        <resource id="Magento_Sales::actions">
-                            <resource id="Magento_Sales::create"/>
-                            <resource id="Magento_Sales::actions_view"/>
-                            <resource id="Magento_Sales::email"/>
-                            <resource id="Magento_Sales::reorder"/>
-                            <resource id="Magento_Sales::actions_edit"/>
-                            <resource id="Magento_Sales::cancel"/>
-                            <resource id="Magento_Sales::review_payment"/>
-                            <resource id="Magento_Sales::capture"/>
-                            <resource id="Magento_Sales::invoice"/>
-                            <resource id="Magento_Sales::creditmemo"/>
-                            <resource id="Magento_Sales::hold"/>
-                            <resource id="Magento_Sales::unhold"/>
-                            <resource id="Magento_Sales::ship"/>
-                            <resource id="Magento_Sales::comment"/>
-                            <resource id="Magento_Sales::emails"/>
-                        </resource>
-                    </resource>
-                    <resource id="Magento_Sales::sales_invoice"/>
-                    <resource id="Magento_Sales::shipment"/>
-                    <resource id="Magento_Sales::sales_creditmemo"/>
-                    <resource id="Magento_Sales::transactions">
-                        <resource id="Magento_Sales::transactions_fetch"/>
-                    </resource>
-                </resource>
-            </resource>
-            <resource name="Magento_Catalog::catalog">
-                <resource id="Magento_Catalog::catalog_inventory">
-                    <resource id="Magento_Catalog::products">
-                        <resource id="Magento_Catalog::update_attributes"/>
-                        <resource id="Magento_Catalog::edit_product_design"/>
-                    </resource>
-                    <resource id="Magento_Catalog::categories">
-                        <resource id="Magento_Catalog::edit_category_design"/>
-                    </resource>
-                </resource>
-            </resource>
-            <resource name="Magento_Customer::customer">
-                <resource id="Magento_Customer::manage">
-                    <resource id="Magento_Customer::actions">
-                        <resource id="Magento_Customer::delete"/>
-                    </resource>
-                </resource>
-                <resource id="Magento_Customer::group"/>
-            </resource>
-            <resource name="Magento_Backend::marketing">
-                <resource id="Magento_CatalogRule::promo">
-                    <resource id="Magento_CatalogRule::promo_catalog"/>
-                </resource>
-            </resource>
-            <resource name="Magento_Backend::stores">
-                <resource id="Magento_Backend::stores_settings">
-                    <resource id="Magento_Backend::store"/>
-                    <resource id="Magento_Sales::order_statuses"/>
-                    <resource id="Magento_InventoryApi::inventory">
-                        <resource id="Magento_InventoryApi::source">
-                            <resource id="Magento_InventoryApi::source_edit" />
-                        </resource>
-                        <resource id="Magento_InventoryApi::stock">
-                            <resource id="Magento_InventoryApi::stock_edit" />
-                            <resource id="Magento_InventoryApi::stock_delete" />
-                            <resource id="Magento_InventoryApi::stock_source_link" />
-                        </resource>
-                        <resource id="Magento_InventoryInStorePickupApi::inStorePickup">
-                            <resource id="Magento_InventoryInStorePickupApi::notify_orders_are_ready_for_pickup" />
-                        </resource>
-                        <resource id="Magento_InventorySalesApi::stock" />
-                    </resource>
-                    <resource id="Magento_Config::config">
-                        <resource id="Magento_Catalog::config_catalog"/>
-                        <resource id="Magento_Customer::config_customer"/>
-                        <resource id="Magento_Tax::config_tax"/>
-                    </resource>
-                    <resource name="Magento_Tax::manage_tax"/>
-                    <resource name="Magento_CurrencySymbol::system_currency">
-                        <resource id="Magento_CurrencySymbol::currency_rates"/>
-                        <resource id="Magento_CurrencySymbol::symbols"/>
-                    </resource>
-                    <resource id="Magento_Backend::stores_attributes">
-                        <resource id="Magento_Catalog::attributes_attributes"/>
-                        <resource id="Magento_Catalog::sets"/>
-                    </resource>
-                    <resource name="Magento_Backend::stores_other_settings"/>
-                </resource>
-            </resource>
-            <resource name="Magento_Backend::system">
-                <resource name="Magento_Backend::extensions">
-                    <resource id="Magento_Backend::local"/>
-                    <resource id="Magento_Backend::custom"/>
-                </resource>
-                <resource name="Magento_Backend::tools">
-                    <resource name="Magento_Backend::cache">
-                        <resource id="Magento_Backend::main_actions">
-                            <resource id="Magento_Backend::flush_cache_storage"/>
-                            <resource id="Magento_Backend::flush_magento_cache"/>
-                        </resource>
-                    </resource>
-                </resource>
-            </resource>
+            <resource id="Magento_Sales::sales_operation"/>
+            <resource id="Magento_Sales::sales_order"/>
+            <resource id="Magento_Sales::actions"/>
+            <resource id="Magento_Sales::create"/>
+            <resource id="Magento_Sales::actions_view"/>
+            <resource id="Magento_Sales::email"/>
+            <resource id="Magento_Sales::reorder"/>
+            <resource id="Magento_Sales::actions_edit"/>
+            <resource id="Magento_Sales::cancel"/>
+            <resource id="Magento_Sales::review_payment"/>
+            <resource id="Magento_Sales::capture"/>
+            <resource id="Magento_Sales::invoice"/>
+            <resource id="Magento_Sales::creditmemo"/>
+            <resource id="Magento_Sales::hold"/>
+            <resource id="Magento_Sales::unhold"/>
+            <resource id="Magento_Sales::ship"/>
+            <resource id="Magento_Sales::comment"/>
+            <resource id="Magento_Sales::emails"/>
+            <resource id="Magento_Sales::sales_invoice"/>
+            <resource id="Magento_Sales::shipment"/>
+            <resource id="Magento_Sales::sales_creditmemo"/>
+            <resource id="Magento_Sales::transactions"/>
+            <resource id="Magento_Sales::transactions_fetch"/>
+            <resource id="Magento_Catalog::catalog"/>
+            <resource id="Magento_Catalog::catalog_inventory"/>
+            <resource id="Magento_Catalog::products"/>
+            <resource id="Magento_Catalog::update_attributes"/>
+            <resource id="Magento_Catalog::edit_product_design"/>
+            <resource id="Magento_Catalog::categories"/>
+            <resource id="Magento_Catalog::edit_category_design"/>
+            <resource id="Magento_Customer::customer"/>
+            <resource id="Magento_Customer::manage"/>
+            <resource id="Magento_Customer::actions"/>
+            <resource id="Magento_Customer::delete"/>
+            <resource id="Magento_Customer::group"/>
+            <resource id="Magento_Backend::marketing"/>
+            <resource id="Magento_CatalogRule::promo"/>
+            <resource id="Magento_CatalogRule::promo_catalog"/>
+            <resource id="Magento_Backend::stores"/>
+            <resource id="Magento_Backend::stores_settings"/>
+            <resource id="Magento_Backend::store"/>
+            <resource id="Magento_Sales::order_statuses"/>
+            <resource id="Magento_InventoryApi::inventory"/>
+            <resource id="Magento_InventoryApi::source"/>
+            <resource id="Magento_InventoryApi::source_edit"/>
+            <resource id="Magento_InventoryApi::stock"/>
+            <resource id="Magento_InventoryApi::stock_edit"/>
+            <resource id="Magento_InventoryApi::stock_delete"/>
+            <resource id="Magento_InventoryApi::stock_source_link"/>
+            <resource id="Magento_InventoryInStorePickupApi::inStorePickup"/>
+            <resource id="Magento_InventoryInStorePickupApi::notify_orders_are_ready_for_pickup"/>
+            <resource id="Magento_InventorySalesApi::stock"/>
+            <resource id="Magento_Config::config"/>
+            <resource id="Magento_Catalog::config_catalog"/>
+            <resource id="Magento_Customer::config_customer"/>
+            <resource id="Magento_Tax::config_tax"/>
+            <resource id="Magento_Tax::manage_tax"/>
+            <resource id="Magento_CurrencySymbol::system_currency"/>
+            <resource id="Magento_CurrencySymbol::currency_rates"/>
+            <resource id="Magento_CurrencySymbol::symbols"/>
+            <resource id="Magento_Backend::stores_attributes"/>
+            <resource id="Magento_Catalog::attributes_attributes"/>
+            <resource id="Magento_Catalog::sets"/>
+            <resource id="Magento_Backend::stores_other_settings"/>
+            <resource id="Magento_Backend::system"/>
+            <resource id="Magento_Backend::extensions"/>
+            <resource id="Magento_Backend::local"/>
+            <resource id="Magento_Backend::custom"/>
+            <resource id="Magento_Backend::tools"/>
+            <resource id="Magento_Backend::cache"/>
+            <resource id="Magento_Backend::main_actions"/>
+            <resource id="Magento_Backend::flush_cache_storage"/>
+            <resource id="Magento_Backend::flush_magento_cache"/>
         </resources>
     </integration>
 </integrations>
