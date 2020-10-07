@@ -57,37 +57,37 @@
             <resource name="Magento_Backend::stores">
                 <resource name="Magento_Backend::stores_settings">
                     <resource name="Magento_Backend::store"/>
-                    <resource name="Magento_Sales::order_statuses"/>
-                    <resource name="Magento_InventoryApi::inventory">
-                        <resource name="Magento_InventoryApi::source">
-                            <resource name="Magento_InventoryApi::source_edit" />
-                        </resource>
-                        <resource name="Magento_InventoryApi::stock">
-                            <resource name="Magento_InventoryApi::stock_edit" />
-                            <resource name="Magento_InventoryApi::stock_delete" />
-                            <resource name="Magento_InventoryApi::stock_source_link" />
-                        </resource>
-                        <resource name="Magento_InventoryInStorePickupApi::inStorePickup">
-                            <resource name="Magento_InventoryInStorePickupApi::notify_orders_are_ready_for_pickup" />
-                        </resource>
-                        <resource name="Magento_InventorySalesApi::stock" />
-                    </resource>
                     <resource name="Magento_Config::config">
                         <resource name="Magento_Catalog::config_catalog"/>
                         <resource name="Magento_Customer::config_customer"/>
                         <resource name="Magento_Tax::config_tax"/>
                     </resource>
-                    <resource name="Magento_Tax::manage_tax"/>
-                    <resource name="Magento_CurrencySymbol::system_currency">
-                        <resource name="Magento_CurrencySymbol::currency_rates"/>
-                        <resource name="Magento_CurrencySymbol::symbols"/>
-                    </resource>
-                    <resource name="Magento_Backend::stores_attributes">
-                        <resource name="Magento_Catalog::attributes_attributes"/>
-                        <resource name="Magento_Catalog::sets"/>
-                    </resource>
-                    <resource name="Magento_Backend::stores_other_settings"/>
+                    <resource name="Magento_Sales::order_statuses"/>
                 </resource>
+                <resource name="Magento_InventoryApi::inventory">
+                    <resource name="Magento_InventoryApi::source">
+                        <resource name="Magento_InventoryApi::source_edit"/>
+                    </resource>
+                    <resource name="Magento_InventoryApi::stock">
+                        <resource name="Magento_InventoryApi::stock_edit"/>
+                        <resource name="Magento_InventoryApi::stock_delete"/>
+                        <resource name="Magento_InventoryApi::stock_source_link"/>
+                    </resource>
+                    <resource name="Magento_InventoryInStorePickupApi::inStorePickup">
+                        <resource name="Magento_InventoryInStorePickupApi::notify_orders_are_ready_for_pickup"/>
+                    </resource>
+                    <resource name="Magento_InventorySalesApi::stock"/>
+                </resource>
+                <resource name="Magento_Tax::manage_tax"/>
+                <resource name="Magento_CurrencySymbol::system_currency">
+                    <resource name="Magento_CurrencySymbol::currency_rates"/>
+                    <resource name="Magento_CurrencySymbol::symbols"/>
+                </resource>
+                <resource name="Magento_Backend::stores_attributes">
+                    <resource name="Magento_Catalog::attributes_attributes"/>
+                    <resource name="Magento_Catalog::sets"/>
+                </resource>
+                <resource name="Magento_Backend::stores_other_settings"/>
             </resource>
             <resource name="Magento_Backend::system">
                 <resource name="Magento_Backend::extensions">
