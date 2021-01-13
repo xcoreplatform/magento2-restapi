@@ -260,7 +260,8 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 $priceListItemTableName,
                 'created_at',
                 [
-                    'type'     => Table::TIMESTAMP_INIT,
+                    'type'     => Table::TYPE_TIMESTAMP,
+                    'default'  => Table::TIMESTAMP_INIT,
                     'nullable' => false,
                     'comment'  => 'Price List Item created'
                 ]
@@ -270,7 +271,8 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 $priceListItemTableName,
                 'updated_at',
                 [
-                    'type'     => Table::TIMESTAMP_INIT_UPDATE,
+                    'type'     => Table::TYPE_TIMESTAMP,
+                    'default'  => Table::TIMESTAMP_INIT_UPDATE,
                     'nullable' => false,
                     'comment'  => 'Price List Item updated'
                 ]
