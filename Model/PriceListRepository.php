@@ -237,6 +237,7 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
             $priceListItem->setStartDate($item->getStartDate());
             $priceListItem->setEndDate($item->getEndDate());
             $priceListItem->setProcessed(0);
+            $priceListItem->setErrorCount(0);
 
             $priceListItem->getResource()->save($priceListItem);
 

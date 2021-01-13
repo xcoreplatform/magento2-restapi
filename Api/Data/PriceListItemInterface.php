@@ -12,6 +12,9 @@ interface PriceListItemInterface
     const START_DATE    = 'start_date';
     const END_DATE      = 'end_date';
     const PROCESSED     = 'processed';
+    const ERROR_COUNT   = 'error_count';
+    const UPDATED_AT    = 'updated_at';
+    const CREATED_AT    = 'created_at';
 
     /**
      * Get id
@@ -132,4 +135,49 @@ interface PriceListItemInterface
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
      */
     public function setProcessed($int);
+
+    /**
+     * Get error_count
+     *
+     * @return string
+     */
+    public function getErrorCount();
+
+    /**
+     * Get error_count
+     *
+     * @param string $int
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     */
+    public function setErrorCount($error_count);
+
+    /**
+     * Get updated_at
+     *
+     * @return string
+     */
+    public function getUpdatedAt();
+
+    /**
+     * Set updated_at
+     *
+     * @param string $updated_at
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     */
+    public function setUpdatedAt($updated_at);
+
+    /**
+     * Get created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt();
+
+    /**
+     * Set created_at
+     *
+     * @param string $created_at
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+     */
+    public function setCreatedAt($created_at);
 }
