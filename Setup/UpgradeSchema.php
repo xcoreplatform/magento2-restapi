@@ -254,7 +254,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
         /**
          * Add some columns to price list item table
          */
-        if (version_compare($context->getVersion(), '2.5.1', '<')) {
+        if (version_compare($context->getVersion(), '2.5.0', '<')) {
             $priceListItemTableName = $setup->getTable('dealer4dealer_price_list_item');
             $setup->getConnection()->addColumn(
                 $priceListItemTableName,
@@ -265,9 +265,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'nullable' => false,
                     'comment'  => 'Price List Item created'
                 ]
-            );
-
-            $setup->getConnection()->addColumn(
+            )->addColumn(
                 $priceListItemTableName,
                 'updated_at',
                 [
@@ -276,9 +274,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'nullable' => false,
                     'comment'  => 'Price List Item updated'
                 ]
-            );
-
-            $setup->getConnection()->addColumn(
+            )->addColumn(
                 $priceListItemTableName,
                 'error_count',
                 [
