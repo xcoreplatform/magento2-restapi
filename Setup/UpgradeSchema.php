@@ -265,7 +265,9 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'nullable' => false,
                     'comment'  => 'Price List Item created'
                 ]
-            )->addColumn(
+            );
+
+            $setup->getConnection()->addColumn(
                 $priceListItemTableName,
                 'updated_at',
                 [
@@ -274,7 +276,9 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'nullable' => false,
                     'comment'  => 'Price List Item updated'
                 ]
-            )->addColumn(
+            );
+
+            $setup->getConnection()->addColumn(
                 $priceListItemTableName,
                 'error_count',
                 [
