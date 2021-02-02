@@ -29,13 +29,21 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 $connection->addColumn(
                     $tableName,
                     'xcore_your_ref',
-                    ['type' => Table::TYPE_TEXT, 'length' => 50, 'nullable' => true, 'default' => null, 'comment' => 'xCore Your Reference']
+                    [
+                        'type'     => Table::TYPE_TEXT,
+                        'length'   => 50,
+                        'nullable' => true,
+                        'default'  => null,
+                        'comment'  => 'xCore Your Reference'
+                    ]
                 );
             }
         }
 
         if (version_compare($context->getVersion(), '0.9.0', '<')) {
-            $table_dealer4dealer_price_list = $setup->getConnection()->newTable($setup->getTable('dealer4dealer_price_list'));
+            $table_dealer4dealer_price_list = $setup->getConnection()->newTable(
+                $setup->getTable('dealer4dealer_price_list')
+            );
 
             $table_dealer4dealer_price_list
                 ->addColumn(
@@ -82,7 +90,9 @@ class UpgradeSchema implements UpgradeSchemaInterface
 
             $setup->getConnection()->createTable($table_dealer4dealer_price_list);
 
-            $table_dealer4dealer_price_list_item = $setup->getConnection()->newTable($setup->getTable('dealer4dealer_price_list_item'));
+            $table_dealer4dealer_price_list_item = $setup->getConnection()->newTable(
+                $setup->getTable('dealer4dealer_price_list_item')
+            );
 
             $table_dealer4dealer_price_list_item
                 ->addColumn(
@@ -239,6 +249,45 @@ class UpgradeSchema implements UpgradeSchemaInterface
         if (version_compare($context->getVersion(), '2.1.3', '<')) {
             $priceListItemTableName = $setup->getTable('dealer4dealer_price_list_item');
             $setup->getConnection()->dropForeignKey($priceListItemTableName, 'FK_PRODUCT_SKU');
+        }
+
+        /**
+         * Add some columns to price list item table
+         */
+        if (version_compare($context->getVersion(), '2.5.0', '<')) {
+            $priceListItemTableName = $setup->getTable('dealer4dealer_price_list_item');
+            $setup->getConnection()->addColumn(
+                $priceListItemTableName,
+                'created_at',
+                [
+                    'type'     => Table::TYPE_TIMESTAMP,
+                    'default'  => Table::TIMESTAMP_INIT,
+                    'nullable' => false,
+                    'comment'  => 'Price List Item created'
+                ]
+            );
+
+            $setup->getConnection()->addColumn(
+                $priceListItemTableName,
+                'updated_at',
+                [
+                    'type'     => Table::TYPE_TIMESTAMP,
+                    'default'  => Table::TIMESTAMP_INIT_UPDATE,
+                    'nullable' => false,
+                    'comment'  => 'Price List Item updated'
+                ]
+            );
+
+            $setup->getConnection()->addColumn(
+                $priceListItemTableName,
+                'error_count',
+                [
+                    'type'     => Table::TYPE_INTEGER,
+                    'nullable' => false,
+                    'comment'  => 'Price List Item error count',
+                    'default'  => 0
+                ]
+            );
         }
 
         $installer->endSetup();

@@ -2,7 +2,8 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-class PriceListItem extends \Magento\Framework\Model\AbstractModel implements \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
+class PriceListItem extends \Magento\Framework\Model\AbstractModel implements
+    \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface
 {
     /**
      * @return void
@@ -138,5 +139,53 @@ class PriceListItem extends \Magento\Framework\Model\AbstractModel implements \D
     public function setProcessed($int)
     {
         return $this->setData(self::PROCESSED, $int);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getErrorCount()
+    {
+        return $this->getData(self::ERROR_COUNT);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setErrorCount($error_count)
+    {
+        return $this->setData(self::ERROR_COUNT, $error_count);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUpdatedAt()
+    {
+        return $this->getData(self::UPDATED_AT);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        return $this->setData(self::UPDATED_AT, $updated_at);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCreatedAt()
+    {
+        return $this->getData(self::CREATED_AT);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCreatedAt($created_at)
+    {
+        return $this->setData(self::CREATED_AT, $created_at);
     }
 }
