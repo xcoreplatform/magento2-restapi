@@ -15,11 +15,11 @@ class VatClass extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
             $this->_options = [
                 [
                     'value' => 'excluding',
-                    'label' => 'Excluding Tax'
+                    'label' => 'Without Tax'
                 ],
                 [
                     'value' => 'including',
-                    'label' => 'Including Tax'
+                    'label' => 'With Tax'
                 ]
             ];
         }
