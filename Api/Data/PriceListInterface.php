@@ -4,10 +4,11 @@ namespace Dealer4dealer\Xcore\Api\Data;
 
 interface PriceListInterface
 {
-    const ID    = 'id';
-    const GUID  = 'guid';
-    const CODE  = 'code';
-    const ITEMS = 'items';
+    const ID             = 'id';
+    const GUID           = 'guid';
+    const CODE           = 'code';
+    const ITEMS          = 'items';
+    const CUSTOMER_GROUP = 'customer_group';
 
     /**
      * Get id
@@ -64,4 +65,15 @@ interface PriceListInterface
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
      */
     public function setItems($items);
+
+    /**
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListCustomerGroupInterface[]
+     */
+    public function getCustomerGroup();
+
+    /**
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListCustomerGroupInterface[] $items
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
+     */
+    public function setCustomerGroup($customerGroup);
 }
