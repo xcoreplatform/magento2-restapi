@@ -129,9 +129,11 @@ class UpgradeData implements UpgradeDataInterface
                     $setup->getConnection()->update(
                         $setup->getTable('tax_class'),
                         [
-                            'class_id'   => $taxClass->getClassId(),
                             'class_name' => $row['new_class_name'],
                             'class_type' => ClassModel::TAX_CLASS_TYPE_CUSTOMER
+                        ],
+                        [
+                            'class_id' => $taxClass->getClassId(),
                         ]
                     );
                 }
