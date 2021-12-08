@@ -124,18 +124,11 @@ class UpgradeData implements UpgradeDataInterface
                 $taxClassCollection = $this->taxClassRepository->getList($searchCriteria);
 
                 foreach ($taxClassCollection->getItems() as $taxClass) {
-                    if(!str_contains($taxClass->getClassName(), $row['old_class_name'])) {
+                    if (!str_contains($taxClass->getClassName(), $row['old_class_name'])) {
                         continue;
                     }
-                    $setup->getConnection()->update(
-                        $setup->getTable('tax_class'),
-                        [
-                            'class_name' => $row['new_class_name']
-                        ],
-                        [
-                            'class_id' => $taxClass->getClassId(),
-                        ]
-                    );
+                    $taxClass->setClassName($row['new_class_name']);
+                    $this->taxClassRepository->save($taxClass);
                 }
             }
         }
