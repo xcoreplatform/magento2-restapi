@@ -104,7 +104,7 @@ class UpgradeData implements UpgradeDataInterface
             }
         }
 
-        if (version_compare($context->getVersion(), '2.5.2', '<')) {
+        if (version_compare($context->getVersion(), '2.6.0', '<')) {
             /**
              * Update tax classes
              */
