@@ -26,11 +26,10 @@ class UpgradeData implements UpgradeDataInterface
     public function upgrade(
         ModuleDataSetupInterface $setup,
         ModuleContextInterface $context
-    )
-    {
+    ) {
         $setup->startSetup();
 
-        if (version_compare($context->getVersion(), "0.9.0", "<")) {
+        if (version_compare($context->getVersion(), '0.9.0', '<')) {
             /** @var CustomerSetup $customerSetup */
             $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
 
@@ -48,9 +47,11 @@ class UpgradeData implements UpgradeDataInterface
             ]);
 
             $attribute = $customerSetup->getEavConfig()->getAttribute('customer', 'price_list')
-                                       ->addData(['used_in_forms' => [
-                                           'adminhtml_customer'
-                                       ]]);
+                                       ->addData([
+                                                     'used_in_forms' => [
+                                                         'adminhtml_customer'
+                                                     ]
+                                                 ]);
             $attribute->save();
 
             $customerSetup->addAttribute('customer', 'vat_class', [
@@ -67,9 +68,11 @@ class UpgradeData implements UpgradeDataInterface
             ]);
 
             $attribute = $customerSetup->getEavConfig()->getAttribute('customer', 'vat_class')
-                                       ->addData(['used_in_forms' => [
-                                           'adminhtml_customer'
-                                       ]]);
+                                       ->addData([
+                                                     'used_in_forms' => [
+                                                         'adminhtml_customer'
+                                                     ]
+                                                 ]);
             $attribute->save();
 
             /**
@@ -93,9 +96,40 @@ class UpgradeData implements UpgradeDataInterface
                 $taxClassCollection = $this->taxClassRepository->getList($searchCriteria);
 
                 // If the tax class already exists, do not add it again.
-                if ($taxClassCollection->getItems()) continue;
+                if ($taxClassCollection->getItems()) {
+                    continue;
+                }
 
                 $setup->getConnection()->insert($setup->getTable('tax_class'), $row);
+            }
+        }
+
+        if (version_compare($context->getVersion(), '2.6.0', '<')) {
+            /**
+             * Update tax classes
+             */
+            $data = [
+                [
+                    'old_class_name' => 'xCore Excluding VAT',
+                    'new_class_name' => 'xCore Without VAT',
+                ],
+                [
+                    'old_class_name' => 'xCore Including VAT',
+                    'new_class_name' => 'xCore With VAT',
+                ],
+            ];
+            foreach ($data as $row) {
+                // Find the tax class
+                $searchCriteria     = $this->searchCriteriaBuilder->create();
+                $taxClassCollection = $this->taxClassRepository->getList($searchCriteria);
+
+                foreach ($taxClassCollection->getItems() as $taxClass) {
+                    if (!str_contains($taxClass->getClassName(), $row['old_class_name'])) {
+                        continue;
+                    }
+                    $taxClass->setClassName($row['new_class_name']);
+                    $this->taxClassRepository->save($taxClass);
+                }
             }
         }
 
@@ -109,10 +143,11 @@ class UpgradeData implements UpgradeDataInterface
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param TaxClassRepository    $taxRepository
      */
-    public function __construct(CustomerSetupFactory $customerSetupFactory,
-                                SearchCriteriaBuilder $searchCriteriaBuilder,
-                                TaxClassRepository $taxRepository)
-    {
+    public function __construct(
+        CustomerSetupFactory $customerSetupFactory,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        TaxClassRepository $taxRepository
+    ) {
         $this->customerSetupFactory  = $customerSetupFactory;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->taxClassRepository    = $taxRepository;
