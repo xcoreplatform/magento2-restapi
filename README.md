@@ -1,5 +1,5 @@
 # Magento2 Rest API
-This module extends the rest api of Magento2 and is needed for the usage of the xCore. For more information or support see http://www.dealer4dealer.nl.
+This module extends the rest api of Magento2 and is needed for the usage of the xCore. For more information or support see https://xcore.nl.
 
 ## Installation
 
