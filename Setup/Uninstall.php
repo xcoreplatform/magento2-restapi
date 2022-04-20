@@ -15,6 +15,7 @@ use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\UninstallInterface;
 use Magento\Tax\Model\ClassModel;
 use Magento\Tax\Model\TaxClass\Repository as TaxClassRepository;
+use Magento\Framework\App\DeploymentConfig;
 
 class Uninstall implements UninstallInterface
 {
@@ -22,16 +23,18 @@ class Uninstall implements UninstallInterface
      * @var SearchCriteriaBuilder
      */
     protected $searchCriteriaBuilder;
-
     /**
      * @var TaxClassRepository
      */
     protected $taxClassRepository;
-
     /**
      * @var EavSetupFactory
      */
     protected $eavSetupFactory;
+    /**
+     * @var DeploymentConfig
+     */
+    private $deploymentConfig;
 
     /**
      * Constructor
@@ -39,15 +42,18 @@ class Uninstall implements UninstallInterface
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param TaxClassRepository    $taxRepository
      * @param EavSetupFactory       $eavSetupFactory
+     * @param DeploymentConfig      $deploymentConfig
      */
     public function __construct(
         SearchCriteriaBuilder $searchCriteriaBuilder,
         TaxClassRepository $taxRepository,
-        EavSetupFactory $eavSetupFactory
+        EavSetupFactory $eavSetupFactory,
+        DeploymentConfig $deploymentConfig
     ) {
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->taxClassRepository    = $taxRepository;
         $this->eavSetupFactory       = $eavSetupFactory;
+        $this->deploymentConfig      = $deploymentConfig;
     }
 
     /**
@@ -62,13 +68,14 @@ class Uninstall implements UninstallInterface
     public function uninstall(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $eavSetup = $this->eavSetupFactory->create();
+        $prefix   = $this->deploymentConfig->get('db/table_prefix');
 
         $setup->startSetup();
 
         $this->removeRefFromSalesShipment($setup);
 
-        $this->dropTable($setup, 'dealer4dealer_price_list_item');
-        $this->dropTable($setup, 'dealer4dealer_price_list');
+        $this->dropTable($setup, $prefix . 'dealer4dealer_price_list_item');
+        $this->dropTable($setup, $prefix . 'dealer4dealer_price_list');
 
         $this->dropCustomerAttribute($eavSetup, 'vat_class');
         $this->dropCustomerAttribute($eavSetup, 'price_list');
@@ -82,7 +89,7 @@ class Uninstall implements UninstallInterface
      *
      * @return void
      */
-    protected function dropTable(SchemaSetupInterface $setup, string $table): void
+    protected function dropTable(SchemaSetupInterface $setup, string $table):void
     {
         $tableName = $setup->getConnection()->getTableName($table);
 
@@ -96,9 +103,10 @@ class Uninstall implements UninstallInterface
      *
      * @return void
      */
-    protected function removeRefFromSalesShipment(SchemaSetupInterface $setup): void
+    protected function removeRefFromSalesShipment(SchemaSetupInterface $setup):void
     {
-        $tableName = $setup->getConnection()->getTableName('sales_shipment');
+        $prefix    = $this->deploymentConfig->get('db/table_prefix');
+        $tableName = $setup->getConnection()->getTableName($prefix . 'sales_shipment');
 
         if ($setup->getConnection()->isTableExists($tableName)) {
             $setup->getConnection()->dropColumn($tableName, 'xcore_your_ref');
@@ -111,7 +119,7 @@ class Uninstall implements UninstallInterface
      *
      * @return void
      */
-    protected function dropCustomerAttribute(EavSetup $eavSetup, string $attribute): void
+    protected function dropCustomerAttribute(EavSetup $eavSetup, string $attribute):void
     {
         $eavSetup->removeAttribute(Customer::ENTITY, $attribute);
     }
@@ -122,7 +130,7 @@ class Uninstall implements UninstallInterface
      * @throws InputException
      * @throws NoSuchEntityException
      */
-    protected function removeTaxClasses(): void
+    protected function removeTaxClasses():void
     {
         $data = [
             [
