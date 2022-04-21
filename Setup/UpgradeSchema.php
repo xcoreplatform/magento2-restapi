@@ -6,20 +6,9 @@ use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\UpgradeSchemaInterface;
-use Magento\Framework\App\DeploymentConfig;
 
 class UpgradeSchema implements UpgradeSchemaInterface
 {
-    /**
-     * @var DeploymentConfig
-     */
-    private $deploymentConfig;
-
-    public function __construct(DeploymentConfig $deploymentConfig)
-    {
-        $this->deploymentConfig = $deploymentConfig;
-    }
-
     /**
      * upgrade tables
      *
@@ -31,11 +20,10 @@ class UpgradeSchema implements UpgradeSchemaInterface
     public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $installer = $setup;
-        $prefix    = $this->deploymentConfig->get('db/table_prefix');
         $installer->startSetup();
 
         if (version_compare($context->getVersion(), '0.7.0', '<')) {
-            $tableName = $installer->getConnection()->getTableName($prefix . 'sales_shipment');
+            $tableName = $installer->getConnection()->getTableName('sales_shipment');
             if ($setup->getConnection()->isTableExists($tableName) == true) {
                 $connection = $setup->getConnection();
                 $connection->addColumn(
@@ -46,7 +34,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                         'length'   => 50,
                         'nullable' => true,
                         'default'  => null,
-                        'comment'  => 'xCore Your Reference',
+                        'comment'  => 'xCore Your Reference'
                     ]
                 );
             }
@@ -54,7 +42,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 
         if (version_compare($context->getVersion(), '0.9.0', '<')) {
             $table_dealer4dealer_price_list = $setup->getConnection()->newTable(
-                $setup->getTable($prefix . 'dealer4dealer_price_list')
+                $setup->getTable('dealer4dealer_price_list')
             );
 
             $table_dealer4dealer_price_list
@@ -67,7 +55,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                         'identity'       => true,
                         'auto_increment' => true,
                         'primary'        => true,
-                        'unsigned'       => true,
+                        'unsigned'       => true
                     ],
                     'Price List ID'
                 )
@@ -76,7 +64,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     Table::TYPE_TEXT,
                     36,
                     [
-                        'nullable' => false,
+                        'nullable' => false
                     ],
                     'Price List GUID'
                 )
@@ -85,17 +73,17 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     Table::TYPE_TEXT,
                     null,
                     [
-                        'nullable' => false,
+                        'nullable' => false
                     ],
                     'Price List Code'
                 )
                 ->addIndex(
                     'IDX_D4D_PRICE_LIST_GUID',
                     [
-                        'guid',
+                        'guid'
                     ],
                     [
-                        'type' => 'UNIQUE',
+                        'type' => 'UNIQUE'
                     ]
                 )
                 ->setComment('xCore Price List Table');
@@ -103,7 +91,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $setup->getConnection()->createTable($table_dealer4dealer_price_list);
 
             $table_dealer4dealer_price_list_item = $setup->getConnection()->newTable(
-                $setup->getTable($prefix . 'dealer4dealer_price_list_item')
+                $setup->getTable('dealer4dealer_price_list_item')
             );
 
             $table_dealer4dealer_price_list_item
@@ -116,7 +104,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                         'identity'       => true,
                         'auto_increment' => true,
                         'primary'        => true,
-                        'unsigned'       => true,
+                        'unsigned'       => true
                     ],
                     'Price List Item ID'
                 )
@@ -126,7 +114,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     10,
                     [
                         'nullable' => false,
-                        'unsigned' => true,
+                        'unsigned' => true
                     ],
                     'Price List ID'
                 )
@@ -145,7 +133,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                         'nullable'  => false,
                         'scale'     => 4,
                         'precision' => 12,
-                        'default'   => 1.0000,
+                        'default'   => 1.0000
                     ],
                     'Price List Item Quantity'
                 )
@@ -157,7 +145,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                         'nullable'  => false,
                         'scale'     => 4,
                         'precision' => 12,
-                        'default'   => 0.0000,
+                        'default'   => 0.0000
                     ],
                     'Price List Item Price'
                 )
@@ -180,7 +168,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     Table::TYPE_BOOLEAN,
                     null,
                     [
-                        'default' => 0,
+                        'default' => 0
                     ],
                     'Price List Item End Date'
                 )
@@ -189,10 +177,10 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     [
                         'price_list_id',
                         'product_sku',
-                        'qty',
+                        'qty'
                     ],
                     [
-                        'type' => 'UNIQUE',
+                        'type' => 'UNIQUE'
                     ]
                 )
                 ->addForeignKey(
@@ -218,7 +206,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
          * Remove the old custom attribute table.
          */
         if (version_compare($context->getVersion(), '2.0.2', '<')) {
-            $tableName = $prefix . 'dealer4dealer_xcore_custom_attribute';
+            $tableName = 'dealer4dealer_xcore_custom_attribute';
 
             if ($setup->getConnection()->isTableExists($tableName) == true) {
                 $setup->getConnection()->dropTable($tableName);
@@ -229,9 +217,9 @@ class UpgradeSchema implements UpgradeSchemaInterface
          * Remake indexes
          */
         if (version_compare($context->getVersion(), '2.1.1', '<')) {
-            $priceListItemTableName = $setup->getTable($prefix . 'dealer4dealer_price_list_item');
-            $priceListTableName     = $setup->getTable($prefix . 'dealer4dealer_price_list');
-            $productTableName       = $setup->getTable($prefix . 'catalog_product_entity');
+            $priceListItemTableName = $setup->getTable('dealer4dealer_price_list_item');
+            $priceListTableName     = $setup->getTable('dealer4dealer_price_list');
+            $productTableName       = $setup->getTable('catalog_product_entity');
 
             $setup->getConnection()->dropForeignKey($priceListItemTableName, 'FK_PRICE_LIST_ID');
             $setup->getConnection()->dropForeignKey($priceListItemTableName, 'FK_PRODUCT_SKU');
@@ -259,7 +247,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
          * Remove fk from sku due to error on sku changes
          */
         if (version_compare($context->getVersion(), '2.1.3', '<')) {
-            $priceListItemTableName = $setup->getTable($prefix . 'dealer4dealer_price_list_item');
+            $priceListItemTableName = $setup->getTable('dealer4dealer_price_list_item');
             $setup->getConnection()->dropForeignKey($priceListItemTableName, 'FK_PRODUCT_SKU');
         }
 
@@ -267,7 +255,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
          * Add some columns to price list item table
          */
         if (version_compare($context->getVersion(), '2.5.0', '<')) {
-            $priceListItemTableName = $setup->getTable($prefix . 'dealer4dealer_price_list_item');
+            $priceListItemTableName = $setup->getTable('dealer4dealer_price_list_item');
             $setup->getConnection()->addColumn(
                 $priceListItemTableName,
                 'created_at',
@@ -275,7 +263,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'type'     => Table::TYPE_TIMESTAMP,
                     'default'  => Table::TIMESTAMP_INIT,
                     'nullable' => false,
-                    'comment'  => 'Price List Item created',
+                    'comment'  => 'Price List Item created'
                 ]
             );
 
@@ -286,7 +274,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'type'     => Table::TYPE_TIMESTAMP,
                     'default'  => Table::TIMESTAMP_INIT_UPDATE,
                     'nullable' => false,
-                    'comment'  => 'Price List Item updated',
+                    'comment'  => 'Price List Item updated'
                 ]
             );
 
@@ -297,7 +285,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'type'     => Table::TYPE_INTEGER,
                     'nullable' => false,
                     'comment'  => 'Price List Item error count',
-                    'default'  => 0,
+                    'default'  => 0
                 ]
             );
         }
