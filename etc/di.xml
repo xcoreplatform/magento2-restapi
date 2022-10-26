@@ -4,6 +4,7 @@
 	<preference for="Dealer4dealer\Xcore\Api\OrderStateRepositoryInterface" type="Dealer4dealer\Xcore\Model\OrderStateRepository" />
 	<preference for="Dealer4dealer\Xcore\Api\OrderStatusRepositoryInterface" type="Dealer4dealer\Xcore\Model\OrderStatusRepository" />
 	<preference for="Dealer4dealer\Xcore\Api\PaymentMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\PaymentMethodRepository" />
+	<preference for="Dealer4dealer\Xcore\Api\PriceListItemGroupRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListItemGroupRepository"/>
 	<preference for="Dealer4dealer\Xcore\Api\PriceListItemRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListItemRepository"/>
 	<preference for="Dealer4dealer\Xcore\Api\PriceListRepositoryInterface" type="Dealer4dealer\Xcore\Model\PriceListRepository"/>
 	<preference for="Dealer4dealer\Xcore\Api\ShippingMethodRepositoryInterface" type="Dealer4dealer\Xcore\Model\ShippingMethodRepository"/>
@@ -14,6 +15,7 @@
 	<preference for="Dealer4dealer\Xcore\Api\Data\OrderStateInterface" type="Dealer4dealer\Xcore\Model\OrderState"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\OrderStatusInterface" type="Dealer4dealer\Xcore\Model\OrderStatus"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListInterface" type="Dealer4dealer\Xcore\Model\PriceList"/>
+	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface" type="Dealer4dealer\Xcore\Model\PriceListItemGroup"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListItemInterface" type="Dealer4dealer\Xcore\Model\PriceListItem"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListItemSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
