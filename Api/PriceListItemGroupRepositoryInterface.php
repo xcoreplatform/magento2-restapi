@@ -26,7 +26,7 @@ interface PriceListItemGroupRepositoryInterface
      * Retrieve price_list_item_group matching the specified criteria.
      *
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemSearchResultsInterface
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupSearchResultsInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
