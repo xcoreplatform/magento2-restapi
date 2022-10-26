@@ -94,7 +94,7 @@ class PriceListItemGroupRepository implements \Dealer4dealer\Xcore\Api\PriceList
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
         $searchResults->setTotalCount($collection->getSize());
-        $searchResults->setItemGroups($collection->getColumnValues('item_group_code'));
+        $searchResults->setItemGroups($collection->getItemGroups());
         return $searchResults;
     }
 
