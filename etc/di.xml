@@ -19,5 +19,6 @@
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListItemInterface" type="Dealer4dealer\Xcore\Model\PriceListItem"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListItemSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListItemGroupSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\VersionInterface" type="Dealer4dealer\Xcore\Model\Version"/>
 </config>
