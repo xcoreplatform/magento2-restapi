@@ -402,6 +402,8 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'id',
                     Table::ACTION_CASCADE
                 );
+
+            $setup->getConnection()->createTable($table_dealer4dealer_price_list_item_group);
         }
 
         $installer->endSetup();
