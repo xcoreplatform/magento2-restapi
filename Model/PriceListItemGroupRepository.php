@@ -10,23 +10,22 @@ class PriceListItemGroupRepository implements \Dealer4dealer\Xcore\Api\PriceList
     protected $searchCriteriaBuilder;
 
     /**
-     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterfaceFactory|\Magento\Framework\App\Config\BaseFactory                       $priceListItemGroupFactory
-     * @param \Dealer4dealer\Xcore\Model\ResourceModel\PriceListItemGroup\CollectionFactory|\Magento\Framework\App\Config\BaseFactory             $priceListItemGroupCollectionFactory
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterfaceFactory|\Magento\Framework\App\Config\BaseFactory              $priceListItemGroupFactory
+     * @param \Dealer4dealer\Xcore\Model\ResourceModel\PriceListItemGroup\CollectionFactory|\Magento\Framework\App\Config\BaseFactory $priceListItemGroupCollectionFactory
      * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupSearchResultsInterfaceFactory|\Magento\Framework\App\Config\BaseFactory $searchResultsFactory
-     *
-     * @param \Magento\Framework\Api\SearchCriteriaBuilder                                  $searchCriteriaBuilder
+     * @param \Magento\Framework\Api\SearchCriteriaBuilder                                                                            $searchCriteriaBuilder
      */
     public function __construct(
         \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterfaceFactory $priceListItemGroupFactory,
         \Dealer4dealer\Xcore\Model\ResourceModel\PriceListItemGroup\CollectionFactory $priceListItemGroupCollectionFactory,
         \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupSearchResultsInterfaceFactory $searchResultsFactory,
+
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
-    )
-    {
-        $this->priceListItemFactory           = $priceListItemGroupFactory;
-        $this->priceListItemCollectionFactory = $priceListItemGroupCollectionFactory;
-        $this->searchResultsFactory           = $searchResultsFactory;
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+    ) {
+        $this->priceListItemGroupFactory           = $priceListItemGroupFactory;
+        $this->priceListItemGroupCollectionFactory = $priceListItemGroupCollectionFactory;
+        $this->searchResultsFactory                = $searchResultsFactory;
+        $this->searchCriteriaBuilder               = $searchCriteriaBuilder;
     }
 
     /**
@@ -38,7 +37,9 @@ class PriceListItemGroupRepository implements \Dealer4dealer\Xcore\Api\PriceList
             /** @var PriceListItemGroup $priceListItemGroup */
             $priceListItemGroup->getResource()->save($priceListItemGroup);
         } catch (\Exception $exception) {
-            throw new \Magento\Framework\Exception\CouldNotSaveException(__(sprintf('Could not save the Price List Item Group: %s', $exception->getMessage())));
+            throw new \Magento\Framework\Exception\CouldNotSaveException(
+                __(sprintf('Could not save the Price List Item Group: %s', $exception->getMessage()))
+            );
         }
         return $priceListItemGroup;
     }
@@ -52,7 +53,9 @@ class PriceListItemGroupRepository implements \Dealer4dealer\Xcore\Api\PriceList
         $priceListItemGroup = $this->priceListItemGroupFactory->create();
         $priceListItemGroup->getResource()->load($priceListItemGroup, $priceListItemGroupId);
         if (!$priceListItemGroup->getId()) {
-            throw new \Magento\Framework\Exception\NoSuchEntityException(__(sprintf('Price List Item Group with id %s does not exist', $priceListItemGroupId)));
+            throw new \Magento\Framework\Exception\NoSuchEntityException(
+                __(sprintf('Price List Item Group with id %s does not exist', $priceListItemGroupId))
+            );
         }
         return $priceListItemGroup;
     }
@@ -104,7 +107,9 @@ class PriceListItemGroupRepository implements \Dealer4dealer\Xcore\Api\PriceList
             /** @var PriceListItemGroup $priceListItemGroup */
             $priceListItemGroup->getResource()->delete($priceListItemGroup);
         } catch (\Exception $exception) {
-            throw new \Magento\Framework\Exception\CouldNotDeleteException(__(sprintf('Could not delete the price_list_item_group: %s', $exception->getMessage())));
+            throw new \Magento\Framework\Exception\CouldNotDeleteException(
+                __(sprintf('Could not delete the price_list_item_group: %s', $exception->getMessage()))
+            );
         }
         return true;
     }
@@ -123,19 +128,22 @@ class PriceListItemGroupRepository implements \Dealer4dealer\Xcore\Api\PriceList
      * @param      $itemGroupCode
      * @param      $qty
      * @param null $priceListId
+     *
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface|\Magento\Framework\App\Config\Base
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getUniqueRow($itemGroupCode, $qty, $priceListId = null)
     {
-        $searchCriteria = $this->searchCriteriaBuilder->setFilterGroups([])
-                                                      ->addFilter('price_list_id', $priceListId)
-                                                      ->addFilter('item_group_code', $itemGroupCode)
-                                                      ->addFilter('qty', $qty)
-                                                      ->create();
+        $searchCriteria      = $this->searchCriteriaBuilder->setFilterGroups([])
+                                                           ->addFilter('price_list_id', $priceListId)
+                                                           ->addFilter('item_group_code', $itemGroupCode)
+                                                           ->addFilter('qty', $qty)
+                                                           ->create();
         $itemGroupCollection = $this->getList($searchCriteria);
 
-        foreach ($itemGroupCollection->getItemGroups() as $itemGroup) return $itemGroup;
+        foreach ($itemGroupCollection->getItemGroups() as $itemGroup) {
+            return $itemGroup;
+        }
 
         return $this->priceListItemGroupFactory->create();
     }
@@ -144,6 +152,7 @@ class PriceListItemGroupRepository implements \Dealer4dealer\Xcore\Api\PriceList
      * Returns the price list item groups that belong to a specific price list.
      *
      * @param int $priceListId
+     *
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface[]
      * @throws \Magento\Framework\Exception\LocalizedException
      */
