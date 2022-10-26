@@ -291,7 +291,7 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
 
             // Set the guid and code (overwrite code if previous price list existed)
             $priceListItemGroup->setPriceListId($priceListId);
-            $priceListItemGroup->setItemGoupCode($itemGroup->getItemGroupCode());
+            $priceListItemGroup->setItemGroupCode($itemGroup->getItemGroupCode());
             $priceListItemGroup->setQty($itemGroup->getQty());
             $priceListItemGroup->setDiscount($itemGroup->getDiscount());
             $priceListItemGroup->setStartDate($itemGroup->getStartDate());

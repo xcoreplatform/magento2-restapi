@@ -56,7 +56,7 @@ class PriceListItemGroup extends \Magento\Framework\Model\AbstractModel implemen
     /**
      * {@inheritdoc}
      */
-    public function setItemGoupCode($item_group_code)
+    public function setItemGroupCode($item_group_code)
     {
         return $this->setData(self::ITEM_GROUP_CODE, $item_group_code);
     }
