@@ -396,7 +396,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     ]
                 )
                 ->addForeignKey(
-                    'FK_PRICE_LIST_ID',
+                    'FK_ITEM_GROUP_PRICE_LIST_ID',
                     'price_list_id',
                     'dealer4dealer_price_list',
                     'id',
