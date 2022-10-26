@@ -62,7 +62,7 @@ interface PriceListItemGroupInterface
      *
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface
      */
-    public function setItemGoupCode($item_group_code);
+    public function setItemGroupCode($item_group_code);
 
     /**
      * Get qty
