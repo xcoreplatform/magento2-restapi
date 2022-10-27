@@ -6,6 +6,8 @@ class PriceList extends \Magento\Framework\Model\AbstractModel implements \Deale
 {
     /** @var \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[] */
     protected $items;
+    /** @var \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface[] */
+    protected $item_groups;
 
     /**
      * @return void

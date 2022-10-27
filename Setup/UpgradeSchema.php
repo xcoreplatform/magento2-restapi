@@ -345,6 +345,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     null,
                     [
                         'nullable' => false,
+                        'scale'     => 4,
                     ]
                 )
                 ->addColumn(
