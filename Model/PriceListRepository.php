@@ -281,7 +281,7 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
      * @param int                                                       $priceListId
      * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface $itemGroup
      *
-     * @return PriceListItem
+     * @return PriceListItemGroup
      */
     private function getOrSavePriceListItemGroup($priceListId, PriceListItemGroupInterface $itemGroup)
     {

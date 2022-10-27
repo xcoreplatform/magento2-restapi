@@ -9,13 +9,13 @@ interface PriceListItemGroupSearchResultsInterface extends \Magento\Framework\Ap
      *
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface[]
      */
-    public function getItemGroups();
+    public function getItems();
 
     /**
      * Set price_list_item_group list.
      *
-     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface[] $itemGroups
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface[] $items
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupSearchResultsInterface
      */
-    public function setItemGroups(array $itemGroups);
+    public function setItems(array $items);
 }
