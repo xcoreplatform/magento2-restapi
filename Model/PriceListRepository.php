@@ -209,9 +209,9 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
             /** @var \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface[] $itemGroups */
             $itemGroups = [];
 
-            /** @var \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface $itemGroup */
-            foreach ($price_list->getItemGroups() as $itemGroup) {
-                $addedItem = $this->getOrSavePriceListItemGroup($priceList->getId(), $itemGroup);
+            /** @var \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface $priceListItemGroup */
+            foreach ($price_list->getItemGroups() as $priceListItemGroup) {
+                $addedItem = $this->getOrSavePriceListItemGroup($priceList->getId(), $priceListItemGroup);
                 if ($addedItem) {
                     $itemGroups[] = $addedItem;
                 }
@@ -291,6 +291,8 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
                 $priceListItemGroup->getQty(),
                 $priceListId
             );
+
+            $this->logger->error(sprintf('itemgroup %s', $priceListItemGroup->getItemGroup()));
 
             // Set the guid and code (overwrite code if previous price list existed)
             $priceListItemGroupNew->setPriceListId($priceListId);

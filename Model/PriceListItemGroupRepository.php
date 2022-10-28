@@ -19,7 +19,6 @@ class PriceListItemGroupRepository implements \Dealer4dealer\Xcore\Api\PriceList
         \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterfaceFactory $priceListItemGroupFactory,
         \Dealer4dealer\Xcore\Model\ResourceModel\PriceListItemGroup\CollectionFactory $priceListItemGroupCollectionFactory,
         \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupSearchResultsInterfaceFactory $searchResultsFactory,
-
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
         $this->priceListItemGroupFactory           = $priceListItemGroupFactory;
