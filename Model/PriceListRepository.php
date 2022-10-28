@@ -292,8 +292,6 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
                 $priceListId
             );
 
-            $this->logger->error(sprintf('itemgroup %s', $priceListItemGroup->getItemGroup()));
-
             // Set the guid and code (overwrite code if previous price list existed)
             $priceListItemGroupNew->setPriceListId($priceListId);
             $priceListItemGroupNew->setItemGroup($priceListItemGroup->getItemGroup());
