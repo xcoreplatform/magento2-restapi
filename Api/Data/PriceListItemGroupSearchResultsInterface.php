@@ -15,6 +15,7 @@ interface PriceListItemGroupSearchResultsInterface extends \Magento\Framework\Ap
      * Set price_list_item_group list.
      *
      * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface[] $items
+     *
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupSearchResultsInterface
      */
     public function setItems(array $items);

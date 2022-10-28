@@ -4,17 +4,17 @@ namespace Dealer4dealer\Xcore\Api\Data;
 
 interface PriceListItemGroupInterface
 {
-    const ID              = 'id';
-    const PRICE_LIST_ID   = 'price_list_id';
-    const ITEM_GROUP_CODE = 'item_group_code';
-    const QTY             = 'qty';
-    const DISCOUNT        = 'discount';
-    const START_DATE      = 'start_date';
-    const END_DATE        = 'end_date';
-    const PROCESSED       = 'processed';
-    const CREATED_AT      = 'created_at';
-    const UPDATED_AT      = 'updated_at';
-    const ERROR_COUNT     = 'error_count';
+    const ID            = 'id';
+    const PRICE_LIST_ID = 'price_list_id';
+    const ITEM_GROUP    = 'item_group';
+    const QTY           = 'qty';
+    const DISCOUNT      = 'discount';
+    const START_DATE    = 'start_date';
+    const END_DATE      = 'end_date';
+    const PROCESSED     = 'processed';
+    const CREATED_AT    = 'created_at';
+    const UPDATED_AT    = 'updated_at';
+    const ERROR_COUNT   = 'error_count';
 
     /**
      * Get id
@@ -49,20 +49,20 @@ interface PriceListItemGroupInterface
     public function setPriceListId($price_list_id);
 
     /**
-     * Get item_group_code
+     * Get item_group
      *
      * @return string|null
      */
-    public function getItemGroupCode();
+    public function getItemGroup();
 
     /**
-     * Set item_group_code
+     * Set item_group
      *
-     * @param string $item_group_code
+     * @param string $item_group
      *
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface
      */
-    public function setItemGroupCode($item_group_code);
+    public function setItemGroup($item_group);
 
     /**
      * Get qty

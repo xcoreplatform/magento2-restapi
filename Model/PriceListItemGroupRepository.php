@@ -132,11 +132,11 @@ class PriceListItemGroupRepository implements \Dealer4dealer\Xcore\Api\PriceList
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface|\Magento\Framework\App\Config\Base
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function getUniqueRow($itemGroupCode, $qty, $priceListId = null)
+    public function getUniqueRow($itemGroup, $qty, $priceListId = null)
     {
         $searchCriteria      = $this->searchCriteriaBuilder->setFilterGroups([])
                                                            ->addFilter('price_list_id', $priceListId)
-                                                           ->addFilter('item_group_code', $itemGroupCode)
+                                                           ->addFilter('item_group', $itemGroup)
                                                            ->addFilter('qty', $qty)
                                                            ->create();
         $itemGroupCollection = $this->getList($searchCriteria);

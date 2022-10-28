@@ -48,17 +48,17 @@ class PriceListItemGroup extends \Magento\Framework\Model\AbstractModel implemen
     /**
      * {@inheritdoc}
      */
-    public function getItemGroupCode()
+    public function getItemGroup()
     {
-        return $this->getData(self::ITEM_GROUP_CODE);
+        return $this->getData(self::ITEM_GROUP);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setItemGroupCode($item_group_code)
+    public function setItemGroup($item_group)
     {
-        return $this->setData(self::ITEM_GROUP_CODE, $item_group_code);
+        return $this->setData(self::ITEM_GROUP, $item_group);
     }
 
     /**

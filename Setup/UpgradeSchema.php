@@ -320,9 +320,9 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'Price List ID'
                 )
                 ->addColumn(
-                    'item_group_code',
-                    Table::TYPE_TEXT,
-                    null,
+                    'item_group',
+                    Table::TYPE_INTEGER,
+                    10,
                     [
                         'nullable' => false,
                     ]

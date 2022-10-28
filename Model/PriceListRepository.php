@@ -2,8 +2,6 @@
 
 namespace Dealer4dealer\Xcore\Model;
 
-use Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface;
-
 class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositoryInterface
 {
     protected $logger;
@@ -141,8 +139,6 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
 
         /** @var \Dealer4dealer\Xcore\Api\Data\PriceListInterface $priceList */
         foreach ($collection->getItems() as $priceList) {
-//            $priceList->setItems($this->priceListItemRepository->getByPriceListId($priceList->getId()));
-
             $result[] = $priceList;
         }
 
@@ -253,7 +249,7 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
      *
      * @return PriceListItem
      */
-    private function getOrSavePriceListItem($priceListId, \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $item)
+    private function getOrSavePriceListItem(int $priceListId, \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface $item)
     {
         try {
             /** @var PriceListItem $priceListItem */
@@ -279,31 +275,38 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
 
     /**
      * @param int                                                       $priceListId
-     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface $itemGroup
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface $priceListItemGroup
      *
-     * @return PriceListItemGroup
+     * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface|null
      */
-    private function getOrSavePriceListItemGroup($priceListId, PriceListItemGroupInterface $itemGroup)
-    {
+    private function getOrSavePriceListItemGroup(
+        int $priceListId,
+        \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface $priceListItemGroup
+    ):?\Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface {
+        $priceListItemGroupNew = null;
         try {
             /** @var PriceListItemGroup $priceListItemGroup */
-            $priceListItemGroup = $this->priceListItemGroupRepository->getUniqueRow($itemGroup->getItemGroupCode(), $itemGroup->getQty(), $priceListId);
+            $priceListItemGroupNew = $this->priceListItemGroupRepository->getUniqueRow(
+                $priceListItemGroup->getItemGroup(),
+                $priceListItemGroup->getQty(),
+                $priceListId
+            );
 
             // Set the guid and code (overwrite code if previous price list existed)
-            $priceListItemGroup->setPriceListId($priceListId);
-            $priceListItemGroup->setItemGroupCode($itemGroup->getItemGroupCode());
-            $priceListItemGroup->setQty($itemGroup->getQty());
-            $priceListItemGroup->setDiscount($itemGroup->getDiscount());
-            $priceListItemGroup->setStartDate($itemGroup->getStartDate());
-            $priceListItemGroup->setEndDate($itemGroup->getEndDate());
-            $priceListItemGroup->setProcessed(0);
-            $priceListItemGroup->setErrorCount(0);
+            $priceListItemGroupNew->setPriceListId($priceListId);
+            $priceListItemGroupNew->setItemGroup($priceListItemGroup->getItemGroup());
+            $priceListItemGroupNew->setQty($priceListItemGroup->getQty());
+            $priceListItemGroupNew->setDiscount($priceListItemGroup->getDiscount());
+            $priceListItemGroupNew->setStartDate($priceListItemGroup->getStartDate());
+            $priceListItemGroupNew->setEndDate($priceListItemGroup->getEndDate());
+            $priceListItemGroupNew->setProcessed(0);
+            $priceListItemGroupNew->setErrorCount(0);
 
-            $priceListItemGroup->getResource()->save($priceListItemGroup);
-
-            return $priceListItemGroup;
+            $priceListItemGroupNew->getResource()->save($priceListItemGroupNew);
         } catch (\Exception $exception) {
             $this->logger->error(sprintf('Failed to get or save price list item: %s', $exception->getMessage()));
         }
+
+        return $priceListItemGroupNew;
     }
 }
