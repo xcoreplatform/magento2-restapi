@@ -160,6 +160,6 @@ class PriceListItemGroupRepository implements \Dealer4dealer\Xcore\Api\PriceList
                                                       ->create();
         $itemCollection = $this->getList($searchCriteria);
 
-        return $itemCollection->getItemGroups();
+        return $itemCollection->getItems();
     }
 }
