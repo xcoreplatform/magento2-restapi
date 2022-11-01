@@ -6,6 +6,8 @@ class PriceList extends \Magento\Framework\Model\AbstractModel implements \Deale
 {
     /** @var \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[] */
     protected $items;
+    /** @var \Dealer4dealer\Xcore\Api\Data\PriceListItemGroupInterface[] */
+    protected $item_groups;
 
     /**
      * @return void
@@ -77,5 +79,15 @@ class PriceList extends \Magento\Framework\Model\AbstractModel implements \Deale
     public function setItems($items)
     {
         return $this->setData(self::ITEMS, $items);
+    }
+
+    public function getItemGroups()
+    {
+        return $this->getData(self::ITEM_GROUPS);
+    }
+
+    public function setItemGroups($item_groups)
+    {
+        return $this->setData(self::ITEM_GROUPS, $item_groups);
     }
 }

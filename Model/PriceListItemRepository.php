@@ -10,23 +10,21 @@ class PriceListItemRepository implements \Dealer4dealer\Xcore\Api\PriceListItemR
     protected $searchCriteriaBuilder;
 
     /**
-     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemInterfaceFactory|\Magento\Framework\App\Config\BaseFactory                       $priceListItemFactory
-     * @param \Dealer4dealer\Xcore\Model\ResourceModel\PriceListItem\CollectionFactory|\Magento\Framework\App\Config\BaseFactory             $priceListItemCollectionFactory
+     * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemInterfaceFactory|\Magento\Framework\App\Config\BaseFactory              $priceListItemFactory
+     * @param \Dealer4dealer\Xcore\Model\ResourceModel\PriceListItem\CollectionFactory|\Magento\Framework\App\Config\BaseFactory $priceListItemCollectionFactory
      * @param \Dealer4dealer\Xcore\Api\Data\PriceListItemSearchResultsInterfaceFactory|\Magento\Framework\App\Config\BaseFactory $searchResultsFactory
-     *
-     * @param \Magento\Framework\Api\SearchCriteriaBuilder                                  $searchCriteriaBuilder
+     * @param \Magento\Framework\Api\SearchCriteriaBuilder                                                                       $searchCriteriaBuilder
      */
     public function __construct(
         \Dealer4dealer\Xcore\Api\Data\PriceListItemInterfaceFactory $priceListItemFactory,
         \Dealer4dealer\Xcore\Model\ResourceModel\PriceListItem\CollectionFactory $priceListItemCollectionFactory,
         \Dealer4dealer\Xcore\Api\Data\PriceListItemSearchResultsInterfaceFactory $searchResultsFactory,
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
-    )
-    {
+    ) {
         $this->priceListItemFactory           = $priceListItemFactory;
         $this->priceListItemCollectionFactory = $priceListItemCollectionFactory;
         $this->searchResultsFactory           = $searchResultsFactory;
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->searchCriteriaBuilder          = $searchCriteriaBuilder;
     }
 
     /**
@@ -38,7 +36,9 @@ class PriceListItemRepository implements \Dealer4dealer\Xcore\Api\PriceListItemR
             /** @var PriceListItem $priceListItem */
             $priceListItem->getResource()->save($priceListItem);
         } catch (\Exception $exception) {
-            throw new \Magento\Framework\Exception\CouldNotSaveException(__(sprintf('Could not save the Price List Item: %s', $exception->getMessage())));
+            throw new \Magento\Framework\Exception\CouldNotSaveException(
+                __(sprintf('Could not save the Price List Item: %s', $exception->getMessage()))
+            );
         }
         return $priceListItem;
     }
@@ -67,7 +67,6 @@ class PriceListItemRepository implements \Dealer4dealer\Xcore\Api\PriceListItemR
         foreach ($criteria->getFilterGroups() as $filterGroup) {
             foreach ($filterGroup->getFilters() as $filter) {
                 if ($filter->getField() === 'store_id') {
-//                    $collection->addStoreFilter($filter->getValue(), false);
                     continue;
                 }
                 $condition = $filter->getConditionType() ?: 'eq';
@@ -105,7 +104,9 @@ class PriceListItemRepository implements \Dealer4dealer\Xcore\Api\PriceListItemR
             /** @var PriceListItem $priceListItem */
             $priceListItem->getResource()->delete($priceListItem);
         } catch (\Exception $exception) {
-            throw new \Magento\Framework\Exception\CouldNotDeleteException(__(sprintf('Could not delete the price_list_item: %s', $exception->getMessage())));
+            throw new \Magento\Framework\Exception\CouldNotDeleteException(
+                __(sprintf('Could not delete the price_list_item: %s', $exception->getMessage()))
+            );
         }
         return true;
     }
@@ -124,6 +125,7 @@ class PriceListItemRepository implements \Dealer4dealer\Xcore\Api\PriceListItemR
      * @param      $productSku
      * @param      $qty
      * @param null $priceListId
+     *
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface|\Magento\Framework\App\Config\Base
      * @throws \Magento\Framework\Exception\LocalizedException
      */
@@ -136,7 +138,9 @@ class PriceListItemRepository implements \Dealer4dealer\Xcore\Api\PriceListItemR
                                                       ->create();
         $itemCollection = $this->getList($searchCriteria);
 
-        foreach ($itemCollection->getItems() as $item) return $item;
+        foreach ($itemCollection->getItems() as $item) {
+            return $item;
+        }
 
         return $this->priceListItemFactory->create();
     }
@@ -145,6 +149,7 @@ class PriceListItemRepository implements \Dealer4dealer\Xcore\Api\PriceListItemR
      * Returns the price list items that belong to a specific price list.
      *
      * @param int $priceListId
+     *
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[]
      * @throws \Magento\Framework\Exception\LocalizedException
      */

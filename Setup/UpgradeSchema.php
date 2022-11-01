@@ -290,6 +290,123 @@ class UpgradeSchema implements UpgradeSchemaInterface
             );
         }
 
+        if(version_compare($context->getVersion(), '2.7.0', '<')){
+            $table_dealer4dealer_price_list_item_group = $setup->getConnection()->newTable(
+                $setup->getTable('dealer4dealer_price_list_item_group')
+            );
+
+            $table_dealer4dealer_price_list_item_group
+                ->addColumn(
+                    'id',
+                    Table::TYPE_INTEGER,
+                    null,
+                    [
+                        'nullable'       => false,
+                        'identity'       => true,
+                        'auto_increment' => true,
+                        'primary'        => true,
+                        'unsigned'       => true
+                    ],
+                    'Price List Item Group ID'
+                )
+                ->addColumn(
+                    'price_list_id',
+                    Table::TYPE_INTEGER,
+                    10,
+                    [
+                        'nullable' => false,
+                        'unsigned' => true
+                    ],
+                    'Price List ID'
+                )
+                ->addColumn(
+                    'item_group',
+                    Table::TYPE_INTEGER,
+                    10,
+                    [
+                        'nullable' => false,
+                    ]
+                )
+                ->addColumn(
+                    'qty',
+                    Table::TYPE_DECIMAL,
+                    null,
+                    [
+                        'nullable'  => false,
+                        'scale'     => 4,
+                        'precision' => 12,
+                        'default'   => 1.0000
+                    ],
+                    'Price List Item Group Quantity'
+                )
+                ->addColumn(
+                    'discount',
+                    Table::TYPE_DECIMAL,
+                    null,
+                    [
+                        'nullable' => false,
+                        'scale'     => 4,
+                    ]
+                )
+                ->addColumn(
+                    'start_date',
+                    Table::TYPE_DATE,
+                    null,
+                    [],
+                    'Price List Item Group Start Date'
+                )
+                ->addColumn(
+                    'end_date',
+                    Table::TYPE_DATE,
+                    null,
+                    [],
+                    'Price List Item Group End Date'
+                )
+                ->addColumn(
+                    'processed',
+                    Table::TYPE_BOOLEAN,
+                    null,
+                    [
+                        'default' => 0
+                    ],
+                    'Price List Item Group End Date'
+                )
+                ->addColumn(
+                    'created_at',
+                    Table::TYPE_TIMESTAMP,
+                    null,
+                    [
+                        'default'  => Table::TIMESTAMP_INIT,
+                        'nullable' => false,
+                    ]
+                )
+                ->addColumn(
+                    'updated_at',
+                    Table::TYPE_TIMESTAMP,
+                    null,
+                    [
+                        'default'  => Table::TIMESTAMP_INIT_UPDATE,
+                        'nullable' => false,
+                    ]
+                )->addColumn(
+                    'error_count',
+                    Table::TYPE_INTEGER,
+                    [
+                        'nullable' => false,
+                        'default'  => 0
+                    ]
+                )
+                ->addForeignKey(
+                    'FK_ITEM_GROUP_PRICE_LIST_ID',
+                    'price_list_id',
+                    'dealer4dealer_price_list',
+                    'id',
+                    Table::ACTION_CASCADE
+                );
+
+            $setup->getConnection()->createTable($table_dealer4dealer_price_list_item_group);
+        }
+
         $installer->endSetup();
     }
 }
