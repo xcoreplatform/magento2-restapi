@@ -159,6 +159,7 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
 
         if ($withItems) {
             $priceList->setItems($this->priceListItemRepository->getByPriceListId($priceList->getId()));
+            $priceList->setItemGroups($this->priceListItemGroupRepository->getByPriceListId($priceList->getId()));
         }
 
         return $priceList;
@@ -178,6 +179,7 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
 
         if ($withItems) {
             $priceList->setItems($this->priceListItemRepository->getByPriceListId($priceList->getId()));
+            $priceList->setItemGroups($this->priceListItemGroupRepository->getByPriceListId($priceList->getId()));
         }
 
         return $priceList;
