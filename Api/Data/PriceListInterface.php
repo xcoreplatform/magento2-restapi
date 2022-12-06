@@ -64,16 +64,16 @@ interface PriceListInterface
      *
      * @return mixed
      */
-    public function getCustomerGroups();
+    public function getCustomerGroupIds();
 
     /**
      * Set Customer Groups
      *
-     * @param $customer_groups
+     * @param $customer_group_ids
      *
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListInterface
      */
-    public function setCustomerGroups($customer_groups);
+    public function setCustomerGroupIds($customer_group_ids);
 
     /**
      * @return \Dealer4dealer\Xcore\Api\Data\PriceListItemInterface[]

@@ -239,6 +239,7 @@ class PriceListRepository implements \Dealer4dealer\Xcore\Api\PriceListRepositor
 
         $priceList->setGuid($newPriceList->getGuid());
         $priceList->setCode($newPriceList->getCode());
+        $priceList->setCustomerGroupIds($newPriceList->getCustomerGroupIds());
 
         $priceList->getResource()->save($priceList);
 
