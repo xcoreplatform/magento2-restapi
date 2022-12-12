@@ -407,6 +407,20 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $setup->getConnection()->createTable($table_dealer4dealer_price_list_item_group);
         }
 
+        if(version_compare($context->getVersion(), '2.8.0', '<')){
+            $priceListTableName = $setup->getTable('dealer4dealer_price_list');
+            $setup->getConnection()->addColumn(
+                $priceListTableName,
+                'customer_group_ids',
+                [
+                    'type' => Table::TYPE_TEXT,
+                    'length' => null,
+                    'nullable' => true,
+                    'comment' => 'Customer Group ID(s)'
+                ]
+            );
+        }
+
         $installer->endSetup();
     }
 }

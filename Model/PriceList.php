@@ -90,4 +90,20 @@ class PriceList extends \Magento\Framework\Model\AbstractModel implements \Deale
     {
         return $this->setData(self::ITEM_GROUPS, $item_groups);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCustomerGroupIds()
+    {
+        return $this->getData(self::CUSTOMER_GROUPS);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCustomerGroupIds($customer_group_ids)
+    {
+        return $this->setData(self::CUSTOMER_GROUPS, $customer_group_ids);
+    }
 }
