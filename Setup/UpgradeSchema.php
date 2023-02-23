@@ -399,7 +399,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 ->addForeignKey(
                     'FK_ITEM_GROUP_PRICE_LIST_ID',
                     'price_list_id',
-                    'dealer4dealer_price_list',
+                    $setup->getTable('dealer4dealer_price_list'),
                     'id',
                     Table::ACTION_CASCADE
                 );
