@@ -421,6 +421,23 @@ class UpgradeSchema implements UpgradeSchemaInterface
             );
         }
 
+        if (version_compare($context->getVersion(), '2.9.0', '<')) {
+            $priceListItemTableName = $setup->getTable('dealer4dealer_price_list_item');
+            $priceListTableName     = $setup->getTable('dealer4dealer_price_list');
+            
+            $setup->getConnection()->dropForeignKey($priceListItemTableName, 'FK_PRICE_LIST_ID');
+            $setup->getConnection()->dropIndex($priceListItemTableName, 'IDX_PRICE_LIST_ID_PRODUCT_SKU_QTY');
+
+            $setup->getConnection()->addForeignKey(
+                'FK_PRICE_LIST_ID',
+                $priceListItemTableName,
+                'price_list_id',
+                $priceListTableName,
+                'id',
+                Table::ACTION_CASCADE
+            );
+        }
+
         $installer->endSetup();
     }
 }
