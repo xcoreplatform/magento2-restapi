@@ -21,4 +21,5 @@
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListItemSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\PriceListItemGroupSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 	<preference for="Dealer4dealer\Xcore\Api\Data\VersionInterface" type="Dealer4dealer\Xcore\Model\Version"/>
+	<preference for="Dealer4dealer\Xcore\Api\TierPriceStorageInterface" type="Dealer4dealer\Xcore\Model\Version"/>
 </config>

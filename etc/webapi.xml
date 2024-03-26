@@ -66,4 +66,22 @@
             <resource ref="Magento_Sales::sales" />
         </resources>
     </route>
+    <route url="/V1/xcore/products/tier-prices" method="POST">
+        <service class="Dealer4dealer\Xcore\Api\TierPriceStorageInterface" method="update"/>
+        <resources>
+            <resource ref="Magento_Catalog::catalog"/>
+        </resources>
+    </route>
+    <route url="/V1/xcore/products/tier-prices" method="PUT">
+        <service class="Dealer4dealer\Xcore\Api\TierPriceStorageInterface" method="replace"/>
+        <resources>
+            <resource ref="Magento_Catalog::catalog"/>
+        </resources>
+    </route>
+    <route url="/V1/xcore/products/tier-prices-delete" method="POST">
+        <service class="Dealer4dealer\Xcore\Api\TierPriceStorageInterface" method="delete"/>
+        <resources>
+            <resource ref="Magento_Catalog::catalog"/>
+        </resources>
+    </route>
 </routes>
