@@ -8,16 +8,22 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 
 class TierPriceStorage implements TierPriceStorageInterface
 {
+    protected $logger;
+
     private $tierPriceStorage;
     private $customerGroupRepository;
     private $searchCriteriaBuilder;
 
     public function __construct(
+        \Psr\Log\LoggerInterface $logger,
         \Magento\Catalog\Api\TierPriceStorageInterface $tierPriceStorage,
         GroupRepositoryInterface                       $customerGroupRepository,
         SearchCriteriaBuilder                          $searchCriteriaBuilder,
 
     ) {
+
+        $this->logger = $logger;
+
         $this->tierPriceStorage        = $tierPriceStorage;
         $this->customerGroupRepository = $customerGroupRepository;
         $this->searchCriteriaBuilder   = $searchCriteriaBuilder;
@@ -32,26 +38,30 @@ class TierPriceStorage implements TierPriceStorageInterface
     public function replace(array $prices)
     {
         $prices = $this->resolveCustomerGroup($prices);
-        return$this->tierPriceStorage->replace($prices);
+        return $this->tierPriceStorage->replace($prices);
     }
 
     public function delete(array $prices)
     {
         $prices = $this->resolveCustomerGroup($prices);
-        return$this->tierPriceStorage->delete($prices);
+        return $this->tierPriceStorage->delete($prices);
     }
 
     private function resolveCustomerGroup(array $prices):array
     {
         $customerGroups = $this->getCustomerGroups();
-        foreach ($prices as $price) {
+        foreach ($prices as $i => $price) {
             $customerGroupId = $price['customer_group_id'] ?? null;
             if (!$customerGroupId) {
                 continue;
             }
-            unset($price['customer_group_id']);
+            unset($prices[$i]['customer_group_id']);
             $price['customer_group'] = $customerGroups[$customerGroupId] ?? null;
         }
+
+        $this->logger->error(json_encode($prices));
+
+
         return $prices;
     }
 
