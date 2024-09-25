@@ -18,8 +18,7 @@ class TierPriceStorage implements TierPriceStorageInterface
         \Psr\Log\LoggerInterface $logger,
         \Magento\Catalog\Api\TierPriceStorageInterface $tierPriceStorage,
         GroupRepositoryInterface                       $customerGroupRepository,
-        SearchCriteriaBuilder                          $searchCriteriaBuilder,
-
+        SearchCriteriaBuilder                          $searchCriteriaBuilder
     ) {
 
         $this->logger = $logger;
