@@ -58,9 +58,6 @@ class TierPriceStorage implements TierPriceStorageInterface
             $price['customer_group'] = $customerGroups[$customerGroupId] ?? null;
         }
 
-        $this->logger->error(json_encode($prices));
-
-
         return $prices;
     }
 
