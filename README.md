@@ -3,7 +3,7 @@ This module extends the rest api of Magento2 and is needed for the usage of the 
 
 ## Installation
 
-`composer require dealer4dealer/xcore-magento2`
+`composer require xcoreplatform/xcore-magento2`
 
 ## License
 The MIT License (MIT)
