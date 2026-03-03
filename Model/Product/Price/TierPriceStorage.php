@@ -51,11 +51,11 @@ class TierPriceStorage implements TierPriceStorageInterface
         $customerGroups = $this->getCustomerGroups();
         foreach ($prices as $i => $price) {
             $customerGroupId = $price['customer_group_id'] ?? null;
-            if (!$customerGroupId) {
+            if ($customerGroupId === null) {
                 continue;
             }
             unset($prices[$i]['customer_group_id']);
-            $price['customer_group'] = $customerGroups[$customerGroupId] ?? null;
+            $prices[$i]['customer_group'] = $customerGroups[$customerGroupId] ?? null;
         }
 
         return $prices;
