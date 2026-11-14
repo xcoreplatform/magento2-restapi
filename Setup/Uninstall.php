@@ -15,6 +15,7 @@ use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\UninstallInterface;
 use Magento\Tax\Model\ClassModel;
 use Magento\Tax\Model\TaxClass\Repository as TaxClassRepository;
+use Psr\Log\LoggerInterface;
 
 class Uninstall implements UninstallInterface
 {
@@ -34,20 +35,28 @@ class Uninstall implements UninstallInterface
     protected $eavSetupFactory;
 
     /**
+     * @var LoggerInterface
+     */
+    protected $logger;
+
+    /**
      * Constructor
      *
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param TaxClassRepository    $taxRepository
      * @param EavSetupFactory       $eavSetupFactory
+     * @param LoggerInterface       $logger
      */
     public function __construct(
         SearchCriteriaBuilder $searchCriteriaBuilder,
         TaxClassRepository $taxRepository,
-        EavSetupFactory $eavSetupFactory
+        EavSetupFactory $eavSetupFactory,
+        LoggerInterface $logger
     ) {
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->taxClassRepository    = $taxRepository;
         $this->eavSetupFactory       = $eavSetupFactory;
+        $this->logger                = $logger;
     }
 
     /**
@@ -117,8 +126,8 @@ class Uninstall implements UninstallInterface
     }
 
     /**
-     * @return void
-     * @throws CouldNotDeleteException
+     * Classes still referenced by a tax rule or customer group are skipped and logged.
+     *
      * @throws InputException
      * @throws NoSuchEntityException
      */
@@ -133,6 +142,14 @@ class Uninstall implements UninstallInterface
                 'class_name' => 'xCore Including VAT',
                 'class_type' => ClassModel::TAX_CLASS_TYPE_CUSTOMER,
             ],
+            [
+                'class_name' => 'xCore Without VAT',
+                'class_type' => ClassModel::TAX_CLASS_TYPE_CUSTOMER,
+            ],
+            [
+                'class_name' => 'xCore With VAT',
+                'class_type' => ClassModel::TAX_CLASS_TYPE_CUSTOMER,
+            ],
         ];
 
         foreach ($data as $row) {
@@ -140,6 +157,7 @@ class Uninstall implements UninstallInterface
             $searchCriteria = $this->searchCriteriaBuilder
                 ->setFilterGroups([])
                 ->addFilter('class_name', $row['class_name'])
+                ->addFilter('class_type', $row['class_type'])
                 ->create();
 
             $taxClassCollection = $this->taxClassRepository->getList($searchCriteria);
@@ -150,7 +168,14 @@ class Uninstall implements UninstallInterface
             }
 
             foreach ($taxClassCollection->getItems() as $taxClass) {
-                $this->taxClassRepository->delete($taxClass);
+                try {
+                    $this->taxClassRepository->delete($taxClass);
+                } catch (CouldNotDeleteException $e) {
+                    $this->logger->warning(
+                        'Tax class was not removed on uninstall.',
+                        ['tax_class' => $row['class_name'], 'exception' => $e]
+                    );
+                }
             }
         }
     }
